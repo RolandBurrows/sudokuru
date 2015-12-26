@@ -2,7 +2,7 @@
 Ruby Sudoku puzzle solver at the speed of light.
 
 #### The Goal
-* To solve a given [Sudoku](https://en.wikipedia.org/wiki/Sudoku) puzzle, particularly of the 'classic' variety (9x9 grid, digits 1-9, with 3x3 sub-grids).
+* To solve a given [Sudoku](https://en.wikipedia.org/wiki/Sudoku) puzzle, particularly of the 'classic' variety (9x9 grid, digits 1-9, with 3x3 sub-grids). Preferred: handle NxN grid (up to 9x9).
 
 #### Application Milestones
 Execution:
@@ -18,3 +18,7 @@ Implementation:
 - [ ] Research and then implement algorithm based on real-world player strategies (do not utilize pure mathematical approach).
 - [ ] Find starting row/column by calculating which one has the greatest number of pre-filled items.
 - [ ] Attempt to use Naked / Hidden singles, pairs, triplets, qauds.
+
+Scaling:
+- [ ] Begin with 2x2 grid and scale up.
+- [ ] Tests for each level of scale.
