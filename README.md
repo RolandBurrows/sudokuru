@@ -8,3 +8,8 @@ Ruby Sudoku puzzle solver at the speed of light.
 Execution:
 - [ ] A default input.txt file at the app's location should be present.
 - [ ] Provide a specific file path as part of execution.
+
+Input (diagnostic checks on validity and formatting):
+- [ ] Same number of "rows" in txt file as number of "columns" (characters).
+- [ ] Only digits 1-9 and allowed "blank" characters are present.
+- [ ] No duplicate digits are already present in puzzle input.
