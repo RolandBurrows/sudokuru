@@ -6,8 +6,8 @@ Ruby Sudoku puzzle solver at the speed of light.
 
 #### Application Milestones
 Execution:
-- [ ] A default input.txt file at the app's location should be present.
-- [ ] Provide a specific file path as part of execution.
+- [X] A default input.txt file at the app's location should be present.
+- [X] User can provide a specific file path as part of execution.
 
 Input (diagnostic checks on validity and formatting):
 - [ ] Same number of "rows" in txt file as number of "columns" (characters).
