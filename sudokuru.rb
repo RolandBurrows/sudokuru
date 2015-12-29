@@ -12,6 +12,7 @@ else
 end
 
 begin
+	puts "Using provided file: #{@input_file}"
 	file = File.open(@input_file, "r")
 rescue
 	puts "ERROR. Given file doesn't exist. Halting."
