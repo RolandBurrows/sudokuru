@@ -15,6 +15,7 @@ begin
 	puts "Using provided file: #{input_file}"
 	file = File.open(input_file, "r")
 rescue
+	puts "\033[31mERROR\033[0m - given file doesn't exist. Halting."
 	exit
 end
 
