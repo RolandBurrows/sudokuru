@@ -1,9 +1,9 @@
 # Sudokuru!
 # Ruby Sudoku puzzle solver at the speed of light.
 
-puts "\n"
-puts "Let's solve some Sudoku!"
-puts "\n"
+Dir["#{File.dirname(__FILE__)}/app/**/*.rb"].each { |f| load(f) }
+
+Log.info("Let's solve some Sudoku!")
 
 if ARGV[0] != nil
 	input_file = ARGV[0]
