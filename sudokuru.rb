@@ -14,11 +14,14 @@ end
 
 begin
 	Log.info("Using provided file: #{input_file}")
-	file = File.open(input_file, "r")
+	puzzle_file = File.open(input_file, "r")
+	puzzle_data = puzzle_file.read
 rescue
 	Log.error("given file doesn't exist. Halting.")
 	exit
 end
 
-data = file.read
-file.close
+Log.info("File contents:")
+Log.tab(puzzle_data)
+
+puzzle_file.close
