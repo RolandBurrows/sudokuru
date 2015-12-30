@@ -11,8 +11,10 @@ class Log
 			puts werds.to_s
 		end
 
-		def tab(things)
-			puts things.to_s
+		def tab(move_overs)
+			puts "\n"
+			lines = move_overs.split("\n")
+			lines.each { |line| puts "  #{line}" }
 		end
 
 	end
