@@ -1,8 +1,9 @@
 # Sudokuru!
 # Ruby Sudoku puzzle solver at the speed of light.
 
-puts ""
+puts "\n"
 puts "Let's solve some Sudoku!"
+puts "\n"
 
 if ARGV[0] != nil
 	input_file = ARGV[0]
