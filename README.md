@@ -11,7 +11,7 @@ Execution:
 
 Input (diagnostic checks on validity and formatting):
 - [ ] Same number of "rows" in txt file as number of "columns" (characters).
-- [ ] Only digits 1-9 and allowed "blank" characters are present.
+- [X] Only digits 1-9 and allowed "blank" characters are present.
 - [ ] No duplicate digits are already present in puzzle input.
 
 Implementation:
