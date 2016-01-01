@@ -4,6 +4,7 @@ class Log
 		def error(badness)
 			puts "\n"
 			puts "\033[31mERROR\033[0m - " + badness.to_s
+			exit
 		end
 
 		def info(werds)

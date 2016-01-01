@@ -18,7 +18,6 @@ begin
 	puzzle_data = puzzle_file.read
 rescue
 	Log.error("given file doesn't exist. Halting.")
-	exit
 end
 
 Log.info("File contents:")
