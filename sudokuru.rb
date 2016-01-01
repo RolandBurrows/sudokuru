@@ -24,4 +24,6 @@ end
 Log.info("File contents:")
 Log.tab(puzzle_data)
 
+Analyze.data_formatting(puzzle_data)
+
 puzzle_file.close
