@@ -20,5 +20,19 @@ class Analyze
 			Log.info("Puzzle data is properly formatted.")
 		end
 
+		def dimensionality(file_data)
+			lines = file_data.split("\n")
+			columns = lines.length
+			lines.each { |line|
+				if line.length == columns
+					# Pass!
+				else
+					Log.error("Row (#{line}) length does not match column height. Please fix and rerun.")
+				end
+			}
+
+			Log.info("Puzzle height and length are equivalent.")
+		end
+
 	end
 end
