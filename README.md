@@ -10,7 +10,7 @@ Execution:
 - [X] User can provide a specific file path as part of execution.
 
 Input (diagnostic checks on validity and formatting):
-- [ ] Same number of "rows" in txt file as number of "columns" (characters).
+- [X] Same number of "rows" in txt file as number of "columns" (characters).
 - [X] Only digits 1-9 and allowed "blank" characters are present.
 - [ ] No duplicate digits are already present in puzzle input.
 
