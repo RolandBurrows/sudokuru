@@ -1,4 +1,4 @@
-require_relative "logging"
+require_relative "log"
 
 class Analyze
 	class << self
