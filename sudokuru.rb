@@ -16,6 +16,11 @@ begin
 	Log.info("Using provided file: #{input_file}")
 	puzzle_file = File.open(input_file, "r")
 	puzzle_data = puzzle_file.read
+	
+	if puzzle_data == ""
+		Log.error("file is empty.")
+	end
+
 rescue
 	Log.error("given file doesn't exist. Halting.")
 end
