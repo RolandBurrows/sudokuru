@@ -39,6 +39,7 @@ Log.tab(puzzle_data)
 Analyze.data_formatting(puzzle_data)
 Analyze.dimensionality(puzzle_data)
 Analyze.row_uniqueness(puzzle_data)
+# Analyze.column_uniqueness(puzzle_data) TODO: Implement.
 
 # Cleanup
 

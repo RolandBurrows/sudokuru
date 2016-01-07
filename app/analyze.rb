@@ -51,5 +51,9 @@ class Analyze
 			Log.info("Puzzle rows contain no duplicate values.")
 		end
 
+		def column_uniqueness(file_data)
+			# TODO: Research Matrices
+		end
+
 	end
 end
