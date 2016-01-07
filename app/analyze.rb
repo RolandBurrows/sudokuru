@@ -34,5 +34,22 @@ class Analyze
 			Log.info("Puzzle height and length are equivalent.")
 		end
 
+		def row_uniqueness(file_data)
+			lines = file_data.split("\n")
+			lines.each { |line|
+				for i in 1..9
+					if line.count(i.to_s).to_s == "1"
+						# Pass!
+					elsif line.count(i.to_s).to_s == "0"
+						# Pass!
+					else
+						Log.error("Row (#{line}) contains duplicate values. Please fix and rerun.")
+					end
+				end
+			}
+			
+			Log.info("Puzzle rows contain no duplicate values.")
+		end
+
 	end
 end
