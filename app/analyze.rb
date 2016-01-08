@@ -4,6 +4,12 @@ class Analyze
 
 	def initialize(file_data)
 		@raw_data = file_data
+
+		rows = file_data.split("\n")
+		matrix_data = []
+		rows.each { |line|
+			matrix_data.push(line.split(""))
+		}
 	end
 
 	def data_formatting
