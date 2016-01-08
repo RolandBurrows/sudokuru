@@ -36,9 +36,12 @@ Log.tab(puzzle_data)
 
 # Analyze file contents
 
-Analyze.data_formatting(puzzle_data)
-Analyze.dimensionality(puzzle_data)
-Analyze.row_uniqueness(puzzle_data)
+analysis = Analyze.new(puzzle_data)
+
+analysis.data_formatting(puzzle_data)
+analysis.dimensionality(puzzle_data)
+analysis.row_uniqueness(puzzle_data)
+
 # Analyze.column_uniqueness(puzzle_data) TODO: Implement.
 
 # Cleanup
