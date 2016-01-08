@@ -4,8 +4,8 @@ class Analyze
 
 	def initialize(file_data)
 		@raw_data = file_data
+		@rows = file_data.split("\n")
 
-		rows = file_data.split("\n")
 		matrix_data = []
 		rows.each { |line|
 			matrix_data.push(line.split(""))
@@ -13,10 +13,7 @@ class Analyze
 	end
 
 	def data_formatting
-		
-		lines = @raw_data.split("\n")
-
-		lines.each { |line|
+		@rows.each { |line|
 			line.split("").each { |char|
   			if (char.match("[1-9]| |-|_") != nil)
   				# Pass!
@@ -30,9 +27,8 @@ class Analyze
 	end
 
 	def dimensionality
-		lines = @raw_data.split("\n")
-		column_size = lines.length
-		lines.each { |line|
+		column_size = @rows.length
+		@rows.each { |line|
 			if line.length == column_size
 				# Pass!
 			else
@@ -44,8 +40,7 @@ class Analyze
 	end
 
 	def row_uniqueness
-		lines = @raw_data.split("\n")
-		lines.each { |line|
+		@rows.each { |line|
 			for i in 1..9
 				if line.count(i.to_s).to_s == "1"
 					# Pass!
