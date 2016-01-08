@@ -1,4 +1,5 @@
 require_relative "log"
+require "Matrix"
 
 class Analyze
 
@@ -6,9 +7,9 @@ class Analyze
 		@raw_data = file_data
 		@rows = file_data.split("\n")
 
-		matrix_data = []
+		matrix_data = Matrix[]
 		@rows.each { |line|
-			matrix_data.push(line.split(""))
+			matrix_data = Matrix.rows(matrix_data.to_a << (line.split("")))
 		}
 	end
 
