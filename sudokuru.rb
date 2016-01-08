@@ -38,11 +38,11 @@ Log.tab(puzzle_data)
 
 analysis = Analyze.new(puzzle_data)
 
-analysis.data_formatting(puzzle_data)
-analysis.dimensionality(puzzle_data)
-analysis.row_uniqueness(puzzle_data)
+analysis.data_formatting
+analysis.dimensionality
+analysis.row_uniqueness
 
-# Analyze.column_uniqueness(puzzle_data) TODO: Implement.
+# analysis.column_uniqueness TODO: Implement.
 
 # Cleanup
 

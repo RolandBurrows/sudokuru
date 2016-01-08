@@ -3,11 +3,12 @@ require_relative "log"
 class Analyze
 
 	def initialize(file_data)
+		@raw_data = file_data
 	end
 
-	def data_formatting(file_data)
+	def data_formatting
 		
-		lines = file_data.split("\n")
+		lines = @raw_data.split("\n")
 
 		lines.each { |line|
 			line.split("").each { |char|
@@ -22,8 +23,8 @@ class Analyze
 		Log.info("Puzzle data is properly formatted.")
 	end
 
-	def dimensionality(file_data)
-		lines = file_data.split("\n")
+	def dimensionality
+		lines = @raw_data.split("\n")
 		column_size = lines.length
 		lines.each { |line|
 			if line.length == column_size
@@ -36,8 +37,8 @@ class Analyze
 		Log.info("Puzzle height and length are equivalent.")
 	end
 
-	def row_uniqueness(file_data)
-		lines = file_data.split("\n")
+	def row_uniqueness
+		lines = @raw_data.split("\n")
 		lines.each { |line|
 			for i in 1..9
 				if line.count(i.to_s).to_s == "1"
@@ -53,7 +54,7 @@ class Analyze
 		Log.info("Puzzle rows contain no duplicate values.")
 	end
 
-	def column_uniqueness(file_data)
+	def column_uniqueness
 		# TODO: Research Matrices
 	end
 
