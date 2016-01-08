@@ -7,7 +7,7 @@ class Analyze
 		@rows = file_data.split("\n")
 
 		matrix_data = []
-		rows.each { |line|
+		@rows.each { |line|
 			matrix_data.push(line.split(""))
 		}
 	end
