@@ -11,6 +11,10 @@ class Analyze
 		@rows.each { |line|
 			matrix_data = Matrix.rows(matrix_data.to_a << (line.split("")))
 		}
+		@columns = []
+		for i in 1..(matrix_data.count)
+			@columns.push(matrix_data.column(i-1).to_a)
+		end
 	end
 
 	def data_formatting
@@ -57,7 +61,20 @@ class Analyze
 	end
 
 	def column_uniqueness
-		# TODO: Research Matrices
+		@columns.each { |vertical|
+			for i in 1..9
+				if vertical.count(i.to_s).to_s == "1"
+					# Pass!
+				elsif vertical.count(i.to_s).to_s == "0"
+					# Pass!
+				else
+					vertical = vertical*""   # converts the array to a solid string for better readability
+					Log.error("Column (#{vertical}) contains duplicate values. Please fix and rerun.")
+				end
+			end
+		}
+		
+		Log.info("Puzzle column contain no duplicate values.")
 	end
 
 end
