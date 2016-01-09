@@ -32,15 +32,11 @@ class Analyze
 	end
 
 	def dimensionality
-		column_size = @rows.length
-		@rows.each { |line|
-			if line.length == column_size
-				# Pass!
-			else
-				Log.error("Row (#{line}) length does not match column height. Please fix and rerun.")
-			end
-		}
-		Log.info("Puzzle height and length are equivalent.")
+		if @matrix_data.square? == true
+			Log.info("Puzzle height and length are equivalent.")
+		else
+			Log.error("Rows length does not match columns height. Please fix and rerun.")
+		end
 	end
 
 	def row_uniqueness
