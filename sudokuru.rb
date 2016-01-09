@@ -7,7 +7,7 @@ Log.info("Let's solve some Sudoku!")
 
 # Initialize test file from the user or provide a default
 
-if ARGV[0] != nil
+if ARGV[0]
 	input_file = ARGV[0]
 else
 	Log.info("No file specified. Searching for default input file.")

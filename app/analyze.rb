@@ -21,7 +21,7 @@ class Analyze
 	def data_formatting
 		@rows.each { |line|
 			line.split("").each { |char|
-  			if (char.match("[1-9]| |-|_") != nil)
+  			if char.match("[1-9]| |-|_")
   				# Pass!
   			else
   				Log.error("Row (#{line}) contains a formatting issue. Please fix and rerun.")
