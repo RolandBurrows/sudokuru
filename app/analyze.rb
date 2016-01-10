@@ -4,19 +4,13 @@ require "Matrix"
 class Analyze
 
 	def initialize(file_data)
-		@rows = file_data.split("\n")
 
 		begin
 			@matrix_data = Matrix[]
 
-			@rows.each { |line|
+			file_data.split("\n").each { |line|
 				@matrix_data = Matrix.rows(@matrix_data.to_a << (line.split("")))
 			}
-
-			@columns = []
-			for i in 1..(@matrix_data.count)
-				@columns.push(@matrix_data.column(i-1).to_a)
-			end
 
 		rescue
 			Log.error("Rows and/or columns need to be equal length. Please fix and rerun.")
@@ -26,8 +20,8 @@ class Analyze
 	end
 
 	def data_formatting
-		@rows.each { |line|
-			line.split("").each { |char|
+		@matrix_data.row_vectors.each { |line|
+			line.each { |char|
   			if char.match("[1-9]| |-|_")
   				# Pass!
   			else
@@ -47,7 +41,7 @@ class Analyze
 	end
 
 	def row_uniqueness
-		@rows.each { |line|
+		@matrix_data.row_vectors.each { |line|
 			for i in 1..9
 				if line.count(i.to_s) == 1
 					# Pass!
@@ -63,7 +57,7 @@ class Analyze
 	end
 
 	def column_uniqueness
-		@columns.each { |vertical|
+		@matrix_data.column_vectors.each { |vertical|
 			for i in 1..9
 				if vertical.count(i.to_s) == 1
 					# Pass!
