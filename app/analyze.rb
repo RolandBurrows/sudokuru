@@ -6,16 +6,23 @@ class Analyze
 	def initialize(file_data)
 		@rows = file_data.split("\n")
 
-		@matrix_data = Matrix[]
+		begin
+			@matrix_data = Matrix[]
 
-		@rows.each { |line|
-			@matrix_data = Matrix.rows(@matrix_data.to_a << (line.split("")))
-		}
+			@rows.each { |line|
+				@matrix_data = Matrix.rows(@matrix_data.to_a << (line.split("")))
+			}
 
-		@columns = []
-		for i in 1..(@matrix_data.count)
-			@columns.push(@matrix_data.column(i-1).to_a)
+			@columns = []
+			for i in 1..(@matrix_data.count)
+				@columns.push(@matrix_data.column(i-1).to_a)
+			end
+
+		rescue
+			Log.error("Rows and/or columns need to be equal length. Please fix and rerun.")
 		end
+
+		dimensionality()
 	end
 
 	def data_formatting
@@ -35,7 +42,7 @@ class Analyze
 		if @matrix_data.square? == true
 			Log.info("Puzzle height and length are equivalent.")
 		else
-			Log.error("Rows length does not match columns height. Please fix and rerun.")
+			Log.error("Row length does not match column height. Please fix and rerun.")
 		end
 	end
 
