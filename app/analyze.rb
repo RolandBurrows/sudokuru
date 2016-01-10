@@ -20,14 +20,12 @@ class Analyze
 	end
 
 	def data_formatting
-		@matrix_data.row_vectors.each { |line|
-			line.each { |char|
-  			if char.match("[1-9]| |-|_")
-  				# Pass!
-  			else
-  				Log.error("Row (#{line}) contains a formatting issue. Please fix and rerun.")
-  			end
-			}
+		@matrix_data.each { |char|
+			if char.match("[1-9]| |-|_")
+				# Pass!
+			else
+				Log.error("The character (#{char}) is not allowed. Please fix and rerun.")
+			end
 		}
 		Log.info("Puzzle data is properly formatted.")
 	end
