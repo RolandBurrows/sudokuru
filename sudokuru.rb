@@ -41,6 +41,7 @@ analysis = Analyze.new(puzzle_data)
 analysis.data_formatting
 analysis.row_uniqueness
 analysis.column_uniqueness
+analysis.box_uniqueness
 
 # Cleanup
 

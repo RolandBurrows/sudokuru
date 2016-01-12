@@ -71,4 +71,13 @@ class Analyze
 		Log.info("Puzzle column contain no duplicate values.")
 	end
 
+	def box_uniqueness
+		edge_length = @matrix_data.row(0).count
+		if edge_length == 9
+
+		else
+			Log.info("Determining box uniqueness is for 9x9, not (#{edge_length}x#{edge_length}).")
+		end
+	end
+
 end
