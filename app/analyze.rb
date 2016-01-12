@@ -40,14 +40,10 @@ class Analyze
 
 	def row_uniqueness
 		@matrix_data.row_vectors.each { |line|
-			for i in 1..9
-				if line.count(i.to_s) == 1
-					# Pass!
-				elsif line.count(i.to_s) == 0
-					# Pass!
-				else
-					Log.error("Row (#{line}) contains duplicate values. Please fix and rerun.")
-				end
+			check_digit_uniqueness(line)
+			if @fail == true
+				line = line.to_a*""
+				Log.error("Row (#{line}) contains duplicate values. Please fix and rerun.")
 			end
 		}
 		
@@ -56,15 +52,10 @@ class Analyze
 
 	def column_uniqueness
 		@matrix_data.column_vectors.each { |vertical|
-			for i in 1..9
-				if vertical.count(i.to_s) == 1
-					# Pass!
-				elsif vertical.count(i.to_s) == 0
-					# Pass!
-				else
-					vertical = vertical*""   # converts the array to a solid string for better readability
-					Log.error("Column (#{vertical}) contains duplicate values. Please fix and rerun.")
-				end
+			check_digit_uniqueness(vertical)
+			if @fail == true
+				vertical = vertical.to_a*""   # converts the array to a solid string for better readability
+				Log.error("Column (#{vertical}) contains duplicate values. Please fix and rerun.")
 			end
 		}
 		
@@ -106,9 +97,7 @@ class Analyze
 
 			boxes.each { |box|
 				check_digit_uniqueness(box)
-				if @fail == false
-					# Pass!
-				else
+				if @fail == true
 					box = box.to_a*""   # converts the array to a solid string for better readability
 					Log.error("Box (#{box}) contains duplicate values. Please fix and rerun.")
 				end
