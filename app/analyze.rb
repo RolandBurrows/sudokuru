@@ -74,7 +74,28 @@ class Analyze
 	def box_uniqueness
 		edge_length = @matrix_data.row(0).count
 		if edge_length == 9
-
+			for b in 1..9
+				case
+				when b == 1
+					@box1 = @matrix_data.minor(0..2,0..2)
+				when b == 2
+					@box2 = @matrix_data.minor(0..2,3..5)
+				when b == 3
+					@box3 = @matrix_data.minor(0..2,6..8)
+				when b == 4
+					@box4 = @matrix_data.minor(3..5,0..2)
+				when b == 5
+					@box5 = @matrix_data.minor(3..5,3..5)
+				when b == 6
+					@box6 = @matrix_data.minor(3..5,6..8)
+				when b == 7
+					@box7 = @matrix_data.minor(6..8,0..2)
+				when b == 8
+					@box8 = @matrix_data.minor(6..8,3..5)
+				when b == 9
+					@box9 = @matrix_data.minor(6..8,6..8)
+				end
+			end
 		else
 			Log.info("Determining box uniqueness is for 9x9, not (#{edge_length}x#{edge_length}).")
 		end
