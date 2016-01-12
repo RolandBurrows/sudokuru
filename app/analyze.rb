@@ -73,31 +73,64 @@ class Analyze
 
 	def box_uniqueness
 		edge_length = @matrix_data.row(0).count
+
 		if edge_length == 9
-			for b in 1..9
-				case
-				when b == 1
-					@box1 = @matrix_data.minor(0..2,0..2)
-				when b == 2
-					@box2 = @matrix_data.minor(0..2,3..5)
-				when b == 3
-					@box3 = @matrix_data.minor(0..2,6..8)
-				when b == 4
-					@box4 = @matrix_data.minor(3..5,0..2)
-				when b == 5
-					@box5 = @matrix_data.minor(3..5,3..5)
-				when b == 6
-					@box6 = @matrix_data.minor(3..5,6..8)
-				when b == 7
-					@box7 = @matrix_data.minor(6..8,0..2)
-				when b == 8
-					@box8 = @matrix_data.minor(6..8,3..5)
-				when b == 9
-					@box9 = @matrix_data.minor(6..8,6..8)
+			boxes = []
+
+			box1 = @matrix_data.minor(0..2,0..2)
+			boxes.push(box1)
+
+			box2 = @matrix_data.minor(0..2,3..5)
+			boxes.push(box2)
+
+			box3 = @matrix_data.minor(0..2,6..8)
+			boxes.push(box3)
+
+			box4 = @matrix_data.minor(3..5,0..2)
+			boxes.push(box4)
+
+			box5 = @matrix_data.minor(3..5,3..5)
+			boxes.push(box5)
+
+			box6 = @matrix_data.minor(3..5,6..8)
+			boxes.push(box6)
+
+			box7 = @matrix_data.minor(6..8,0..2)
+			boxes.push(box7)
+
+			box8 = @matrix_data.minor(6..8,3..5)
+			boxes.push(box8)
+
+			box9 = @matrix_data.minor(6..8,6..8)
+			boxes.push(box9)
+
+			boxes.each { |box|
+				check_digit_uniqueness(box)
+				if @fail == false
+					# Pass!
+				else
+					box = box.to_a*""   # converts the array to a solid string for better readability
+					Log.error("Box (#{box}) contains duplicate values. Please fix and rerun.")
 				end
-			end
+			}
+
+			Log.info("Puzzle is 9x9 and boxes contain no duplicate values.")
+
 		else
 			Log.info("Determining box uniqueness is for 9x9, not (#{edge_length}x#{edge_length}).")
+		end
+	end
+
+	def check_digit_uniqueness(slice)
+		@fail = false
+		for i in 1..9
+			if slice.count(i.to_s) == 1
+				# Pass!
+			elsif slice.count(i.to_s) == 0
+				# Pass!
+			else
+				@fail = true
+			end
 		end
 	end
 
