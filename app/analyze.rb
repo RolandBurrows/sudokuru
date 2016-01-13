@@ -31,7 +31,7 @@ class Analyze
 	end
 
 	def dimensionality
-		if @matrix_data.square? == true
+		if @matrix_data.square?
 			Log.info("Puzzle height and length are equivalent.")
 		else
 			Log.error("Row length does not match column height. Please fix and rerun.")
@@ -41,7 +41,7 @@ class Analyze
 	def row_uniqueness
 		@matrix_data.row_vectors.each { |line|
 			check_digit_uniqueness(line)
-			if @fail == true
+			if @fail
 				line = line.to_a*""
 				Log.error("Row (#{line}) contains duplicate values. Please fix and rerun.")
 			end
@@ -53,7 +53,7 @@ class Analyze
 	def column_uniqueness
 		@matrix_data.column_vectors.each { |vertical|
 			check_digit_uniqueness(vertical)
-			if @fail == true
+			if @fail
 				vertical = vertical.to_a*""   # converts the array to a solid string for better readability
 				Log.error("Column (#{vertical}) contains duplicate values. Please fix and rerun.")
 			end
@@ -97,7 +97,7 @@ class Analyze
 
 			boxes.each { |box|
 				check_digit_uniqueness(box)
-				if @fail == true
+				if @fail
 					box = box.to_a*""   # converts the array to a solid string for better readability
 					Log.error("Box (#{box}) contains duplicate values. Please fix and rerun.")
 				end
@@ -111,7 +111,7 @@ class Analyze
 	end
 
 	def check_digit_uniqueness(slice)
-		@fail = false
+		@fail
 		for i in 1..9
 			if slice.count(i.to_s) == 1
 				# Pass!
