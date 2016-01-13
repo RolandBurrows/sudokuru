@@ -21,9 +21,7 @@ class Analyze
 
 	def data_formatting
 		@matrix_data.each { |char|
-			if char.match("[1-9]| |-|_")
-				# Pass!
-			else
+			if !char.match("[1-9]| |-|_")
 				Log.error("The character (#{char}) is not allowed. Please fix and rerun.")
 			end
 		}
@@ -111,13 +109,9 @@ class Analyze
 	end
 
 	def check_digit_uniqueness(slice)
-		@fail
+		@fail = false
 		for i in 1..9
-			if slice.count(i.to_s) == 1
-				# Pass!
-			elsif slice.count(i.to_s) == 0
-				# Pass!
-			else
+			if (slice.count(i.to_s) != (1 || 0))
 				@fail = true
 			end
 		end
