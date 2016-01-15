@@ -26,5 +26,11 @@ describe "sudokuru" do
     assert_equal (output.include? "height and length are equivalent"), true
   end
 
+  it "should detect that puzzle dimensions are mismatched" do
+    ARGV[0] = "./puzzles/dimensionality_mismatch.txt"
+    proc { capture_stdout {load "sudokuru.rb" }}.must_raise SystemExit
+    # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
+  end
+
 end
 
