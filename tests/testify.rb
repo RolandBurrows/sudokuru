@@ -1,9 +1,12 @@
 require 'minitest/autorun'
 
-class Testify < MiniTest::Unit::TestCase
+describe "sudokuru" do
 
-  def test_that_will_be_skipped
-    skip "who tests the tester?"
+  it "should process the default input file when no specific file is given" do
+    # ARGV = nil
+    load "sudokuru.rb"
+    assert_equal $script_failed, "no"
   end
 
 end
+
