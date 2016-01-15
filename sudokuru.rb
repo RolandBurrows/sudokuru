@@ -3,8 +3,6 @@
 
 Dir["#{File.dirname(__FILE__)}/app/**/*.rb"].each { |f| load(f) }
 
-$script_failed = "no"
-
 Log.info("Let's solve some Sudoku!")
 
 # Initialize test file from the user or provide a default
