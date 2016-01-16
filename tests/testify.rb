@@ -70,5 +70,11 @@ describe "sudokuru" do
     # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
   end
 
+  it "should detect that puzzle file has a non-unique boxes" do
+    ARGV[0] = "./puzzles/non_unique_boxes.txt"
+    proc { capture_stdout {load "sudokuru.rb" }}.must_raise SystemExit
+    # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
+  end
+
 end
 

@@ -93,11 +93,11 @@ class Analyze
 			box9 = @matrix_data.minor(6..8,6..8)
 			boxes.push(box9)
 
-			boxes.each { |box|
+			boxes.each_with_index { |box, index|
 				check_digit_uniqueness(box)
 				if @fail
-					box = box.to_a*""   # converts the array to a solid string for better readability
-					Log.error("Box (#{box}) contains duplicate values. Please fix and rerun.")
+					# box.to_a*"" below converts the array to a solid string for better readability
+					Log.error("Box #{index}: (#{box.to_a*""}) contains duplicate values. Please fix and rerun.")
 				end
 			}
 
