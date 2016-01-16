@@ -20,6 +20,12 @@ describe "sudokuru" do
 		assert_equal (output.include? "input.txt"), true
   end
 
+  it "should detect that a given input file doesnt exist" do
+    ARGV[0] = "./puzzles/jabberwocky.txt"
+    proc { capture_stdout {load "sudokuru.rb" }}.must_raise SystemExit
+    # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
+  end
+
   it "should detect that puzzle dimensions are identical" do
     ARGV[0] = nil
     output = capture_stdout { load "sudokuru.rb" }
