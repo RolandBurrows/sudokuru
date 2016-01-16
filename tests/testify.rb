@@ -32,5 +32,11 @@ describe "sudokuru" do
     # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
   end
 
+  it "should detect that puzzle file is empty" do
+    ARGV[0] = "./puzzles/0x0.txt"
+    proc { capture_stdout {load "sudokuru.rb" }}.must_raise SystemExit
+    # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
+  end
+
 end
 
