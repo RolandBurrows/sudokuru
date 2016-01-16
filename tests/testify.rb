@@ -52,5 +52,11 @@ describe "sudokuru" do
     assert_equal (output.include? "data is properly formatted"), true
   end
 
+  it "should detect that puzzle file has non-allowed characters" do
+    ARGV[0] = "./puzzles/1x1.txt"
+    proc { capture_stdout {load "sudokuru.rb" }}.must_raise SystemExit
+    # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
+  end
+
 end
 
