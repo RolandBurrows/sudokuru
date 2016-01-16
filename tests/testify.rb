@@ -44,5 +44,13 @@ describe "sudokuru" do
     # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
   end
 
+  it "should process the given input file and confirm every allowed blank character" do
+    ARGV[0] = "./puzzles/2x2.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    assert_equal (output.include? "2x2.txt"), true
+    assert_equal (output.include? "File contents:"), true
+    assert_equal (output.include? "data is properly formatted"), true
+  end
+
 end
 

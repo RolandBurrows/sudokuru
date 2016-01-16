@@ -111,7 +111,7 @@ class Analyze
 	def check_digit_uniqueness(slice)
 		@fail = false
 		for i in 1..9
-			if (slice.count(i.to_s) != (1 || 0))
+			if (slice.count(i.to_s) > 1)
 				@fail = true
 			end
 		end
