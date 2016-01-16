@@ -58,5 +58,11 @@ describe "sudokuru" do
     # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
   end
 
+  it "should detect that puzzle file has duplicate characters in a row" do
+    ARGV[0] = "./puzzles/3x3.txt"
+    proc { capture_stdout {load "sudokuru.rb" }}.must_raise SystemExit
+    # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
+  end
+
 end
 
