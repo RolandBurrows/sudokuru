@@ -1,6 +1,8 @@
 ## sudokuru
 Ruby Sudoku puzzle solver at the speed of light.
 
+[![Build Status](https://semaphoreci.com/api/v1/projects/f143a17b-2c6c-45c1-8698-5e79c8e736b7/663467/shields_badge.svg)](https://semaphoreci.com/rolandburrows/sudokuru)
+
 #### The Goal
 * To solve a given [Sudoku](https://en.wikipedia.org/wiki/Sudoku) puzzle, particularly of the 'classic' variety (9x9 grid, digits 1-9, with 3x3 sub-grids). Preferred: handle NxN grid (up to 9x9).
 

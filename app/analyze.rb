@@ -1,5 +1,5 @@
 require_relative "log"
-require "Matrix"
+require "matrix"
 
 class Analyze
 
