@@ -39,7 +39,7 @@ describe "sudokuru" do
   end
 
   it "should detect that puzzle file is empty" do
-    ARGV[0] = "./puzzles/0x0.txt"
+    ARGV[0] = "./puzzles/empty.txt"
     proc { capture_stdout {load "sudokuru.rb" }}.must_raise SystemExit
     # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
   end
@@ -54,6 +54,12 @@ describe "sudokuru" do
 
   it "should detect that puzzle file has non-allowed characters" do
     ARGV[0] = "./puzzles/non_allowed_character.txt"
+    proc { capture_stdout {load "sudokuru.rb" }}.must_raise SystemExit
+    # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
+  end
+
+  it "should detect that puzzle file has allowed, but inappropriate, characters" do
+    ARGV[0] = "./puzzles/nums_too_large.txt"
     proc { capture_stdout {load "sudokuru.rb" }}.must_raise SystemExit
     # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
   end

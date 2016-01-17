@@ -18,12 +18,16 @@ class Analyze
 		end
 
 		dimensionality()
+		@edge_length = @matrix_data.row(0).count
 	end
 
 	def data_formatting
 		@matrix_data.each { |char|
 			if !char.match("[1-9]| |-|_")
 				Log.error("The character (#{char}) is not allowed. Please fix and rerun.")
+			end
+			if char.to_i > @edge_length.to_i
+				Log.error("The puzzle is #{@edge_length}x#{@edge_length}, so the number (#{char}) is not allowed. Please fix and rerun.")
 			end
 		}
 		Log.info("Puzzle data is properly formatted.")
@@ -46,9 +50,8 @@ class Analyze
 	end
 
 	def box_uniqueness
-		edge_length = @matrix_data.row(0).count
 
-		if edge_length == 9
+		if @edge_length == 9
 			boxes = []
 
 			boxes.push( @matrix_data.minor(0..2,0..2) )
@@ -71,7 +74,7 @@ class Analyze
 
 			check_digit_uniqueness(boxes, "Box")
 		else
-			Log.info("Determining box uniqueness is for 9x9, not (#{edge_length}x#{edge_length}).")
+			Log.info("Determining box uniqueness is for 9x9, not (#{@edge_length}x#{@edge_length}).")
 		end
 	end
 
