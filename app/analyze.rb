@@ -66,32 +66,23 @@ class Analyze
 		if edge_length == 9
 			boxes = []
 
-			box1 = @matrix_data.minor(0..2,0..2)
-			boxes.push(box1)
+			boxes.push( @matrix_data.minor(0..2,0..2) )
 
-			box2 = @matrix_data.minor(0..2,3..5)
-			boxes.push(box2)
+			boxes.push( @matrix_data.minor(0..2,3..5) )
 
-			box3 = @matrix_data.minor(0..2,6..8)
-			boxes.push(box3)
+			boxes.push( @matrix_data.minor(0..2,6..8) )
 
-			box4 = @matrix_data.minor(3..5,0..2)
-			boxes.push(box4)
+			boxes.push( @matrix_data.minor(3..5,0..2) )
 
-			box5 = @matrix_data.minor(3..5,3..5)
-			boxes.push(box5)
+			boxes.push( @matrix_data.minor(3..5,3..5) )
 
-			box6 = @matrix_data.minor(3..5,6..8)
-			boxes.push(box6)
+			boxes.push( @matrix_data.minor(3..5,6..8) )
 
-			box7 = @matrix_data.minor(6..8,0..2)
-			boxes.push(box7)
+			boxes.push( @matrix_data.minor(6..8,0..2) )
 
-			box8 = @matrix_data.minor(6..8,3..5)
-			boxes.push(box8)
+			boxes.push( @matrix_data.minor(6..8,3..5) )
 
-			box9 = @matrix_data.minor(6..8,6..8)
-			boxes.push(box9)
+			boxes.push( @matrix_data.minor(6..8,6..8) )
 
 			boxes.each_with_index { |box, index|
 				check_digit_uniqueness(box)
