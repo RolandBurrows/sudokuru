@@ -2,6 +2,7 @@ require_relative "log"
 require "matrix"
 
 class Analyze
+	attr_reader :matrix_data
 
 	def initialize(file_data)
 

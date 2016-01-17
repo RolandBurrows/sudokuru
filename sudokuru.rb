@@ -43,6 +43,9 @@ analysis.row_uniqueness
 analysis.column_uniqueness
 analysis.box_uniqueness
 
+# Solve!
+solver = Solve.new(puzzle_data)
+
 # Cleanup
 
 puzzle_file.close
