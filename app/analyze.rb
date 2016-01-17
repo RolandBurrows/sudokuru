@@ -37,21 +37,11 @@ class Analyze
 	end
 
 	def row_uniqueness
-		@matrix_data.row_vectors.each { |line|
-			# .to_a*"" below converts the array to a solid string for better readability
-			check_digit_uniqueness(line, "Row (#{line.to_a*""})")
-		}
-		
-		Log.info("Puzzle rows contain no duplicate values.")
+		check_digit_uniqueness(@matrix_data.row_vectors, "Row")
 	end
 
 	def column_uniqueness
-		@matrix_data.column_vectors.each { |vertical|
-			# .to_a*"" below converts the array to a solid string for better readability
-			check_digit_uniqueness(vertical, "Column (#{vertical.to_a*""})")
-		}
-		
-		Log.info("Puzzle column contain no duplicate values.")
+		check_digit_uniqueness(@matrix_data.column_vectors, "Column")
 	end
 
 	def box_uniqueness
@@ -78,24 +68,26 @@ class Analyze
 
 			boxes.push( @matrix_data.minor(6..8,6..8) )
 
-			boxes.each_with_index { |box, index|
-				# .to_a*"" below converts the array to a solid string for better readability
-				check_digit_uniqueness(box, "Box #{index}: (#{box.to_a*""})")
-			}
-
-			Log.info("Puzzle is 9x9 and boxes contain no duplicate values.")
-
+			check_digit_uniqueness(boxes, "Box")
 		else
 			Log.info("Determining box uniqueness is for 9x9, not (#{edge_length}x#{edge_length}).")
 		end
 	end
 
-	def check_digit_uniqueness(slice, entity)
-		for i in 1..9
-			if (slice.count(i.to_s) > 1)
-				Log.error("#{entity} contains duplicate values. Please fix and rerun.")
+	def check_digit_uniqueness(array, entity)
+		array.each_with_index { |slice, index|
+			for i in 1..9
+				if (slice.count(i.to_s) > 1)
+					Log.error("#{entity} #{index+1} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
+				end
 			end
+		}
+		if entity == "Box"
+			entity = "boxes"
+		else
+			entity = (entity.downcase + "s")
 		end
+		Log.info("Puzzle #{entity} contain no duplicate values.")
 	end
 
 end

@@ -53,24 +53,24 @@ describe "sudokuru" do
   end
 
   it "should detect that puzzle file has non-allowed characters" do
-    ARGV[0] = "./puzzles/1x1.txt"
+    ARGV[0] = "./puzzles/non_allowed_character.txt"
     proc { capture_stdout {load "sudokuru.rb" }}.must_raise SystemExit
     # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
   end
 
   it "should detect that puzzle file has duplicate characters in a row" do
-    ARGV[0] = "./puzzles/3x3.txt"
+    ARGV[0] = "./puzzles/duplicates_in_row.txt"
     proc { capture_stdout {load "sudokuru.rb" }}.must_raise SystemExit
     # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
   end
 
   it "should detect that puzzle file has duplicate characters in a column" do
-    ARGV[0] = "./puzzles/4x4.txt"
+    ARGV[0] = "./puzzles/duplicates_in_column.txt"
     proc { capture_stdout {load "sudokuru.rb" }}.must_raise SystemExit
     # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
   end
 
-  it "should detect that puzzle file has a non-unique boxes" do
+  it "should detect that puzzle file has non-unique boxes" do
     ARGV[0] = "./puzzles/non_unique_boxes.txt"
     proc { capture_stdout {load "sudokuru.rb" }}.must_raise SystemExit
     # proc { capture_stdout { load "sudokuru.rb" }}.must_output "ERROR"
