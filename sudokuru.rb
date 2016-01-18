@@ -45,6 +45,7 @@ analysis.box_uniqueness
 
 # Solve!
 solver = Solve.new(puzzle_data)
+solver.find_starting_slice
 
 # Cleanup
 

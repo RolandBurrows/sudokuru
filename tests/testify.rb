@@ -18,6 +18,7 @@ describe "sudokuru" do
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "No file specified"
 		output.must_include "input.txt"
+		# output.must_include "SOLUTION"
   end
 
   it "should detect that a given input file doesnt exist" do

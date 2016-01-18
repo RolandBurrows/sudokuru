@@ -12,6 +12,13 @@ class Log
 			puts werds.to_s
 		end
 
+		def success(goodness)
+			puts "\n"
+			puts "\033[32mSOLUTION:\033[0m"
+			Log.tab(goodness)
+			exit
+		end
+
 		def tab(move_overs)
 			puts "\n"
 			lines = move_overs.split("\n")
