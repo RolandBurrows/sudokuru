@@ -6,11 +6,10 @@ class Solve
 
 	def initialize(file_data)
 		@pure_puzzle_data = Analyze.new(file_data).matrix_data
-		# @pure_puzzle_data.each { |char|
-		# 	if !char.match(" |-|_")
-		# 		Log.success(file_data)
-		# 	end
-		# }
+		spaces = @pure_puzzle_data.each.count(" ")
+		dashes = @pure_puzzle_data.each.count("-")
+		underscores = @pure_puzzle_data.each.count("_")
+		Log.success(file_data) if ((spaces + dashes + underscores) == 0)
 	end
 
 	def find_starting_slice
