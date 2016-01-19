@@ -93,4 +93,3 @@ describe "sudokuru" do
   end
 
 end
-

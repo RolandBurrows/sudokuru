@@ -17,7 +17,15 @@ class Solve
 	end
 
 	def determine_most_filled_row
+		row_counts = []
 		@pure_puzzle_data.row_vectors.each { |row|
+			row_digits = 0
+			row.each { |char|
+				if char.match("[1-9]")
+					row_digits += 1
+				end
+			}
+			row_counts.push(row_digits)
 		}
 	end
 
