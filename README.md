@@ -19,10 +19,13 @@ Input (diagnostic checks on validity and formatting):
 - [X] Tests for each input check.
 
 Implementation:
-- [ ] Research and then implement algorithm based on real-world player strategies (do not utilize pure mathematical approach).
 - [ ] Find starting row/column by calculating which one has the greatest number of pre-filled items.
+- [ ] Research and then implement algorithm based on real-world player strategies (do not utilize pure mathematical approach).
 - [ ] Attempt to use Naked / Hidden singles, pairs, triplets, qauds.
 
 Scaling:
-- [ ] Begin with 2x2 grid and scale up.
-- [ ] Tests for each level of scale.
+- [ ] Begin with 2x2 grid and scale up to 9x9.
+
+Stretch Goals:
+- [ ] Ability to use photo of sudoku puzzle, and OCR loads the data for solving.
+- [ ] Smartphone app
