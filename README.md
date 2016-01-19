@@ -13,8 +13,10 @@ Execution:
 
 Input (diagnostic checks on validity and formatting):
 - [X] Same number of "rows" in txt file as number of "columns" (characters).
-- [X] Only digits 1-9 and allowed "blank" characters are present.
-- [X] No duplicate digits are already present in puzzle input.
+- [X] Only digits 1-9 and allowed "blank" characters are present, none larger than the puzzle size.
+- [X] No duplicate digits are already present in puzzle rows/columns.
+- [X] No duplicate digits in 9x9 puzzle sub-boxes.
+- [X] Tests for each input check.
 
 Implementation:
 - [ ] Research and then implement algorithm based on real-world player strategies (do not utilize pure mathematical approach).
