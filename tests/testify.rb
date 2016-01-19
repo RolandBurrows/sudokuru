@@ -20,7 +20,7 @@ describe "sudokuru" do
     output.must_include "No file specified"
 		output.must_include "input.txt"
 		output.must_include "File contents:"
-		output.must_include "height and length are equivalent"
+		output.must_include "is a square"
 		output.must_include "data is properly formatted"
 		output.must_include "rows contain no duplicate values"
 		output.must_include "columns contain no duplicate values"

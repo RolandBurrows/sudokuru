@@ -14,10 +14,9 @@ class Analyze
 			}
 
 		rescue
-			Log.error("Rows and/or columns need to be equal length. Please fix and rerun.")
+			Log.error("Rows and/or columns need to be of consistent length. Please fix and rerun.")
 		end
 
-		dimensionality()
 		@edge_length = @matrix_data.row(0).count
 	end
 
@@ -35,7 +34,7 @@ class Analyze
 
 	def dimensionality
 		if @matrix_data.square?
-			Log.info("Puzzle height and length are equivalent.")
+			Log.info("Puzzle is a square.")
 		else
 			Log.error("Row length does not match column height. Please fix and rerun.")
 		end

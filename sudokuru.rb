@@ -38,6 +38,7 @@ Log.tab(puzzle_data)
 
 analysis = Analyze.new(puzzle_data)
 
+analysis.dimensionality
 analysis.data_formatting
 analysis.row_uniqueness
 analysis.column_uniqueness
