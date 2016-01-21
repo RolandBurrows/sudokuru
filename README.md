@@ -19,7 +19,7 @@ Input (diagnostic checks on validity and formatting):
 - [X] Tests for each input check.
 
 Implementation:
-- [ ] Find starting row/column by calculating which one has the greatest number of pre-filled items.
+- [X] Find starting row/column by calculating which one has the greatest number of pre-filled items.
 - [ ] Research and then implement algorithm based on real-world player strategies (do not utilize pure mathematical approach).
 - [ ] Attempt to use Naked / Hidden singles, pairs, triplets, qauds.
 

@@ -14,15 +14,13 @@ class Solve
 	end
 
 	def find_starting_slice
-		best_row = determine_most_filled_incomplete_row(@pure_puzzle_data)
-		best_column = determine_most_filled_incomplete_column(@pure_puzzle_data)
-		if best_row[1] >= best_column[1]
-			Log.info("Starting slice is row #{best_row[0]+1}, with #{best_row[1]} of #{@edge_length} elements filled.")
-			return best_row.push("row")
-		else
-			Log.info("Starting slice is column #{best_column[0]+1}, with #{best_column[1]} of #{@edge_length} elements filled.")
-			return best_column.push("column")
-		end
+		best_row = determine_most_filled_incomplete_row(@pure_puzzle_data).push("row")
+		best_column = determine_most_filled_incomplete_column(@pure_puzzle_data).push("column")
+
+		best_slice = (best_row[1] >= best_column[1]) ? best_row : best_column
+		Log.info("Starting slice is #{best_slice[2]} #{best_slice[0]+1}, with #{best_slice[1]} of #{@edge_length} elements filled.")
+
+		return best_slice
 	end
 
 	def determine_most_filled_incomplete_row(matrix_formatted_data)
