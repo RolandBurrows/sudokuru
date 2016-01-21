@@ -17,10 +17,10 @@ class Solve
 		best_row = determine_most_filled_incomplete_row(@pure_puzzle_data)
 		best_column = determine_most_filled_incomplete_column(@pure_puzzle_data)
 		if best_row[1] >= best_column[1]
-			Log.info("Starting slice is row #{best_row[0]+1}, with #{best_row[1]} of #{@edge_length.to_s} elements filled.")
+			Log.info("Starting slice is row #{best_row[0]+1}, with #{best_row[1]} of #{@edge_length} elements filled.")
 			return best_row.push("row")
 		else
-			Log.info("Starting slice is column #{best_column[0]+1}, with #{best_column[1]} of #{@edge_length.to_s} elements filled.")
+			Log.info("Starting slice is column #{best_column[0]+1}, with #{best_column[1]} of #{@edge_length} elements filled.")
 			return best_column.push("column")
 		end
 	end
@@ -42,7 +42,7 @@ class Solve
 		return [row_counts.index(row_counts.max), row_counts.max]
 	end
 
-		def determine_most_filled_incomplete_column(matrix_formatted_data)
+	def determine_most_filled_incomplete_column(matrix_formatted_data)
 		column_counts = []
 		matrix_formatted_data.column_vectors.each { |column|
 			column_digits = 0
