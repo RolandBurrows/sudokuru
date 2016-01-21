@@ -13,10 +13,10 @@ class Solve
 	end
 
 	def find_starting_slice
-		determine_most_filled_row
+		determine_most_filled_incomplete_row
 	end
 
-	def determine_most_filled_row
+	def determine_most_filled_incomplete_row
 		row_counts = []
 		@pure_puzzle_data.row_vectors.each { |row|
 			row_digits = 0
@@ -25,8 +25,12 @@ class Solve
 					row_digits += 1
 				end
 			}
+			if row_digits == @pure_puzzle_data.row(0).count
+				row_digits = 0
+			end
 			row_counts.push(row_digits)
 		}
+		return [row_counts.index(row_counts.max), row_counts.max]
 	end
 
 end
