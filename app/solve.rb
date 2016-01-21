@@ -6,6 +6,7 @@ class Solve
 
 	def initialize(file_data)
 		@pure_puzzle_data = Analyze.new(file_data).matrix_data
+		@edge_length = @pure_puzzle_data.row(0).count
 		spaces = @pure_puzzle_data.each.count(" ")
 		dashes = @pure_puzzle_data.each.count("-")
 		underscores = @pure_puzzle_data.each.count("_")
@@ -16,10 +17,10 @@ class Solve
 		best_row = determine_most_filled_incomplete_row(@pure_puzzle_data)
 		best_column = determine_most_filled_incomplete_column(@pure_puzzle_data)
 		if best_row[1] >= best_column[1]
-			puts best_row.push("row")
+			Log.info("Starting slice is row #{best_row[0]+1}, with #{best_row[1]} of #{@edge_length.to_s} elements filled.")
 			return best_row.push("row")
 		else
-			puts best_column.push("column")
+			Log.info("Starting slice is column #{best_column[0]+1}, with #{best_column[1]} of #{@edge_length.to_s} elements filled.")
 			return best_column.push("column")
 		end
 	end
@@ -33,7 +34,7 @@ class Solve
 					row_digits += 1
 				end
 			}
-			if row_digits == matrix_formatted_data.row(0).count
+			if row_digits == @edge_length
 				row_digits = 0
 			end
 			row_counts.push(row_digits)
