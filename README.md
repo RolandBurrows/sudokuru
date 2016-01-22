@@ -6,6 +6,15 @@ Ruby Sudoku puzzle solver at the speed of light.
 #### The Goal
 * To solve a given [Sudoku](https://en.wikipedia.org/wiki/Sudoku) puzzle, particularly of the 'classic' variety (9x9 grid, digits 1-9, with 3x3 sub-grids). Preferred: handle NxN grid (up to 9x9).
 
+#### Execution
+```
+Within the sudokuru folder:
+$ ruby sudokuru.rb <path to file>
+
+In the absence of a file path provided, sudokuru will default to:
+$ ruby sudokuru.rb ./puzzles/input.txt
+```
+
 #### Application Milestones
 Execution:
 - [X] A default input.txt file at the app's location should be present.
@@ -24,7 +33,7 @@ Implementation:
 - [ ] Attempt to use Naked / Hidden singles, pairs, triplets, qauds.
 
 Scaling:
-- [ ] Begin with 2x2 grid and scale up to 9x9.
+- [ ] Begin with 2x2 sample puzzles and scale up to 9x9.
 
 Stretch Goals:
 - [ ] Ability to use photo of sudoku puzzle, and OCR loads the data for solving.
