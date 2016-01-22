@@ -25,7 +25,26 @@ Input puzzles should be common file types (.txt, .rb, etc.), one row per line, f
 --2-        __2_          2         _-2 
 dashes    underscores   spaces      mixed
 ```
-With digits 1-9 and the blank characters "-", "_", and spaces allowed only. Errors will be returned if the data is not properly formatted, with directions to fix.
+With digits 1-9 and the blank characters "-", "_", and spaces allowed only.
+
+Errors will be returned if the data is not properly formatted, with directions to fix:
+```
+ERROR - Row 7 (-324-9--3) contains duplicate values. Please fix and rerun.
+```
+
+Otherwise, the solution will be returned:
+```
+SOLUTION:
+  534678912
+  672195348
+  198342567
+  859761423
+  426853791
+  713924856
+  961537284
+  287419635
+  345286179
+```
 
 #### Application Milestones
 Execution:
