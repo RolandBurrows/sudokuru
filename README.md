@@ -7,13 +7,25 @@ Ruby Sudoku puzzle solver at the speed of light.
 * To solve a given [Sudoku](https://en.wikipedia.org/wiki/Sudoku) puzzle, particularly of the 'classic' variety (9x9 grid, digits 1-9, with 3x3 sub-grids). Preferred: handle NxN grid (up to 9x9).
 
 #### Execution
-```
 Within the sudokuru folder:
+```
 $ ruby sudokuru.rb <path to file>
-
+```
 In the absence of a file path provided, sudokuru will default to:
+```
 $ ruby sudokuru.rb ./puzzles/input.txt
 ```
+
+#### Input Formatting
+Input puzzles should be common file types (.txt, .rb, etc.), one row per line, formatted:
+```
+1-3-        1_3_        1 3         1 3-
+-14-        _14_         14         -14_   
+24-3   or   24_3   or   24 3   or   24-3
+--2-        __2_          2         _-2 
+dashes    underscores   spaces      mixed
+```
+With digits 1-9 and the blank characters "-", "_", and spaces allowed only. Errors will be returned if the data is not properly formatted, with directions to fix.
 
 #### Application Milestones
 Execution:
