@@ -4,6 +4,8 @@
 Dir["#{File.dirname(__FILE__)}/app/**/*.rb"].each { |f| load(f) }
 
 Log.info("Let's solve some Sudoku!")
+$duration_start = nil
+$duration_start = Time.now
 
 # Initialize test file from the user or provide a default
 
@@ -24,6 +26,8 @@ begin
 	if puzzle_data == ""
 		Log.error("file is empty.")
 	end
+
+	puzzle_file.close
 
 rescue
 	Log.error("given file doesn't exist. Halting.")
@@ -47,7 +51,3 @@ analysis.box_uniqueness
 # Solve!
 solver = Solve.new(puzzle_data)
 solver.find_starting_slice
-
-# Cleanup
-
-puzzle_file.close

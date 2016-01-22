@@ -13,8 +13,10 @@ class Log
 		end
 
 		def success(goodness)
+			$duration_end = Time.now
+
 			puts "\n"
-			puts "\033[32mSOLUTION:\033[0m"
+			puts "\033[32mSUCCESS!\033[0m Solution found in: #{$duration_end - $duration_start} seconds."
 			Log.tab(goodness)
 			exit(0)
 		end

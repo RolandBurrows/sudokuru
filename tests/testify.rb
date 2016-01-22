@@ -24,7 +24,8 @@ describe "sudokuru" do
 		output.must_include "data is properly formatted"
 		output.must_include "rows contain no duplicate values"
 		output.must_include "columns contain no duplicate values"
-		output.must_include "SOLUTION"
+		output.must_include "SUCCESS"
+		output.must_include "Solution found in:"
   end
 
   it "should detect that a given input file doesnt exist" do
