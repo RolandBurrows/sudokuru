@@ -42,8 +42,8 @@ Log.tab(puzzle_data)
 
 analysis = Analyze.new(puzzle_data)
 
-analysis.dimensionality
-analysis.data_formatting
+analysis.dimensionality				# Ensure data grid is a square
+analysis.data_formatting			# Ensure characters are allowed: (1-9) no larger than puzzle size , space, -, and _
 analysis.row_uniqueness
 analysis.column_uniqueness
 analysis.box_uniqueness
