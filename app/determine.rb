@@ -13,14 +13,21 @@ class Determine
 		Log.success(file_data) if ((spaces + dashes + underscores) == 0)
 	end
 
-	def find_starting_slice
-		best_row = determine_most_filled_incomplete_row(@pure_puzzle_data).push("row")
-		best_column = determine_most_filled_incomplete_column(@pure_puzzle_data).push("column")
+	def find_starting_point
+		find_complementary_starting_slice(find_prime_starting_slice)
+	end
+
+	def find_prime_starting_slice
+		best_row = determine_most_filled_incomplete_row(@pure_puzzle_data)
+		best_column = determine_most_filled_incomplete_column(@pure_puzzle_data)
 
 		best_slice = (best_row[1] >= best_column[1]) ? best_row : best_column
-		Log.info("Starting slice is #{best_slice[2]} #{best_slice[0]+1}, with #{best_slice[1]} of #{@edge_length} elements filled.")
+		Log.info("Starting slice is #{best_slice[3]} #{best_slice[0]+1}, with #{best_slice[1]} of #{@edge_length} elements filled.")
 
 		return best_slice
+	end
+
+	def find_complementary_starting_slice(slice)
 	end
 
 	def determine_most_filled_incomplete_row(matrix_formatted_data)
@@ -37,7 +44,10 @@ class Determine
 			end
 			row_counts.push(row_digits)
 		}
-		return [row_counts.index(row_counts.max), row_counts.max]
+		number_filled_spaces = row_counts.max
+		index_of_best_row = row_counts.index(row_counts.max)
+		row_itself = matrix_formatted_data.row_vectors[index_of_best_row]
+		return [index_of_best_row, number_filled_spaces, row_itself, "row"]
 	end
 
 	def determine_most_filled_incomplete_column(matrix_formatted_data)
@@ -54,7 +64,10 @@ class Determine
 			end
 			column_counts.push(column_digits)
 		}
-		return [column_counts.index(column_counts.max), column_counts.max]
+		number_filled_spaces = column_counts.max
+		index_of_best_column = column_counts.index(column_counts.max)
+		column_itself = matrix_formatted_data.column_vectors[index_of_best_column]
+		return [index_of_best_column, number_filled_spaces, column_itself, "column"]
 	end
 
 end

@@ -50,4 +50,5 @@ analysis.box_uniqueness
 
 # Solve!
 targetting = Determine.new(puzzle_data)
-targetting.find_starting_slice
+start_point = targetting.find_starting_point
+Solve.new(puzzle_data, start_point)
