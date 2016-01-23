@@ -2,7 +2,7 @@ require_relative "log"
 require_relative "analyze"
 require "matrix"
 
-class Solve
+class Determine
 
 	def initialize(file_data)
 		@pure_puzzle_data = Analyze.new(file_data).matrix_data

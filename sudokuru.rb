@@ -49,5 +49,5 @@ analysis.column_uniqueness
 analysis.box_uniqueness
 
 # Solve!
-solver = Solve.new(puzzle_data)
-solver.find_starting_slice
+targetting = Determine.new(puzzle_data)
+targetting.find_starting_slice
