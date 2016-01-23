@@ -93,16 +93,22 @@ describe "sudokuru" do
     output.must_include "Box 6 (423791846) contains duplicate values"
   end
 
-  it "should determine the starting slice to be a column" do
-    ARGV[0] = "./puzzles/starting_row.txt"
+  it "should detect if the puzzle is just blanks" do
+    ARGV[0] = "./puzzles/only_blanks.txt"
     output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "Starting slice is column 2, with 2 of 3 elements filled."
+    output.must_include "puzzle cannot only contain blanks"
   end
 
   it "should determine the starting slice to be a row" do
     ARGV[0] = "./puzzles/starting_column.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "Starting slice is row 4, with 3 of 4 elements filled."
+  end
+
+  it "should determine the starting slice to be a column" do
+    ARGV[0] = "./puzzles/starting_row.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "Starting slice is column 2, with 2 of 3 elements filled."
   end
 
 end
