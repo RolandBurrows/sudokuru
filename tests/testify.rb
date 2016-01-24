@@ -14,6 +14,8 @@ describe "sudokuru" do
 	  fake.string
 	end
 
+  # POSITIVE FLOWS
+
   it "should process the default input file when no specific file is given" do
     ARGV[0] = nil
     output = capture_stdout { load "sudokuru.rb" }
@@ -27,6 +29,15 @@ describe "sudokuru" do
 		output.must_include "SUCCESS"
 		output.must_include "Solution found in:"
   end
+
+  it "should detect a naked single" do
+    ARGV[0] = "./puzzles/2x2.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "Naked single detected on row 1"
+    output.must_include "Modified puzzle data"
+  end
+
+  # NEGATIVE FLOWS
 
   it "should detect that a given input file doesnt exist" do
     ARGV[0] = "./puzzles/jabberwocky.txt"
