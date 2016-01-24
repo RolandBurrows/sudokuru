@@ -14,6 +14,7 @@ describe "sudokuru" do
 	  fake.string
 	end
 
+
   # POSITIVE FLOWS
 
   it "should process the default input file when no specific file is given" do
@@ -35,6 +36,33 @@ describe "sudokuru" do
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "Naked single detected on row 1"
     output.must_include "Modified puzzle data"
+  end
+
+  it "should determine the starting slice to be a row" do
+    ARGV[0] = "./puzzles/starting_row.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "Starting slice is row 4, with 3 of 4 elements filled."
+  end
+
+  it "should determine the starting slice to be a column" do
+    ARGV[0] = "./puzzles/starting_column.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "Starting slice is column 2, with 2 of 3 elements filled."
+  end
+
+  it "should confirm every allowed blank character" do
+    ARGV[0] = "./puzzles/every_allowed_character.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "every_allowed_character.txt"
+    output.must_include "data is properly formatted"
+    output.must_include "Determining box uniqueness is for"
+  end
+
+    it "should process the given input file and confirm every allowed blank character" do
+    ARGV[0] = "./puzzles/too_small_for_box_uniqueness.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "Determining box uniqueness is for"
+    output.must_include "SUCCESS"
   end
 
   # NEGATIVE FLOWS
@@ -59,14 +87,6 @@ describe "sudokuru" do
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "ERROR"
     output.must_include "file is empty"
-  end
-
-  it "should process the given input file and confirm every allowed blank character" do
-    ARGV[0] = "./puzzles/every_allowed_character.txt"
-    output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "every_allowed_character.txt"
-    output.must_include "data is properly formatted"
-    output.must_include "Determining box uniqueness is for"
   end
 
   it "should detect that puzzle file has non-allowed characters" do
@@ -107,19 +127,8 @@ describe "sudokuru" do
   it "should detect if the puzzle is just blanks" do
     ARGV[0] = "./puzzles/only_blanks.txt"
     output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "ERROR"
     output.must_include "puzzle cannot only contain blanks"
-  end
-
-  it "should determine the starting slice to be a row" do
-    ARGV[0] = "./puzzles/starting_column.txt"
-    output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "Starting slice is row 4, with 3 of 4 elements filled."
-  end
-
-  it "should determine the starting slice to be a column" do
-    ARGV[0] = "./puzzles/starting_row.txt"
-    output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "Starting slice is column 2, with 2 of 3 elements filled."
   end
 
 end
