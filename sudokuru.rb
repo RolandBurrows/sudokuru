@@ -51,4 +51,5 @@ analysis.box_uniqueness
 # Solve!
 targetting = Determine.new(puzzle_data)
 start_point = targetting.find_starting_point
-Solve.new(puzzle_data, start_point)
+solver = Solve.new(puzzle_data, start_point)
+solver.populate_naked_singles
