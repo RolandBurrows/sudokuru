@@ -40,6 +40,15 @@ describe "sudokuru" do
     output.must_include "Modified puzzle data"
   end
 
+  it "should detect naked singles within rows" do
+    ARGV[0] = "./test_files/naked_singles_columns.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "Naked single (2) detected on column 1"
+    output.must_include "Naked single (3) detected on column 2"
+    output.must_include "Naked single (1) detected on column 3"
+    output.must_include "Modified puzzle data"
+  end
+
   it "should determine the starting slice to be a row" do
     ARGV[0] = "./test_files/starting_row.txt"
     output = capture_stdout { load "sudokuru.rb" }
