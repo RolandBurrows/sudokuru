@@ -13,7 +13,7 @@ if ARGV[0]
 	input_file = ARGV[0]
 else
 	Log.info("No file specified. Searching for default input file.")
-	input_file = "./puzzles/input.txt"
+	input_file = "./puzzles/sample_input.txt"
 end
 
 # Extract file data or warn user of non-existences
