@@ -31,10 +31,12 @@ describe "sudokuru" do
 		output.must_include "Solution found in:"
   end
 
-  it "should detect a naked single" do
-    ARGV[0] = "./puzzles/2x2.txt"
+  it "should detect naked singles within rows" do
+    ARGV[0] = "./test_files/naked_singles_rows.txt"
     output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "Naked single detected on row 1"
+    output.must_include "Naked single (2) detected on row 1"
+    output.must_include "Naked single (3) detected on row 2"
+    output.must_include "Naked single (1) detected on row 3"
     output.must_include "Modified puzzle data"
   end
 

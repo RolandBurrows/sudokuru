@@ -52,4 +52,4 @@ analysis.box_uniqueness
 targetting = Determine.new(puzzle_data)
 start_point = targetting.find_starting_point
 solver = Solve.new(puzzle_data, start_point)
-solver.populate_naked_singles
+solver.populate_naked_singles_within_rows
