@@ -14,8 +14,7 @@ describe "sudokuru" do
 	  fake.string
 	end
 
-
-  # POSITIVE FLOWS
+  # SOLVING FLOWS
 
   it "should process the default input file when no specific file is given" do
     ARGV[0] = nil
@@ -30,6 +29,15 @@ describe "sudokuru" do
 		output.must_include "SUCCESS"
 		output.must_include "Solution found in:"
   end
+
+  it "should solve a 2x2 puzzle" do
+    ARGV[0] = "./puzzles/2x2.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "2x2.txt"
+    output.must_include "SUCCESS"
+  end
+
+  # POSITIVE FLOWS
 
   it "should detect naked singles within rows" do
     ARGV[0] = "./test_files/naked_singles_rows.txt"
@@ -52,7 +60,7 @@ describe "sudokuru" do
   it "should determine the starting slice to be a row" do
     ARGV[0] = "./test_files/starting_row.txt"
     output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "Starting slice is row 4, with 3 of 4 elements filled."
+    output.must_include "Starting slice is row 3, with 2 of 4 elements filled."
   end
 
   it "should determine the starting slice to be a column" do
@@ -69,11 +77,10 @@ describe "sudokuru" do
     output.must_include "Determining box uniqueness is for"
   end
 
-    it "should process the given input file and confirm every allowed blank character" do
+    it "should detect that puzzle is too small for determining box uniqueness" do
     ARGV[0] = "./test_files/too_small_for_box_uniqueness.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "Determining box uniqueness is for"
-    output.must_include "SUCCESS"
   end
 
   # NEGATIVE FLOWS
