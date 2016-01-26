@@ -61,10 +61,10 @@ analysis.column_uniqueness
 analysis.box_uniqueness
 
 # Solve!
-targetting = Determine.new(@matrix_data)
-start_point = targetting.find_starting_point
+start_point = "nil"
 solver = Solve.new(@matrix_data, start_point)
 
+## Fill in any naked singles
 singled_rows = "nil"
 singled_columns = "null"
 until singled_rows == singled_columns do
@@ -72,3 +72,6 @@ until singled_rows == singled_columns do
 	singled_columns = solver.populate_naked_singles_within_columns
 	Determine.new(singled_columns)
 end
+
+targetting = Determine.new(@matrix_data)
+start_point = targetting.find_starting_point

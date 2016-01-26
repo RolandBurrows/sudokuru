@@ -61,14 +61,15 @@ Input (diagnostic checks on validity and formatting):
 Implementation:
 - [X] Find starting row/column by calculating which one has the greatest number of pre-filled items.
 - [ ] Find starting index (via the most filled complementary slice relative to the prime slice)
-- [ ] Find any naked singles (only one digit remains possible to be placed in a cell)
+- [X] Find any naked singles (only one digit remains possible to be placed in a cell)
 - [ ] Find any hidden singles (only one digit can be inferred to be placed in a cell)
 - [ ] Naked / Hidden pairs, triplets, qauds.
 
 Scaling Solutions:
-- [ ] 2x2 puzzles.
+- [X] 2x2 puzzles.
 - [ ] 3x3 puzzles.
 - [ ] 4x4 puzzles.
+- [ ] 5x5 puzzles.
 
 Stretch Goals:
 - [ ] Ability to use photo of sudoku puzzle, and OCR loads the data for solving.
