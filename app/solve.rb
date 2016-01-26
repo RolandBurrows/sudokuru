@@ -3,10 +3,11 @@ require_relative "analyze"
 require_relative "determine"
 
 class Solve
+	attr_reader :modified_matrix
 
-	def initialize(puzzle_data, start_point)
-		@analyzer = Analyze.new(puzzle_data)
-		@pure_puzzle_data = @analyzer.matrix_data
+	def initialize(matrix, start_point)
+		@pure_puzzle_data = matrix
+		@edge_length = @pure_puzzle_data.column_count
 		@modified_matrix = @pure_puzzle_data
 	end
 
@@ -16,7 +17,7 @@ class Solve
 		@modified_matrix.row_vectors.each { |row|
 			index_counter += 1
 
-			digits = (1..(@analyzer.edge_length)).to_a
+			digits = (1..(@edge_length)).to_a
 			string_digits = digits.map(&:to_s)
 			row_array = row.to_a
 
@@ -51,7 +52,7 @@ class Solve
 		@modified_matrix.column_vectors.each { |column|
 			index_counter += 1
 
-			digits = (1..(@analyzer.edge_length)).to_a
+			digits = (1..(@edge_length)).to_a
 			string_digits = digits.map(&:to_s)
 			column_array = column.to_a
 

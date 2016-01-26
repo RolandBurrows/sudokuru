@@ -2,23 +2,11 @@ require_relative "log"
 require "matrix"
 
 class Analyze
-	attr_reader :matrix_data, :edge_length
+	attr_reader :edge_length
 
-	def initialize(file_data)
-
-		begin
-			@matrix_data = Matrix[]
-
-			file_data.split("\n").each { |line|
-				# Convert raw file lines into a matrix object of individual characters
-				@matrix_data = Matrix.rows(@matrix_data.to_a << (line.split("")))
-			}
-
-		rescue
-			Log.error("Rows and/or columns need to be of consistent length. Please fix and rerun.")
-		end
-
-		@edge_length = @matrix_data.row(0).count
+	def initialize(matrix)
+		@edge_length = matrix.column_count
+		@matrix_data = matrix
 	end
 
 	def dimensionality

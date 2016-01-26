@@ -4,15 +4,16 @@ require "matrix"
 
 class Determine
 
-	def initialize(file_data)
-		# Grab properly formatted data object
-		@pure_puzzle_data = Analyze.new(file_data).matrix_data
-		@edge_length = @pure_puzzle_data.row(0).count
+	def initialize(matrix)
+		@edge_length = matrix.column_count
+		@pure_puzzle_matrix = matrix
+		@pure_puzzle_array = matrix.to_a
 		# Log success if puzzle contains no blanks at all
-		spaces = @pure_puzzle_data.each.count(" ")
-		dashes = @pure_puzzle_data.each.count("-")
-		underscores = @pure_puzzle_data.each.count("_")
-		Log.success(file_data) if ((spaces + dashes + underscores) == 0)
+		spaces = @pure_puzzle_array.each.count(" ")
+		dashes = @pure_puzzle_array.each.count("-")
+		underscores = @pure_puzzle_array.each.count("_")
+		tabbed_data = @pure_puzzle_array.collect{|row| row.join("")}
+		# Log.success(tabbed_data.join("\n")) if ((spaces + dashes + underscores) == 0)
 		# Log error if puzzle is ONLY blanks
 		Log.error("puzzle cannot only contain blanks.") if ((spaces + dashes + underscores) == (@edge_length * @edge_length))
 	end
@@ -22,8 +23,8 @@ class Determine
 	end
 
 	def find_prime_starting_slice
-		best_row = determine_most_filled_incomplete_row(@pure_puzzle_data)
-		best_column = determine_most_filled_incomplete_column(@pure_puzzle_data)
+		best_row = determine_most_filled_incomplete_row(@pure_puzzle_matrix)
+		best_column = determine_most_filled_incomplete_column(@pure_puzzle_matrix)
 
 		# If a row and column are of equal goodness, prefer the row
 		best_slice = (best_row[1] >= best_column[1]) ? best_row : best_column

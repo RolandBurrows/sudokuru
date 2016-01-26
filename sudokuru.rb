@@ -38,9 +38,21 @@ end
 Log.info("File contents:")
 Log.tab(puzzle_data)
 
+# Convert file contexts to matrix
+
+begin
+	@matrix_data = Matrix[]
+	puzzle_data.split("\n").each { |line|
+		# Convert raw file lines into a matrix object of individual characters
+		@matrix_data = Matrix.rows(@matrix_data.to_a << (line.split("")))
+	}
+rescue
+	Log.error("Rows and/or columns need to be of consistent length. Please fix and rerun.")
+end
+
 # Analyze file contents
 
-analysis = Analyze.new(puzzle_data)
+analysis = Analyze.new(@matrix_data)
 
 analysis.dimensionality				# Ensure data grid is a square
 analysis.data_formatting			# Ensure characters are allowed: (1-9) no larger than puzzle size , space, -, and _
@@ -49,8 +61,14 @@ analysis.column_uniqueness
 analysis.box_uniqueness
 
 # Solve!
-targetting = Determine.new(puzzle_data)
+targetting = Determine.new(@matrix_data)
 start_point = targetting.find_starting_point
-solver = Solve.new(puzzle_data, start_point)
-solver.populate_naked_singles_within_rows
-solver.populate_naked_singles_within_columns
+solver = Solve.new(@matrix_data, start_point)
+
+singled_rows = "nil"
+singled_columns = "null"
+until singled_rows == singled_columns do
+	singled_rows = solver.populate_naked_singles_within_rows
+	singled_columns = solver.populate_naked_singles_within_columns
+	Determine.new(singled_columns)
+end
