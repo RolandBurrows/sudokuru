@@ -24,6 +24,7 @@ class Log
 		def tab(move_overs_matrix)
 			move_overs_array = move_overs_matrix.to_a
 			tabbed_data = move_overs_array.collect{|row| row.join("")}
+			puts "\n"
 			tabbed_data.each { |row| puts "  #{row}" }
 		end
 

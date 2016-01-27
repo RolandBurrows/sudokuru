@@ -29,12 +29,13 @@ With digits 1-9 and the blank characters "-", "_", and spaces allowed only.
 
 Errors will be returned if the data is not properly formatted, with directions to fix:
 ```
-ERROR - Row 7 (-324-9--3) contains duplicate values. Please fix and rerun.
+ERROR: Row 7 (-324-9--3) contains duplicate values. Please fix and rerun.
 ```
 
 Otherwise, the solution will be returned:
 ```
-SOLUTION:
+SUCCESS! Solution found in: 0.015643 seconds.
+
   534678912
   672195348
   198342567
