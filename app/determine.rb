@@ -12,8 +12,7 @@ class Determine
 		spaces = @pure_puzzle_matrix.each.count(" ")
 		dashes = @pure_puzzle_matrix.each.count("-")
 		underscores = @pure_puzzle_matrix.each.count("_")
-		tabbed_data = @pure_puzzle_array.collect{|row| row.join("")}
-		Log.success(tabbed_data.join("\n")) if ((spaces + dashes + underscores) == 0)
+		Log.success(@pure_puzzle_matrix) if ((spaces + dashes + underscores) == 0)
 		# Log error if puzzle is ONLY blanks
 		Log.error("puzzle cannot only contain blanks.") if ((spaces + dashes + underscores) == (@edge_length * @edge_length))
 	end

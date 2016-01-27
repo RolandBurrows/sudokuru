@@ -21,10 +21,10 @@ class Log
 			exit(0)
 		end
 
-		def tab(move_overs)
-			puts "\n"
-			lines = move_overs.split("\n")
-			lines.each { |line| puts "  #{line}" }
+		def tab(move_overs_matrix)
+			move_overs_array = move_overs_matrix.to_a
+			tabbed_data = move_overs_array.collect{|row| row.join("")}
+			tabbed_data.each { |row| puts "  #{row}" }
 		end
 
 	end

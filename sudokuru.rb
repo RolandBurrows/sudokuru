@@ -33,11 +33,6 @@ rescue
 	Log.error("given file doesn't exist. Halting.")
 end
 
-# Display file contents
-
-Log.info("File contents:")
-Log.tab(puzzle_data)
-
 # Convert file contexts to matrix
 
 begin
@@ -46,6 +41,11 @@ begin
 		# Convert raw file lines into a matrix object of individual characters
 		@matrix_data = Matrix.rows(@matrix_data.to_a << (line.split("")))
 	}
+
+	# Display file contents
+	Log.info("File contents:")
+	Log.tab(@matrix_data)
+
 rescue
 	Log.error("Rows and/or columns need to be of consistent length. Please fix and rerun.")
 end

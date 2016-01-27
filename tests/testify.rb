@@ -93,6 +93,13 @@ describe "sudokuru" do
     output.must_include "given file doesn't exist"
   end
 
+  it "should detect that puzzle is not a rectangle" do
+    ARGV[0] = "./test_files/inconsistent_size.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "ERROR"
+    output.must_include "Rows and/or columns need to be of consistent length"
+  end
+
   it "should detect that puzzle dimensions are mismatched" do
     ARGV[0] = "./test_files/dimensionality_mismatch.txt"
     output = capture_stdout { load "sudokuru.rb" }

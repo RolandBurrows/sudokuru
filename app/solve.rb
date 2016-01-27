@@ -39,8 +39,7 @@ class Solve
 				@modified_matrix = convert_array_back_to_matrix(@modified_puzzle_data)
 
 				Log.info("Naked single (#{missing_digits.join("")}) detected on row #{index_counter+1}.\nModified puzzle data:")
-				tabbed_data = @modified_puzzle_data.collect{|row| row.join("")}
-				Log.tab(tabbed_data.join("\n"))
+				Log.tab(@modified_puzzle_data)
 			end
 		}
 		@modified_matrix
@@ -78,8 +77,7 @@ class Solve
 				@modified_matrix = convert_array_back_to_matrix(@modified_puzzle_data)
 
 				Log.info("Naked single (#{missing_digits.join("")}) detected on column #{index_counter+1}.\nModified puzzle data:")
-				tabbed_data = @modified_puzzle_data.collect{|row| row.join("")}
-				Log.tab(tabbed_data.join("\n"))
+				Log.tab(@modified_puzzle_data)
 			end
 		}
 		@modified_matrix
