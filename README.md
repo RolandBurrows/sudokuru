@@ -15,15 +15,19 @@ In the absence of a file path provided, sudokuru will default to:
 ```
 $ ruby sudokuru.rb ./puzzles/input.txt
 ```
+To run the specs:
+```
+$ rake test
+```
 
 #### Input Formatting
 Input puzzles should be common file types (.txt, .rb, etc.), one row per line, formatted:
 ```
-1-3-        1_3_        1 3         1 3-
--14-        _14_         14         -14_   
-24-3   or   24_3   or   24 3   or   24-3
---2-        __2_          2         _-2 
-dashes    underscores   spaces      mixed
+  1-3-              1_3_              1 3               1 3-
+  -14-              _14_               14               -14_   
+  24-3      or      24_3      or      24 3      or      24-3
+  --2-              __2_                2               _-2 
+ dashes         underscores          spaces             mixed
 ```
 With digits 1-9 and the blank characters "-", "_", and spaces allowed only.
 

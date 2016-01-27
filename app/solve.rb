@@ -17,10 +17,12 @@ class Solve
 		@modified_matrix.row_vectors.each { |row|
 			index_counter += 1
 
+			# Set the array of digits that the puzzle could contain
 			digits = (1..(@edge_length)).to_a
 			string_digits = digits.map(&:to_s)
-			row_array = row.to_a
 
+			# Grab the given slice and strip out the blanks
+			row_array = row.to_a
 			row_array.delete(" ")
 			row_array.delete("-")
 			row_array.delete("_")
@@ -29,10 +31,12 @@ class Solve
 
 			if (missing_digits.length == 1)
 				row_array_again = row.to_a
+				# Insert the missing digit back into whichever blank is present
 				row_array_again.map! { |elem| elem == (" ") ? missing_digits : elem }.flatten!
 				row_array_again.map! { |elem| elem == ("-") ? missing_digits : elem }.flatten!
 				row_array_again.map! { |elem| elem == ("_") ? missing_digits : elem }.flatten!
 
+				# Replace the old slice with the new one
 				@modified_puzzle_data = @modified_matrix.to_a
 				@modified_puzzle_data[index_counter] = row_array_again
 
@@ -51,10 +55,12 @@ class Solve
 		@modified_matrix.column_vectors.each { |column|
 			index_counter += 1
 
+			# Set the array of digits that the puzzle could contain
 			digits = (1..(@edge_length)).to_a
 			string_digits = digits.map(&:to_s)
-			column_array = column.to_a
 
+			# Grab the given slice and strip out the blanks
+			column_array = column.to_a
 			column_array.delete(" ")
 			column_array.delete("-")
 			column_array.delete("_")
@@ -63,10 +69,12 @@ class Solve
 
 			if (missing_digits.length == 1)
 				column_array_again = column.to_a
+				# Insert the missing digit back into whichever blank is present
 				column_array_again.map! { |elem| elem == (" ") ? missing_digits : elem }.flatten!
 				column_array_again.map! { |elem| elem == ("-") ? missing_digits : elem }.flatten!
 				column_array_again.map! { |elem| elem == ("_") ? missing_digits : elem }.flatten!
 
+				# Replace the old slice with the new one, element by element
 				@modified_puzzle_data = @modified_matrix.to_a
 				position_index = (-1)
 				@modified_puzzle_data.each { |row|
