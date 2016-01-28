@@ -87,14 +87,34 @@ class Determine
 	end
 
 	def determine_all_possible_digits_per_cell
-		possible_digits = []
-		@pure_puzzle_matrix.each { |cell_contents|
+		possible_digits_array = []
+		@pure_puzzle_matrix.each_with_index { |cell_contents, row, col|
 			if ("1".."9").include?(cell_contents)
-				possible_digits.push("X")
+				possible_digits_array.push("X")
 			else
-				possible_digits.push("*")
+				row_array = @pure_puzzle_matrix.row(row).to_a
+				row_array.delete(" ")
+				row_array.delete("-")
+				row_array.delete("_")
+
+				column_array = @pure_puzzle_matrix.column(col).to_a
+				column_array.delete(" ")
+				column_array.delete("-")
+				column_array.delete("_")
+
+				combo_array = []
+				combo_array.push(row_array)
+				combo_array.push(column_array)
+				combo_array.flatten!
+				combo_array.uniq!
+
+				digits = (1..(@edge_length)).to_a
+				string_digits = digits.map(&:to_s)
+				missing_digits = (string_digits - combo_array)
+				possible_digits_array.push(missing_digits)
 			end
 		}
+		return possible_digits_array
 	end
 
 end
