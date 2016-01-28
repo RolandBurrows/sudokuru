@@ -70,8 +70,10 @@ singled_columns = "null"
 until singled_rows == singled_columns do
 	singled_rows = solver.populate_naked_singles_within_rows
 	singled_columns = solver.populate_naked_singles_within_columns
-	Determine.new(singled_columns)
+	filled_naked_singles = Determine.new(singled_columns)
 end
+
+filled_naked_singles.determine_all_possible_digits_per_cell
 
 targetting = Determine.new(@matrix_data)
 start_point = targetting.find_starting_point

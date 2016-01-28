@@ -86,4 +86,15 @@ class Determine
 		return [index_of_best_column, number_filled_spaces, column_itself, "column"]
 	end
 
+	def determine_all_possible_digits_per_cell
+		possible_digits = []
+		@pure_puzzle_matrix.each { |cell_contents|
+			if ("1".."9").include?(cell_contents)
+				possible_digits.push("X")
+			else
+				possible_digits.push("*")
+			end
+		}
+	end
+
 end
