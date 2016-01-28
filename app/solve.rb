@@ -11,6 +11,8 @@ class Solve
 		@modified_matrix = @pure_puzzle_data
 	end
 
+	# Note: every method operates on the @modified_matrix variable
+
 	def populate_naked_singles_within_rows
 		index_counter = (-1)
 
@@ -91,9 +93,11 @@ class Solve
 		@modified_matrix
 	end
 
+
 	private
 
 	def convert_array_back_to_matrix(array_of_arrays)
+		# Matrices are immutable objects == cannot be operated on directly
 		matrix_data = Matrix[]
 
 		array_of_arrays.each { |row|
