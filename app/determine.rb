@@ -33,6 +33,9 @@ class Determine
 	end
 
 	def find_complementary_starting_slice(slice)
+		# Find postion of slice in overall matrix
+		# Scan slice for blanks
+		# Find complementary slice with fewest blanks
 	end
 
 	def determine_most_filled_incomplete_row(matrix_formatted_data)
