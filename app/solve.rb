@@ -91,6 +91,8 @@ class Solve
 		@modified_matrix
 	end
 
+	private
+
 	def convert_array_back_to_matrix(array_of_arrays)
 		matrix_data = Matrix[]
 
