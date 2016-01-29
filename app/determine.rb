@@ -29,13 +29,36 @@ class Determine
 		best_slice = (best_row[1] >= best_column[1]) ? best_row : best_column
 		Log.info("Starting slice is #{best_slice[3]} #{best_slice[0]+1}, with #{best_slice[1]} of #{@edge_length} elements filled.")
 
+		# best_slice composition: [index_of_best_slice, number_filled_spaces, slice_vector, "row" / "column"]
 		return best_slice
 	end
 
-	def find_complementary_starting_slice(slice)
+	def find_complementary_starting_slice(best_slice)
 		# Find postion of slice in overall matrix
+		@prime_index = (-1)
+
+		if best_slice[3] == "row"
+			@pure_puzzle_matrix.row_vectors.each { |row|
+				@prime_index += 1
+				if row == best_slice[2]
+					@prime_slice = row
+				end
+			}
+			
+		else
+		@pure_puzzle_matrix.column_vectors.each { |column|
+			@prime_index += 1
+			if row == best_slice[2]
+				@prime_slice = column
+			end
+			}
+		end
 		# Scan slice for blanks
 		# Find complementary slice with fewest blanks
+	end
+
+	def determine_starting_point
+		# Return unfilled cell of best slices
 	end
 
 	def determine_most_filled_incomplete_row(matrix_formatted_data)
