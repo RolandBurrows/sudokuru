@@ -48,7 +48,7 @@ class Determine
 		else
 		@pure_puzzle_matrix.column_vectors.each { |column|
 			@prime_index += 1
-			if row == best_slice[2]
+			if column == best_slice[2]
 				@prime_slice = column
 			end
 			}
