@@ -35,22 +35,23 @@ class Determine
 
 	def find_complementary_starting_slice(best_slice)
 		# Find postion of slice in overall matrix
-		@prime_index = (-1)
+		prime_index = (-1)
 
 		if best_slice[3] == "row"
 			@pure_puzzle_matrix.row_vectors.each { |row|
-				@prime_index += 1
+				prime_index += 1
 				if row == best_slice[2]
 					@prime_slice = row
+					break
 				end
 			}
-			
 		else
-		@pure_puzzle_matrix.column_vectors.each { |column|
-			@prime_index += 1
-			if column == best_slice[2]
-				@prime_slice = column
-			end
+			@pure_puzzle_matrix.column_vectors.each { |column|
+				prime_index += 1
+				if column == best_slice[2]
+					@prime_slice = column
+					break
+				end
 			}
 		end
 		# Scan slice for blanks
