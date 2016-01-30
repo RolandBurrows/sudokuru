@@ -55,6 +55,33 @@ class Determine
 			}
 		end
 		# Scan slice for blanks
+		candidate_rows = []
+		candidate_columns = []
+		@prime_slice.each_with_index { |value, index|
+			if value =~ /( |-|_)/
+				if best_slice[3] == "row"
+					possible_slice = @pure_puzzle_matrix.column(index)
+					candidate = []
+					candidate.push(index)
+					candidate.push(possible_slice.to_a)
+					spaces = possible_slice.each.count(" ")
+					dashes = possible_slice.each.count("-")
+					underscores = possible_slice.each.count("_")
+					candidate.push(spaces + dashes + underscores)
+					candidate_columns.push(candidate)
+				else
+					possible_slice = @pure_puzzle_matrix.row(index)
+					candidate = []
+					candidate.push(index)
+					candidate.push(possible_slice.to_a)
+					spaces = possible_slice.each.count(" ")
+					dashes = possible_slice.each.count("-")
+					underscores = possible_slice.each.count("_")
+					candidate.push(spaces + dashes + underscores)
+					candidate_rows.push(candidate)
+				end
+			end
+		}
 		# Find complementary slice with fewest blanks
 	end
 

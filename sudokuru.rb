@@ -75,5 +75,4 @@ end
 
 filled_naked_singles.determine_all_possible_digits_per_cell
 
-targetting = Determine.new(@matrix_data)
-start_point = targetting.find_starting_point
+filled_naked_singles.find_starting_point

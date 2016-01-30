@@ -66,7 +66,7 @@ describe "sudokuru" do
   it "should determine the starting slice to be a column" do
     ARGV[0] = "./test_files/starting_column.txt"
     output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "Starting slice is column 4, with 3 of 4 elements filled."
+    output.must_include "Starting slice is column 4, with 2 of 4 elements filled."
   end
 
   it "should confirm every allowed blank character" do
