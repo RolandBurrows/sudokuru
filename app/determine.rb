@@ -36,7 +36,6 @@ class Determine
 	def find_complementary_starting_slice(best_slice)
 		# Find postion of slice in overall matrix
 		prime_index = (-1)
-
 		if best_slice[3] == "row"
 			@pure_puzzle_matrix.row_vectors.each { |row|
 				prime_index += 1
@@ -54,6 +53,7 @@ class Determine
 				end
 			}
 		end
+
 		# Scan slice for blanks
 		candidate_rows = []
 		candidate_columns = []
@@ -82,7 +82,15 @@ class Determine
 				end
 			end
 		}
+
 		# Find complementary slice with fewest blanks
+		# candidates_array composition: [index_of_vector, vector_itself, number_of_blanks]
+		if best_slice[3] == "row"
+			best_complementary_slice = candidate_columns.min_by{|a| a[2]}[1]
+		else
+			best_complementary_slice = candidate_rows.min_by{|a| a[2]}[1]
+		end
+		return best_complementary_slice
 	end
 
 	def determine_starting_point
