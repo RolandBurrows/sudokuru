@@ -62,7 +62,7 @@ analysis.box_uniqueness
 
 # Solve!
 start_point = "nil"
-solver = Solve.new(@matrix_data, start_point)
+solver = Solve.new(@matrix_data)
 
 ## Fill in any naked singles
 singled_rows = "nil"

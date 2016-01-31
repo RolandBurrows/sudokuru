@@ -5,7 +5,7 @@ require_relative "determine"
 class Solve
 	attr_reader :modified_matrix
 
-	def initialize(matrix, start_point)
+	def initialize(matrix, start_point=nil)
 		@pure_puzzle_data = matrix
 		@edge_length = @pure_puzzle_data.column_count
 		@modified_matrix = @pure_puzzle_data
