@@ -24,9 +24,9 @@ $ rake test
 Input puzzles should be common file types (.txt, .rb, etc.), one row per line, formatted:
 ```
   1-3-              1_3_              1 3               1 3-
-  -14-              _14_               14               -14_   
+  -14-              _14_               14               -14_
   24-3      or      24_3      or      24 3      or      24-3
-  --2-              __2_                2               _-2 
+  --2-              __2_                2               _ 2-
  dashes         underscores          spaces             mixed
 ```
 With digits 1-9 and the blank characters "-", "_", and spaces allowed only.
@@ -65,9 +65,11 @@ Input (diagnostic checks on validity and formatting):
 
 Implementation:
 - [X] Find starting row/column by calculating which one has the greatest number of pre-filled items.
-- [ ] Find starting index (via the most filled complementary slice relative to the prime slice)
-- [X] Find any naked singles (only one digit remains possible to be placed in a cell)
-- [ ] Find any hidden singles (only one digit can be inferred to be placed in a cell)
+- [X] Find starting index (via the most filled complementary slice relative to the prime slice).
+- [X] Find any naked singles (only one digit remains possible to be placed in a cell) within rows/columns.
+- [ ] Find any naked singles within 9x9 puzzle sub-boxes.
+- [ ] Find any hidden singles (only one digit can be inferred to be placed in a cell) within rows/columns.
+- [ ] Find any hidden singles within 9x9 puzzle sub-boxes.
 - [ ] Naked / Hidden pairs, triplets, qauds.
 
 Scaling Solutions:
@@ -78,4 +80,4 @@ Scaling Solutions:
 
 Stretch Goals:
 - [ ] Ability to use photo of sudoku puzzle, and OCR loads the data for solving.
-- [ ] Smartphone app
+- [ ] Smartphone app.
