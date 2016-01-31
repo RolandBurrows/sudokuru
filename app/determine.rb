@@ -9,12 +9,9 @@ class Determine
 		@pure_puzzle_matrix = matrix
 		@pure_puzzle_array = matrix.to_a
 		# Log success if puzzle contains no blanks at all
-		spaces = @pure_puzzle_matrix.each.count(" ")
-		dashes = @pure_puzzle_matrix.each.count("-")
-		underscores = @pure_puzzle_matrix.each.count("_")
-		Log.success(@pure_puzzle_matrix) if ((spaces + dashes + underscores) == 0)
+		Log.success(@pure_puzzle_matrix) if (count_the_blanks(@pure_puzzle_matrix) == 0)
 		# Log error if puzzle is ONLY blanks
-		Log.error("puzzle cannot only contain blanks.") if ((spaces + dashes + underscores) == (@edge_length * @edge_length))
+		Log.error("puzzle cannot only contain blanks.") if (count_the_blanks(@pure_puzzle_matrix) == (@edge_length * @edge_length))
 	end
 
 	def find_starting_point
@@ -73,26 +70,19 @@ class Determine
 		@candidate_rows = []
 		@candidate_columns = []
 		@prime_slice.each_with_index { |value, index|
+			candidate = []
 			if value =~ /( |-|_)/
 				if best_slice[3] == "row"
 					possible_slice = @pure_puzzle_matrix.column(index)
-					candidate = []
 					candidate.push(index)
 					candidate.push(possible_slice.to_a)
-					spaces = possible_slice.each.count(" ")
-					dashes = possible_slice.each.count("-")
-					underscores = possible_slice.each.count("_")
-					candidate.push(spaces + dashes + underscores)
+					candidate.push(count_the_blanks(possible_slice))
 					@candidate_columns.push(candidate)
 				else
 					possible_slice = @pure_puzzle_matrix.row(index)
-					candidate = []
 					candidate.push(index)
 					candidate.push(possible_slice.to_a)
-					spaces = possible_slice.each.count(" ")
-					dashes = possible_slice.each.count("-")
-					underscores = possible_slice.each.count("_")
-					candidate.push(spaces + dashes + underscores)
+					candidate.push(count_the_blanks(possible_slice))
 					@candidate_rows.push(candidate)
 				end
 			end
@@ -188,6 +178,16 @@ class Determine
 			end
 		}
 		return possible_digits_array
+	end
+
+
+	private
+
+	def count_the_blanks(vector)
+		spaces = vector.each.count(" ")
+		dashes = vector.each.count("-")
+		underscores = vector.each.count("_")
+		return (spaces+dashes+underscores)
 	end
 
 end

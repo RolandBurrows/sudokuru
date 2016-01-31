@@ -61,7 +61,6 @@ analysis.column_uniqueness
 analysis.box_uniqueness
 
 # Solve!
-start_point = "nil"
 solver = Solve.new(@matrix_data)
 
 ## Fill in any naked singles
