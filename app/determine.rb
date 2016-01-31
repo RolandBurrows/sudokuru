@@ -31,7 +31,9 @@ class Determine
 	end
 
 	def find_complementary_starting_slice(best_slice)
-		find_position_of_slice_in_matrix(best_slice)
+		@best_slice_index = best_slice[0]
+		@prime_slice = best_slice[2]
+
 		scan_slice_for_blanks(best_slice)
 
 		# Find complementary slice with fewest blanks
@@ -43,27 +45,6 @@ class Determine
 
 		# candidates_array composition: [index_of_vector, vector_itself, number_of_blanks]
 		return best_complementary_slice
-	end
-
-	def find_position_of_slice_in_matrix(best_slice)
-		@best_slice_index = (-1)
-		if best_slice[3] == "row"
-			@pure_puzzle_matrix.row_vectors.each { |row|
-				@best_slice_index += 1
-				if row == best_slice[2]
-					@prime_slice = row
-					break
-				end
-			}
-		else
-			@pure_puzzle_matrix.column_vectors.each { |column|
-				@best_slice_index += 1
-				if column == best_slice[2]
-					@prime_slice = column
-					break
-				end
-			}
-		end
 	end
 
 	def scan_slice_for_blanks(best_slice)
