@@ -18,7 +18,7 @@ class Determine
 	end
 
 	def find_starting_point
-		find_complementary_starting_slice(find_prime_starting_slice)
+		determine_starting_point(find_complementary_starting_slice(find_prime_starting_slice))
 	end
 
 	def find_prime_starting_slice
@@ -26,11 +26,11 @@ class Determine
 		best_column = determine_most_filled_incomplete_column(@pure_puzzle_matrix)
 
 		# If a row and column are of equal goodness, prefer the row
-		best_slice = (best_row[1] >= best_column[1]) ? best_row : best_column
-		Log.info("Starting slice is #{best_slice[3]} #{best_slice[0]+1}, with #{best_slice[1]} of #{@edge_length} elements filled.")
+		@best_slice = (best_row[1] >= best_column[1]) ? best_row : best_column
+		Log.info("Starting slice is #{@best_slice[3]} #{@best_slice[0]+1}, with #{@best_slice[1]} of #{@edge_length} elements filled.")
 
 		# best_slice composition: [index_of_best_slice, number_filled_spaces, slice_vector, "row" / "column"]
-		return best_slice
+		return @best_slice
 	end
 
 	def find_complementary_starting_slice(best_slice)
@@ -84,17 +84,26 @@ class Determine
 		}
 
 		# Find complementary slice with fewest blanks
-		# candidates_array composition: [index_of_vector, vector_itself, number_of_blanks]
 		if best_slice[3] == "row"
-			best_complementary_slice = candidate_columns.min_by{|a| a[2]}[1]
+			best_complementary_slice = candidate_columns.min_by{|a| a[2]}
 		else
-			best_complementary_slice = candidate_rows.min_by{|a| a[2]}[1]
+			best_complementary_slice = candidate_rows.min_by{|a| a[2]}
 		end
+
+		# candidates_array composition: [index_of_vector, vector_itself, number_of_blanks]
 		return best_complementary_slice
 	end
 
-	def determine_starting_point
-		# Return unfilled cell of best slices
+	def determine_starting_point(best_complementary_slice)
+		@starting_point = []
+		if @best_slice[3] == "row"
+			@starting_point.push(@best_slice[0])
+			@starting_point.push(best_complementary_slice[0])
+		else
+			@starting_point.push(best_complementary_slice[0])
+			@starting_point.push(@best_slice[0])
+		end
+		Log.info("Best point to start solving: (#{@starting_point[0]+1},#{@starting_point[1]+1})")
 	end
 
 	def determine_most_filled_incomplete_row(matrix_formatted_data)

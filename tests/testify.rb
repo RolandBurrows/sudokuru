@@ -69,6 +69,13 @@ describe "sudokuru" do
     output.must_include "Starting slice is column 4, with 2 of 4 elements filled."
   end
 
+  it "should determine the starting point" do
+    ARGV[0] = "./test_files/starting_index.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "Starting slice is row 6, with 4 of 6 elements filled."
+    output.must_include "Best point to start solving: (6,6)"
+  end
+
   it "should confirm every allowed blank character" do
     ARGV[0] = "./test_files/every_allowed_character.txt"
     output = capture_stdout { load "sudokuru.rb" }
