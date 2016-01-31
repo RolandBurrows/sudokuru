@@ -34,11 +34,25 @@ class Determine
 	end
 
 	def find_complementary_starting_slice(best_slice)
-		# Find postion of slice in overall matrix
-		prime_index = (-1)
+		find_position_of_slice_in_matrix(best_slice)
+		scan_slice_for_blanks(best_slice)
+
+		# Find complementary slice with fewest blanks
+		if best_slice[3] == "row"
+			best_complementary_slice = @candidate_columns.min_by{|a| a[2]}
+		else
+			best_complementary_slice = @candidate_rows.min_by{|a| a[2]}
+		end
+
+		# candidates_array composition: [index_of_vector, vector_itself, number_of_blanks]
+		return best_complementary_slice
+	end
+
+	def find_position_of_slice_in_matrix(best_slice)
+		@best_slice_index = (-1)
 		if best_slice[3] == "row"
 			@pure_puzzle_matrix.row_vectors.each { |row|
-				prime_index += 1
+				@best_slice_index += 1
 				if row == best_slice[2]
 					@prime_slice = row
 					break
@@ -46,17 +60,18 @@ class Determine
 			}
 		else
 			@pure_puzzle_matrix.column_vectors.each { |column|
-				prime_index += 1
+				@best_slice_index += 1
 				if column == best_slice[2]
 					@prime_slice = column
 					break
 				end
 			}
 		end
+	end
 
-		# Scan slice for blanks
-		candidate_rows = []
-		candidate_columns = []
+	def scan_slice_for_blanks(best_slice)
+		@candidate_rows = []
+		@candidate_columns = []
 		@prime_slice.each_with_index { |value, index|
 			if value =~ /( |-|_)/
 				if best_slice[3] == "row"
@@ -68,7 +83,7 @@ class Determine
 					dashes = possible_slice.each.count("-")
 					underscores = possible_slice.each.count("_")
 					candidate.push(spaces + dashes + underscores)
-					candidate_columns.push(candidate)
+					@candidate_columns.push(candidate)
 				else
 					possible_slice = @pure_puzzle_matrix.row(index)
 					candidate = []
@@ -78,20 +93,10 @@ class Determine
 					dashes = possible_slice.each.count("-")
 					underscores = possible_slice.each.count("_")
 					candidate.push(spaces + dashes + underscores)
-					candidate_rows.push(candidate)
+					@candidate_rows.push(candidate)
 				end
 			end
 		}
-
-		# Find complementary slice with fewest blanks
-		if best_slice[3] == "row"
-			best_complementary_slice = candidate_columns.min_by{|a| a[2]}
-		else
-			best_complementary_slice = candidate_rows.min_by{|a| a[2]}
-		end
-
-		# candidates_array composition: [index_of_vector, vector_itself, number_of_blanks]
-		return best_complementary_slice
 	end
 
 	def determine_starting_point(best_complementary_slice)
