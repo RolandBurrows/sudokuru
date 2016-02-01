@@ -69,7 +69,8 @@ singled_columns = "null"
 until singled_rows == singled_columns do
 	singled_rows = solver.populate_naked_singles_within_rows
 	singled_columns = solver.populate_naked_singles_within_columns
-	filled_naked_singles = Determine.new(singled_columns)
+	singled_boxes = solver.populate_naked_singles_within_boxes
+	filled_naked_singles = Determine.new(singled_boxes)
 end
 
 filled_naked_singles.determine_all_possible_digits_per_cell
