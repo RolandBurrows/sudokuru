@@ -47,23 +47,14 @@ class Analyze
 
 			# Left to right, top to bottom:
 			boxes.push( @matrix_data.minor(0..2,0..2) )		# Box 1
-
 			boxes.push( @matrix_data.minor(0..2,3..5) )		# Box 2
-
 			boxes.push( @matrix_data.minor(0..2,6..8) )		# Box 3
-
 			boxes.push( @matrix_data.minor(3..5,0..2) )		# Box 4
-
 			boxes.push( @matrix_data.minor(3..5,3..5) )		# Box 5
-
 			boxes.push( @matrix_data.minor(3..5,6..8) )		# Box 6
-
 			boxes.push( @matrix_data.minor(6..8,0..2) )		# Box 7
-
 			boxes.push( @matrix_data.minor(6..8,3..5) )		# Box 8
-
 			boxes.push( @matrix_data.minor(6..8,6..8) )		# Box 9
-
 			check_digit_uniqueness(boxes, "Box")
 		else
 			Log.info("Determining box uniqueness is for 9x9, not (#{@edge_length}x#{@edge_length}).")

@@ -128,14 +128,10 @@ class Determine
 				possible_digits_array.push("X")
 			else
 				row_array = @pure_puzzle_matrix.row(row).to_a
-				row_array.delete(" ")
-				row_array.delete("-")
-				row_array.delete("_")
+				row_array.reject! {|item| item =~ /( |-|_)/ }
 
 				column_array = @pure_puzzle_matrix.column(col).to_a
-				column_array.delete(" ")
-				column_array.delete("-")
-				column_array.delete("_")
+				column_array.reject! {|item| item =~ /( |-|_)/ }
 
 				combo_array = []
 				combo_array.push(row_array)
