@@ -61,18 +61,9 @@ analysis.column_uniqueness
 analysis.box_uniqueness
 
 # Solve!
-solver = Solve.new(@matrix_data)
+looper = Loop.new(@matrix_data)
+filled_nakeds = looper.fill_in_naked_singles
 
-## Fill in any naked singles
-singled_rows = "nil"
-singled_columns = "null"
-until singled_rows == singled_columns do
-	singled_rows = solver.populate_naked_singles_within_rows
-	singled_columns = solver.populate_naked_singles_within_columns
-	singled_boxes = solver.populate_naked_singles_within_boxes
-	filled_naked_singles = Determine.new(singled_boxes)
-end
-
-filled_naked_singles.determine_all_possible_digits_per_cell
-
-filled_naked_singles.find_starting_point
+determinant = Determine.new(filled_nakeds)
+determinant.determine_all_possible_digits_per_cell
+determinant.find_starting_point
