@@ -145,7 +145,11 @@ class Determine
 				possible_digits_array.push(missing_digits)
 			end
 		}
-		return possible_digits_array
+		possible_digits_formatted = []
+		possible_digits_array.each_slice(@edge_length) { |chunk|
+			possible_digits_formatted.push(chunk)
+		}
+		return possible_digits_formatted
 	end
 
 

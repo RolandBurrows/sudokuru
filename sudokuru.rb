@@ -63,7 +63,7 @@ analysis.box_uniqueness
 # Solve!
 
 looper = Loop.new(@matrix_data)
-filled_nakeds = looper.attempt_to_fill_puzzle
+looper.attempt_to_fill_puzzle
 
 determinant = Determine.new(@matrix_data)
 determinant.find_starting_point

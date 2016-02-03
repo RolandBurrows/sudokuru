@@ -125,8 +125,6 @@ class Solve
 		@modified_matrix
 	end
 
-	private
-
 	def convert_array_back_to_matrix(array_of_arrays)
 		# Matrices are immutable objects == cannot be operated on directly
 		matrix_data = Matrix[]
@@ -136,6 +134,9 @@ class Solve
 		}
 		return matrix_data
 	end
+
+
+	private
 
 	def convert_master_data_into_boxes(modified_matrix)
 		boxes = []
