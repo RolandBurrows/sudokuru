@@ -61,9 +61,9 @@ analysis.column_uniqueness
 analysis.box_uniqueness
 
 # Solve!
-looper = Loop.new(@matrix_data)
-filled_nakeds = looper.fill_in_naked_singles
 
-determinant = Determine.new(filled_nakeds)
-determinant.determine_all_possible_digits_per_cell
+looper = Loop.new(@matrix_data)
+filled_nakeds = looper.attempt_to_fill_puzzle
+
+determinant = Determine.new(@matrix_data)
 determinant.find_starting_point

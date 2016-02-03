@@ -7,6 +7,7 @@ class Loop
 		@edge_length = matrix.column_count
 		@pure_puzzle_matrix = matrix
 		@pure_puzzle_array = matrix.to_a
+		@matrix_data = matrix
 	end
 
 	def fill_in_naked_singles
@@ -19,7 +20,15 @@ class Loop
 			singled_columns = solver.populate_naked_singles_within_columns
 			singled_boxes = solver.populate_naked_singles_within_boxes
 		end
-		return singled_boxes
+		@matrix_data = singled_boxes
+		return @matrix_data
+	end
+
+	def attempt_to_fill_puzzle
+		fill_in_naked_singles
+		determinant = Determine.new(@matrix_data)
+		determinant.determine_all_possible_digits_per_cell
+		return @matrix_data
 	end
 
 end
