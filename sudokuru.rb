@@ -64,6 +64,3 @@ analysis.box_uniqueness
 
 looper = Loop.new(@matrix_data)
 looper.attempt_to_fill_puzzle
-
-determinant = Determine.new(@matrix_data)
-determinant.find_starting_point

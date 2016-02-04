@@ -71,6 +71,7 @@ class Determine
 			@starting_point.push(@best_slice[0])
 		end
 		Log.info("Best point to start solving: (#{@starting_point[0]+1},#{@starting_point[1]+1})")
+		return @starting_point
 	end
 
 	def determine_most_filled_incomplete_row(matrix_formatted_data)

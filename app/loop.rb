@@ -26,9 +26,11 @@ class Loop
 
 	def attempt_to_fill_puzzle
 		fill_in_naked_singles
+
 		determinant = Determine.new(@matrix_data)
 		possible_digits_formatted = determinant.determine_all_possible_digits_per_cell
 		possible_digits_matrix = @solver.convert_array_back_to_matrix(possible_digits_formatted)
+		point = determinant.find_starting_point
 
 		return @matrix_data
 	end
