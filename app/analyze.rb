@@ -31,15 +31,17 @@ class Analyze
 		Log.info("Puzzle data is properly formatted.")
 	end
 
-	def row_uniqueness
+	def row_uniqueness(log=nil)
 		check_digit_uniqueness(@matrix_data.row_vectors, "Row")
+		Log.info("Puzzle rows contain no duplicate values.") if log
 	end
 
-	def column_uniqueness
+	def column_uniqueness(log=nil)
 		check_digit_uniqueness(@matrix_data.column_vectors, "Column")
+		Log.info("Puzzle columns contain no duplicate values.") if log
 	end
 
-	def box_uniqueness
+	def box_uniqueness(log=nil)
 		# The goal is for all numbers 1-9 to appear only once in each row, column, and 3x3 box
 
 		if @edge_length == 9
@@ -56,8 +58,9 @@ class Analyze
 			boxes.push( @matrix_data.minor(6..8,3..5) )		# Box 8
 			boxes.push( @matrix_data.minor(6..8,6..8) )		# Box 9
 			check_digit_uniqueness(boxes, "Box")
+			Log.info("Puzzle boxes contain no duplicate values.") if log
 		else
-			Log.info("Determining box uniqueness is for 9x9, not (#{@edge_length}x#{@edge_length}).")
+			Log.info("Determining box uniqueness is for 9x9, not (#{@edge_length}x#{@edge_length}).") if log
 		end
 	end
 
@@ -71,13 +74,6 @@ class Analyze
 				end
 			end
 		}
-		# Pluralize entity for logging
-		if entity == "Box"
-			entity = "boxes"
-		else
-			entity = (entity.downcase + "s")
-		end
-		Log.info("Puzzle #{entity} contain no duplicate values.")
 	end
 
 end

@@ -54,11 +54,11 @@ end
 
 analysis = Analyze.new(@matrix_data)
 
-analysis.dimensionality				# Ensure data grid is a square
-analysis.data_formatting			# Ensure characters are allowed: (1-9) no larger than puzzle size , space, -, and _
-analysis.row_uniqueness
-analysis.column_uniqueness
-analysis.box_uniqueness
+analysis.dimensionality									# Ensure data grid is a square
+analysis.data_formatting								# Ensure characters are allowed: (1-9) no larger than puzzle size , space, -, and _
+analysis.row_uniqueness(log=true)
+analysis.column_uniqueness(log=true)
+analysis.box_uniqueness(log=true)
 
 # Solve!
 
