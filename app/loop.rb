@@ -28,10 +28,15 @@ class Loop
 	def attempt_to_fill_puzzle
 		fill_in_naked_singles
 
+		# Begin loop
 		determinant = Determine.new(@matrix_data)
-		possible_digits_formatted = determinant.determine_all_possible_digits_per_cell
-		possible_digits_matrix = @solver.convert_array_back_to_matrix(possible_digits_formatted)
 		start_point = determinant.find_starting_point
+
+		# Determine possible entries and insert first guess, repeat
+		possible_digits_formatted = determinant.determine_all_possible_digits_per_cell
+		# If matrix state has not changed between two loop runs, break
+		possible_digits_matrix = @solver.convert_array_back_to_matrix(possible_digits_formatted)
+		@matrix_data = possible_digits_matrix
 
 		return @matrix_data
 	end
