@@ -14,6 +14,14 @@ describe "sudokuru" do
 	  fake.string
 	end
 
+  # LOGGING
+
+  it "should print debug logging when the DEBUG env var is activated" do
+    ENV["DEBUG"] = "yes"
+    output = capture_stdout { require "././app/log"; Log.debug("Doot Doot") }
+    output.must_include "Doot Doot"
+  end
+
   # SAMPLE SOLVING FLOWS
 
   it "should process the default input file when no specific file is given" do

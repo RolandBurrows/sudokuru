@@ -1,6 +1,13 @@
 class Log
 	class << self
 
+		def debug(inner_werkings)
+			if ENV["DEBUG"] != nil
+				puts "\n"
+				puts inner_werkings.to_s
+			end
+		end
+
 		def error(badness)
 			puts "\n"
 			puts "\033[31mERROR: \033[0m" + badness.to_s
@@ -14,7 +21,6 @@ class Log
 
 		def success(goodness)
 			$duration_end = Time.now
-
 			puts "\n"
 			puts "\033[32mSUCCESS!\033[0m Solution found in: #{$duration_end - $duration_start} seconds."
 			Log.tab(goodness)
