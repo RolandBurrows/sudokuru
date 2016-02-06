@@ -14,7 +14,7 @@ describe "sudokuru" do
 	  fake.string
 	end
 
-  # SOLVING FLOWS
+  # SAMPLE SOLVING FLOWS
 
   it "should process the default input file when no specific file is given" do
     ARGV[0] = nil
@@ -34,6 +34,20 @@ describe "sudokuru" do
     ARGV[0] = "./puzzles/2x2.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "2x2.txt"
+    output.must_include "SUCCESS"
+  end
+
+  # TEST SOLVING FLOWS
+
+  it "should solve a 3x3 easy puzzle" do
+    ARGV[0] = "./test_files/3x3easy.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "SUCCESS"
+  end
+
+  it "should solve a 4x4 easy puzzle" do
+    ARGV[0] = "./test_files/4x4easy.txt"
+    output = capture_stdout { load "sudokuru.rb" }
     output.must_include "SUCCESS"
   end
 

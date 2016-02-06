@@ -29,22 +29,45 @@ class Loop
 		fill_in_naked_singles
 
 		# Begin loop
-		determinant = Determine.new(@matrix_data)
-		start_point = determinant.find_starting_point
+		previous_data = []
+		current_data = @matrix_data
 
-		# Determine possible entries and insert first guess, repeat
-		possible_digits_formatted = determinant.determine_all_possible_digits_per_cell
-		# If matrix state has not changed between two loop runs, break
-		possible_digits_matrix = @solver.convert_array_back_to_matrix(possible_digits_formatted)
-		@matrix_data = possible_digits_matrix
+		while previous_data != current_data do
+			previous_data = current_data
+			determinant = Determine.new(current_data)
 
-		return @matrix_data
+			start_point = determinant.find_starting_point
+			possible_digits_formatted = determinant.determine_all_possible_digits_per_cell
+			replacement_row = possible_digits_formatted[start_point[0]]
+			replacement_possibilities = replacement_row[start_point[1]]
+			replacement_possibilities.each { |replacement_value|
+				# Break the loop if solution determined impossible with current values
+				if replacement_value == nil
+					next
+				end
+				determinant = Determine.new(current_data)
+				start_point = determinant.find_starting_point
+
+				current_data = fill_matrix_cell_with_value(current_data, start_point, replacement_value)
+
+				analysis = Analyze.new(current_data)
+				analysis.row_uniqueness
+				analysis.column_uniqueness
+				analysis.box_uniqueness
+			}
+		end
+
 	end
 
 
 	private
 
 	def fill_matrix_cell_with_value(matrix_data, cell_index, replacement_value)
+		cell_row = cell_index[0].to_i
+		cell_col = cell_index[1].to_i
+		Log.info("Filling cell (#{cell_row+1}, #{cell_col+1}) with (#{replacement_value}):")
+		Log.tab(matrix_data)
+
 		data_array = matrix_data.to_a
 		data_row = data_array[cell_index[0]]
 		existing_value = data_row[cell_index[1]]
