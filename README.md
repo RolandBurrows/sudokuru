@@ -11,6 +11,10 @@ Within the sudokuru folder:
 ```
 $ ruby sudokuru.rb <path to file>
 ```
+To see every single solving step:
+```
+$ env DEBUG=yes ruby sudokuru.rb <path to file>
+```
 In the absence of a file path provided, sudokuru will default to:
 ```
 $ ruby sudokuru.rb ./puzzles/input.txt
