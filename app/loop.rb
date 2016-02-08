@@ -1,5 +1,7 @@
+require_relative 'analyze'
 require_relative 'determine'
 require_relative 'solve'
+require_relative 'state'
 
 class Loop
 
@@ -28,33 +30,43 @@ class Loop
 	def attempt_to_fill_puzzle
 		fill_in_naked_singles
 
-		# Begin loop
-		previous_data = []
-		current_data = @matrix_data
+		# Find initial starting point, possibiltiies, and start with first option
 
-		while previous_data != current_data do
-			previous_data = current_data
-			determinant = Determine.new(current_data)
+		@state = State.new(@matrix_data)
+		determinant = Determine.new(@state.board)
+		start_point = determinant.find_starting_point
 
-			start_point = determinant.find_starting_point
-			possible_digits_formatted = determinant.determine_all_possible_digits_per_cell
-			replacement_row = possible_digits_formatted[start_point[0]]
-			replacement_possibilities = replacement_row[start_point[1]]
-			replacement_possibilities.each { |replacement_value|
-				# Break the loop if solution determined impossible with current values
-				if replacement_value == nil
-					next
-				end
-				determinant = Determine.new(current_data)
+		last_move = nil
+
+		# TODO: Convert infinite loop to a timed-based maximum
+		while true
+			all_possibilities = determinant.determine_all_possible_digits_per_cell
+			replacement_row = all_possibilities[start_point[0]]
+			replacement_options = replacement_row[start_point[1]]
+
+			if last_move != nil
+				iter = replacement_options.index(last_move)
+				replacement_options = replacement_options[iter+1, replacement_options.size]
+				last_move = nil
+			end
+
+			move = choose_move(replacement_options)
+
+			if move == nil
+				# Backtrack due to illegal move
+				start_point, last_move = @state.pop_state
+			else
+				@state[start_point[0], start_point[1]] = move
+				# Use Determine initializer to break if success
+				determinant = Determine.new(@state.board)
 				start_point = determinant.find_starting_point
+				last_move = nil
+			end
 
-				current_data = fill_matrix_cell_with_value(current_data, start_point, replacement_value)
-
-				analysis = Analyze.new(current_data)
-				analysis.row_uniqueness
-				analysis.column_uniqueness
-				analysis.box_uniqueness
-			}
+			analysis = Analyze.new(@state.board)
+			analysis.row_uniqueness
+			analysis.column_uniqueness
+			# analysis.box_uniqueness
 		end
 
 	end
@@ -62,25 +74,12 @@ class Loop
 
 	private
 
-	def fill_matrix_cell_with_value(matrix_data, cell_index, replacement_value)
-		cell_row = cell_index[0].to_i
-		cell_col = cell_index[1].to_i
-		Log.info("Filling cell (#{cell_row+1}, #{cell_col+1}) with (#{replacement_value}):")
-		Log.tab(matrix_data)
-
-		data_array = matrix_data.to_a
-		data_row = data_array[cell_index[0]]
-		existing_value = data_row[cell_index[1]]
-
-		if existing_value !~ /( |-|_)/
-			raise "Cannot replace a non-blank value!"
+	def choose_move(values)
+		if values.size == 0
+			return nil
+		else
+			return values[0]
 		end
-
-		data_row[cell_index[1]] = replacement_value
-		data_array[cell_index[0]] = data_row
-
-		@modified_matrix = @solver.convert_array_back_to_matrix(data_array)
-		return @modified_matrix
 	end
 
 end

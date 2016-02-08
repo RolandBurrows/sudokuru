@@ -41,7 +41,24 @@ describe "sudokuru" do
   it "should solve a 2x2 puzzle" do
     ARGV[0] = "./puzzles/2x2.txt"
     output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "2x2.txt"
+    output.must_include "SUCCESS"
+  end
+
+  it "should solve a 3x3 puzzle" do
+    ARGV[0] = "./puzzles/3x3.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "SUCCESS"
+  end
+
+  it "should solve a 4x4 puzzle" do
+    ARGV[0] = "./puzzles/4x4.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "SUCCESS"
+  end
+
+  it "should solve a 5x5 puzzle" do
+    ARGV[0] = "./puzzles/5x5.txt"
+    output = capture_stdout { load "sudokuru.rb" }
     output.must_include "SUCCESS"
   end
 
