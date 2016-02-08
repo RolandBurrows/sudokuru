@@ -79,7 +79,7 @@ describe "sudokuru" do
     output.must_include "Modified puzzle data"
   end
 
-    it "should detect naked singles within boxes" do
+  it "should detect naked singles within boxes" do
     ARGV[0] = "./test_files/naked_singles_boxes.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "Naked single (3) detected in box 3"
@@ -89,18 +89,21 @@ describe "sudokuru" do
   end
 
   it "should determine the starting slice to be a row" do
+    ENV["DEBUG"] = "yes"
     ARGV[0] = "./test_files/starting_row.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "Starting slice is row 3, with 2 of 4 elements filled."
   end
 
   it "should determine the starting slice to be a column" do
+    ENV["DEBUG"] = "yes"
     ARGV[0] = "./test_files/starting_column.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "Starting slice is column 4, with 2 of 4 elements filled."
   end
 
   it "should determine the starting point" do
+    ENV["DEBUG"] = "yes"
     ARGV[0] = "./test_files/starting_index.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "Starting slice is row 6, with 4 of 6 elements filled."
@@ -115,7 +118,7 @@ describe "sudokuru" do
     output.must_include "Determining box uniqueness is for"
   end
 
-    it "should detect that puzzle is too small for determining box uniqueness" do
+  it "should detect that puzzle is too small for determining box uniqueness" do
     ARGV[0] = "./test_files/too_small_for_box_uniqueness.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "Determining box uniqueness is for"

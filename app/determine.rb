@@ -24,7 +24,7 @@ class Determine
 
 		# If a row and column are of equal goodness, prefer the row
 		@best_slice = (best_row[1] >= best_column[1]) ? best_row : best_column
-		Log.info("Starting slice is #{@best_slice[3]} #{@best_slice[0]+1}, with #{@best_slice[1]} of #{@edge_length} elements filled.")
+		Log.debug("Starting slice is #{@best_slice[3]} #{@best_slice[0]+1}, with #{@best_slice[1]} of #{@edge_length} elements filled.")
 
 		# best_slice composition: [index_of_best_slice, number_filled_spaces, slice_vector, "row" / "column"]
 		return @best_slice
@@ -70,7 +70,7 @@ class Determine
 			@starting_point.push(best_complementary_slice[0])
 			@starting_point.push(@best_slice[0])
 		end
-		Log.info("Best point to start solving: (#{@starting_point[0]+1},#{@starting_point[1]+1})")
+		Log.debug("Best point to start solving: (#{@starting_point[0]+1},#{@starting_point[1]+1})")
 		return @starting_point
 	end
 
