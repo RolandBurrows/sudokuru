@@ -62,6 +62,24 @@ describe "sudokuru" do
     output.must_include "SUCCESS"
   end
 
+  it "should solve a 6x6 puzzle" do
+    ARGV[0] = "./puzzles/6x6.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "SUCCESS"
+  end
+
+  it "should solve a 7x7 puzzle" do
+    ARGV[0] = "./puzzles/7x7.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "SUCCESS"
+  end
+
+  it "should solve a 8x8 puzzle" do
+    ARGV[0] = "./puzzles/8x8.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "SUCCESS"
+  end
+
   # TEST SOLVING FLOWS
 
   it "should solve a 3x3 easy puzzle" do

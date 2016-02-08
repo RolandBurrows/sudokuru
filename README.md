@@ -72,14 +72,14 @@ Implementation:
   - [ ] Find any hidden singles (only one digit can be inferred to be placed in a cell) within rows/columns.
   - [ ] Find any hidden singles within 9x9 puzzle sub-boxes.
   - [ ] Naked / Hidden pairs, triplets, qauds.
-- [ ] The Brute-force Finder
-  - [ ] Attempt to fill a given cell, and solve the puzzle. Backtrack when solution is not found and retry new values.
+- [X] The Brute-force Finder
+  - [X] Attempt to fill a given cell, and solve the puzzle. Backtrack when solution is not found and retry new values.
 
 Scaling Solutions:
 - [X] 2x2 puzzles.
-- [ ] 3x3 puzzles.
-- [ ] 4x4 puzzles.
-- [ ] 5x5 puzzles.
+- [X] ...
+- [X] 8x8 puzzles.
+- [ ] 9x9 puzzles with box uniqueness.
 
 Stretch Goals:
 - [ ] Ability to use photo of sudoku puzzle, and OCR loads the data for solving.
