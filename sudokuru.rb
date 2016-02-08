@@ -56,9 +56,9 @@ analysis = Analyze.new(@matrix_data)
 
 analysis.dimensionality									# Ensure data grid is a square
 analysis.data_formatting								# Ensure characters are allowed: (1-9) no larger than puzzle size , space, -, and _
-analysis.row_uniqueness(log=true)
-analysis.column_uniqueness(log=true)
-analysis.box_uniqueness(log=true)
+analysis.row_uniqueness("log it!")
+analysis.column_uniqueness("log it!")
+analysis.box_uniqueness("log it!")
 
 # Solve!
 
