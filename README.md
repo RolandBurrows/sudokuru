@@ -83,6 +83,7 @@ Scaling Solutions:
 - [X] 2x2 puzzles.
 - [X] ...
 - [X] 8x8 puzzles.
+- [X] 9x9 puzzles.
 - [ ] 9x9 puzzles with box uniqueness.
 
 Stretch Goals:

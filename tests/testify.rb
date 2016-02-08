@@ -80,6 +80,12 @@ describe "sudokuru" do
     output.must_include "SUCCESS"
   end
 
+  it "should solve a 9x9 puzzle" do
+    ARGV[0] = "./puzzles/9x9.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "SUCCESS"
+  end
+
   # TEST SOLVING FLOWS
 
   it "should solve a 3x3 easy puzzle" do
