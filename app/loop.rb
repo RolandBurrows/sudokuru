@@ -66,7 +66,7 @@ class Loop
 			analysis = Analyze.new(@state.board)
 			analysis.row_uniqueness
 			analysis.column_uniqueness
-			# analysis.box_uniqueness
+			analysis.box_uniqueness
 		end
 
 	end
