@@ -14,6 +14,20 @@ describe "sudokuru" do
 	  fake.string
 	end
 
+  # def setup
+  #   $time_s = Time.now
+  # end
+
+  # def teardown
+  #   $time_e = Time.now
+  #   puts "#{@test_name} : #{$time_e - $time_s}"
+  # end
+
+  # def initialize(name = nil)
+  #   @test_name = name
+  #   super(name) unless name.nil?
+  # end
+
   # LOGGING
 
   it "should print debug logging when the DEBUG env var is activated" do
@@ -87,20 +101,6 @@ describe "sudokuru" do
     output.must_include "SUCCESS"
   end
 
-  # TEST SOLVING FLOWS
-
-  it "should solve a 3x3 easy puzzle" do
-    ARGV[0] = "./test_files/3x3easy.txt"
-    output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "SUCCESS"
-  end
-
-  it "should solve a 4x4 easy puzzle" do
-    ARGV[0] = "./test_files/4x4easy.txt"
-    output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "SUCCESS"
-  end
-
   # POSITIVE FLOWS
 
   it "should detect naked singles within rows" do
@@ -124,9 +124,15 @@ describe "sudokuru" do
   it "should detect naked singles within boxes" do
     ARGV[0] = "./test_files/naked_singles_boxes.txt"
     output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "Naked single (3) detected in box 3"
+    output.must_include "Naked single (5) detected in box 1"
+    output.must_include "Naked single (7) detected in box 2"
+    output.must_include "Naked single (2) detected in box 3"
+    output.must_include "Naked single (4) detected in box 4"
     output.must_include "Naked single (5) detected in box 5"
-    output.must_include "Naked single (7) detected in box 7"
+    output.must_include "Naked single (1) detected in box 6"
+    output.must_include "Naked single (3) detected in box 7"
+    output.must_include "Naked single (8) detected in box 8"
+    output.must_include "Naked single (9) detected in box 9"
     output.must_include "Modified puzzle data"
   end
 
