@@ -72,20 +72,14 @@ Implementation:
 - [X] Find starting index (via the most filled complementary slice relative to the prime slice).
 - [X] Find any naked singles (only one digit remains possible to be placed in a cell) within rows/columns.
 - [X] Find any naked singles within 9x9 puzzle sub-boxes.
-- [ ] The Player's Method:
-  - [ ] Find any hidden singles (only one digit can be inferred to be placed in a cell) within rows/columns.
-  - [ ] Find any hidden singles within 9x9 puzzle sub-boxes.
-  - [ ] Naked / Hidden pairs, triplets, qauds.
-- [X] The Brute-force Finder
-  - [X] Attempt to fill a given cell, and solve the puzzle. Backtrack when solution is not found and retry new values.
+- [X] Attempt to fill a given cell, and solve the puzzle. Backtrack when solution is not found and retry new values.
 
 Scaling Solutions:
 - [X] 2x2 puzzles.
 - [X] ...
-- [X] 8x8 puzzles.
-- [X] 9x9 puzzles.
-- [ ] 9x9 puzzles with box uniqueness.
+- [X] 9x9 puzzles with box uniqueness.
 
 Stretch Goals:
+- [ ] Use mirror file with box map (A-I) characters to determine boxes.
 - [ ] Ability to use photo of sudoku puzzle, and OCR loads the data for solving.
 - [ ] Smartphone app.
