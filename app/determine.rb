@@ -126,23 +126,19 @@ class Determine
 			if ("1".."9").include?(cell_contents)
 				possible_digits_array.push("X")
 			else
+				combo_array = []
+
 				row_array = @pure_puzzle_matrix.row(row).to_a
-				row_array.reject! {|item| item =~ /( |-|_)/ }
+				combo_array.push(row_array)
 
 				column_array = @pure_puzzle_matrix.column(col).to_a
-				column_array.reject! {|item| item =~ /( |-|_)/ }
+				combo_array.push(column_array)
 
 				if @edge_length == 9
 					box_array = return_box_values_from_matrix_and_index(@pure_puzzle_matrix, [row,col])
-					box_array.uniq!
-				end
-
-				combo_array = []
-				combo_array.push(row_array)
-				combo_array.push(column_array)
-				if @edge_length == 9
 					combo_array.push(box_array)
 				end
+
 				combo_array.flatten!
 				combo_array.uniq!
 
@@ -172,34 +168,26 @@ class Determine
 	def return_box_values_from_matrix_and_index(matrix, index)
 		if ((0..2).include? index[0]) && ((0..2).include? index[1])
 			boxes = matrix.minor(0..2,0..2).to_a
-			return boxes.flatten!
 		elsif ((0..2).include? index[0]) && ((3..5).include? index[1])
 			boxes = matrix.minor(0..2,3..5).to_a
-			return boxes.flatten!
 		elsif ((0..2).include? index[0]) && ((6..8).include? index[1])
 			boxes = matrix.minor(0..2,6..8).to_a
-			return boxes.flatten!
 		elsif ((3..5).include? index[0]) && ((0..2).include? index[1])
 			boxes = matrix.minor(3..5,0..2).to_a
-			return boxes.flatten!
 		elsif ((3..5).include? index[0]) && ((3..5).include? index[1])
 			boxes = matrix.minor(3..5,3..5).to_a
-			return boxes.flatten!
 		elsif ((3..5).include? index[0]) && ((6..8).include? index[1])
 			boxes = matrix.minor(3..5,6..8).to_a
-			return boxes.flatten!
 		elsif ((6..8).include? index[0]) && ((0..2).include? index[1])
 			boxes = matrix.minor(6..8,0..2).to_a
-			return boxes.flatten!
 		elsif ((6..8).include? index[0]) && ((3..5).include? index[1])
 			boxes = matrix.minor(6..8,3..5).to_a
-			return boxes.flatten!
 		elsif ((6..8).include? index[0]) && ((6..8).include? index[1])
 			boxes = matrix.minor(6..8,6..8).to_a
-			return boxes.flatten!
 		else
 			Log.error("I forgot how to box.")
 		end
+		return boxes.flatten!
 	end
 
 end
