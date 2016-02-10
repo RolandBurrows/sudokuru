@@ -10,8 +10,6 @@ class Determine
 		@pure_puzzle_array = matrix.to_a
 		# Log success if puzzle contains no blanks at all
 		Log.success(@pure_puzzle_matrix) if (count_the_blanks(@pure_puzzle_matrix) == 0)
-		# Log error if puzzle is ONLY blanks
-		Log.error("puzzle cannot only contain blanks.") if (count_the_blanks(@pure_puzzle_matrix) == (@edge_length * @edge_length))
 	end
 
 	def find_starting_point
@@ -172,7 +170,6 @@ class Determine
 	end
 
 	def return_box_values_from_matrix_and_index(matrix, index)
-		boxes = []
 		if ((0..2).include? index[0]) && ((0..2).include? index[1])
 			boxes = matrix.minor(0..2,0..2).to_a
 			return boxes.flatten!

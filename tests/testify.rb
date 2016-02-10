@@ -53,6 +53,12 @@ describe "sudokuru" do
 		output.must_include "Solution found in:"
   end
 
+  it "should solve a blank puzzle" do
+    ARGV[0] = "./test_files/only_blanks.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "SUCCESS"
+  end
+
   it "should solve a 2x2 puzzle" do
     ARGV[0] = "./puzzles/2x2.txt"
     output = capture_stdout { load "sudokuru.rb" }
@@ -235,13 +241,6 @@ describe "sudokuru" do
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "ERROR"
     output.must_include "Box 6 (423791846) contains duplicate values"
-  end
-
-  it "should detect if the puzzle is just blanks" do
-    ARGV[0] = "./test_files/only_blanks.txt"
-    output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "ERROR"
-    output.must_include "puzzle cannot only contain blanks"
   end
 
 end

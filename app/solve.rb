@@ -115,10 +115,10 @@ class Solve
 					boxes_array = boxes_array.flatten(1)
 					boxes_sorted = reset_boxed_array_to_master_format(boxes_array)
 
-					@modified_puzzle_data = convert_array_back_to_matrix(boxes_sorted)
+					@modified_matrix = convert_array_back_to_matrix(boxes_sorted)
 
 					Log.info("Naked single (#{missing_digits.join("")}) detected in box #{index_counter+1}.\nModified puzzle data:")
-					Log.tab(@modified_puzzle_data)
+					Log.tab(@modified_matrix)
 				end
 			}
 		end
