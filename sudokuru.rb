@@ -60,7 +60,12 @@ analysis.row_uniqueness("log it!")
 analysis.column_uniqueness("log it!")
 analysis.box_uniqueness("log it!")
 
+# Format it
+
+transmute = Transmute.new(@matrix_data)
+@trans_matrix = transmute.standardize_blanks
+
 # Solve!
 
-looper = Loop.new(@matrix_data)
+looper = Loop.new(@trans_matrix)
 looper.attempt_to_fill_puzzle
