@@ -1,6 +1,4 @@
 require_relative "log"
-require_relative "analyze"
-require_relative "determine"
 require_relative "transmute"
 
 class Solve

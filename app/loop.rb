@@ -1,17 +1,12 @@
-require_relative 'analyze'
-require_relative 'determine'
 require_relative 'solve'
 require_relative 'state'
 
 class Loop
 
 	def initialize(matrix)
-		@edge_length = matrix.column_count
 		@pure_puzzle_matrix = matrix
-		@pure_puzzle_array = matrix.to_a
 		@matrix_data = matrix
 		@solver = Solve.new(@pure_puzzle_matrix)
-		@modified_matrix = Matrix[]
 	end
 
 	def fill_in_naked_singles
@@ -63,10 +58,6 @@ class Loop
 				last_move = nil
 			end
 
-			analysis = Analyze.new(@state.board)
-			analysis.row_uniqueness
-			analysis.column_uniqueness
-			analysis.box_uniqueness
 		end
 
 	end

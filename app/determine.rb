@@ -7,8 +7,6 @@ class Determine
 	def initialize(matrix)
 		@edge_length = matrix.column_count
 		@pure_puzzle_matrix = matrix
-		@pure_puzzle_array = matrix.to_a
-		# Log success if puzzle contains no blanks at all
 		Log.success(@pure_puzzle_matrix) if (count_the_blanks(@pure_puzzle_matrix) == 0)
 	end
 

@@ -8,8 +8,7 @@ class Transmute
 		@puzzle_array = []
 		@pure_puzzle_data.row_vectors.each { |row|
 			row_array = row.to_a
-			row_array.map! { |elem| elem == (" ") ? "-" : elem }.flatten!
-			row_array.map! { |elem| elem == ("_") ? "-" : elem }.flatten!
+			row_array.map! { |elem| elem =~ /( |_)/ ? "-" : elem }.flatten!
 			@puzzle_array.push(row_array)
 			@modified_matrix = convert_array_back_to_matrix(@puzzle_array)
 		}

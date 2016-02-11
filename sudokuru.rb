@@ -4,7 +4,6 @@
 Dir["#{File.dirname(__FILE__)}/app/**/*.rb"].each { |f| load(f) }
 
 Log.info("Let's solve some Sudoku!")
-$duration_start = nil
 $duration_start = Time.now
 
 # Initialize test file from the user or provide a default
@@ -20,14 +19,11 @@ end
 
 begin
 	Log.info("Using provided file: #{input_file}")
-	puzzle_file = File.open(input_file, "r")
-	puzzle_data = puzzle_file.read
+	puzzle_data = File.read(input_file)
 
 	if puzzle_data == ""
 		Log.error("file is empty.")
 	end
-
-	puzzle_file.close
 
 rescue
 	Log.error("given file doesn't exist. Halting.")
