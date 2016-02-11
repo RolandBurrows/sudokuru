@@ -1,6 +1,7 @@
 require_relative "log"
 require_relative "analyze"
 require_relative "determine"
+require_relative "transmute"
 
 class Solve
 	attr_reader :modified_matrix
@@ -10,6 +11,7 @@ class Solve
 		@edge_length = @pure_puzzle_data.column_count
 		@modified_matrix = @pure_puzzle_data
 		@string_digits = ("1"..@edge_length.to_s).to_a
+		@transmute = Transmute.new(matrix)
 	end
 
 	# Note: every method operates on the @modified_matrix variable
@@ -35,7 +37,7 @@ class Solve
 				@modified_puzzle_data = @modified_matrix.to_a
 				@modified_puzzle_data[index_counter] = row_array_again
 
-				@modified_matrix = convert_array_back_to_matrix(@modified_puzzle_data)
+				@modified_matrix = @transmute.convert_array_back_to_matrix(@modified_puzzle_data)
 
 				Log.info("Naked single (#{missing_digits.join("")}) detected on row #{index_counter+1}.\nModified puzzle data:")
 				Log.tab(@modified_puzzle_data)
@@ -69,7 +71,7 @@ class Solve
 					row[index_counter] = column_array_again[position_index]
 				}
 
-				@modified_matrix = convert_array_back_to_matrix(@modified_puzzle_data)
+				@modified_matrix = @transmute.convert_array_back_to_matrix(@modified_puzzle_data)
 
 				Log.info("Naked single (#{missing_digits.join("")}) detected on column #{index_counter+1}.\nModified puzzle data:")
 				Log.tab(@modified_puzzle_data)
@@ -98,7 +100,7 @@ class Solve
 					# Insert the missing digit back into whichever blank is present
 					box_array_again.map! { |elem| elem == ("-") ? missing_digits : elem }.flatten!
 					box_array_again = box_array_again.each_slice(3).to_a
-					box_mod_matrix = convert_array_back_to_matrix(box_array_again)
+					box_mod_matrix = @transmute.convert_array_back_to_matrix(box_array_again)
 
 					# Replace the old slice with the new one
 					boxes[index_counter] = box_mod_matrix
@@ -109,7 +111,7 @@ class Solve
 					boxes_array = boxes_array.flatten(1)
 					boxes_sorted = reset_boxed_array_to_master_format(boxes_array)
 
-					@modified_matrix = convert_array_back_to_matrix(boxes_sorted)
+					@modified_matrix = @transmute.convert_array_back_to_matrix(boxes_sorted)
 
 					Log.info("Naked single (#{missing_digits.join("")}) detected in box #{index_counter+1}.\nModified puzzle data:")
 					Log.tab(@modified_matrix)
@@ -117,16 +119,6 @@ class Solve
 			}
 		end
 		@modified_matrix
-	end
-
-	def convert_array_back_to_matrix(array_of_arrays)
-		# Matrices are immutable objects == cannot be operated on directly
-		matrix_data = Matrix[]
-
-		array_of_arrays.each { |row|
-			matrix_data = Matrix.rows(matrix_data.to_a << row)
-		}
-		return matrix_data
 	end
 
 
