@@ -27,7 +27,7 @@ class Loop
 		return @matrix_data
 	end
 
-	def attempt_to_fill_puzzle
+	def fill_puzzle
 		fill_in_naked_singles
 
 		# Find initial starting point, possibiltiies, and start with first option

@@ -159,7 +159,7 @@ class Determine
 	private
 
 	def count_the_blanks(vector)
-		dashes = vector.each.count("-")
+		vector.each.count("-")
 	end
 
 	def return_box_values_from_matrix_and_index(matrix, index)

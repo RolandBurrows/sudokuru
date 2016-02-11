@@ -68,4 +68,4 @@ transmute = Transmute.new(@matrix_data)
 # Solve!
 
 looper = Loop.new(@trans_matrix)
-looper.attempt_to_fill_puzzle
+looper.fill_puzzle
