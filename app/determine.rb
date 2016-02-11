@@ -166,28 +166,8 @@ class Determine
 	end
 
 	def return_box_values_from_matrix_and_index(matrix, index)
-		if ((0..2).include? index[0]) && ((0..2).include? index[1])
-			boxes = matrix.minor(0..2,0..2).to_a
-		elsif ((0..2).include? index[0]) && ((3..5).include? index[1])
-			boxes = matrix.minor(0..2,3..5).to_a
-		elsif ((0..2).include? index[0]) && ((6..8).include? index[1])
-			boxes = matrix.minor(0..2,6..8).to_a
-		elsif ((3..5).include? index[0]) && ((0..2).include? index[1])
-			boxes = matrix.minor(3..5,0..2).to_a
-		elsif ((3..5).include? index[0]) && ((3..5).include? index[1])
-			boxes = matrix.minor(3..5,3..5).to_a
-		elsif ((3..5).include? index[0]) && ((6..8).include? index[1])
-			boxes = matrix.minor(3..5,6..8).to_a
-		elsif ((6..8).include? index[0]) && ((0..2).include? index[1])
-			boxes = matrix.minor(6..8,0..2).to_a
-		elsif ((6..8).include? index[0]) && ((3..5).include? index[1])
-			boxes = matrix.minor(6..8,3..5).to_a
-		elsif ((6..8).include? index[0]) && ((6..8).include? index[1])
-			boxes = matrix.minor(6..8,6..8).to_a
-		else
-			Log.error("I forgot how to box.")
-		end
-		return boxes.flatten!
+	  x, y = index.map {|i| i/3*3}
+	  matrix.minor(x..x+2,y..y+2).to_a.flatten
 	end
 
 end
