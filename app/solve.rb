@@ -22,16 +22,14 @@ class Solve
 
 			# Grab the given slice and strip out the blanks
 			row_array = row.to_a
-			row_array.reject! {|item| item =~ /( |-|_)/ }
+			row_array.reject! {|item| item == "-" }
 
 			missing_digits = (@string_digits - row_array)
 
 			if (missing_digits.length == 1)
 				row_array_again = row.to_a
 				# Insert the missing digit back into whichever blank is present
-				row_array_again.map! { |elem| elem == (" ") ? missing_digits : elem }.flatten!
 				row_array_again.map! { |elem| elem == ("-") ? missing_digits : elem }.flatten!
-				row_array_again.map! { |elem| elem == ("_") ? missing_digits : elem }.flatten!
 
 				# Replace the old slice with the new one
 				@modified_puzzle_data = @modified_matrix.to_a
@@ -54,16 +52,14 @@ class Solve
 
 			# Grab the given slice and strip out the blanks
 			column_array = column.to_a
-			column_array.reject! {|item| item =~ /( |-|_)/ }
+			column_array.reject! {|item| item == "-" }
 
 			missing_digits = (@string_digits - column_array)
 
 			if (missing_digits.length == 1)
 				column_array_again = column.to_a
 				# Insert the missing digit back into whichever blank is present
-				column_array_again.map! { |elem| elem == (" ") ? missing_digits : elem }.flatten!
 				column_array_again.map! { |elem| elem == ("-") ? missing_digits : elem }.flatten!
-				column_array_again.map! { |elem| elem == ("_") ? missing_digits : elem }.flatten!
 
 				# Replace the old slice with the new one, element by element
 				@modified_puzzle_data = @modified_matrix.to_a
@@ -93,16 +89,14 @@ class Solve
 
 				# Grab the given slice and strip out the blanks
 				box_array = box.to_a.flatten!
-				box_array.reject! {|item| item =~ /( |-|_)/ }
+				box_array.reject! {|item| item == "-" }
 
 				missing_digits = (@string_digits - box_array)
 
 				if (missing_digits.length == 1)
 					box_array_again = box.to_a
 					# Insert the missing digit back into whichever blank is present
-					box_array_again.map! { |elem| elem == (" ") ? missing_digits : elem }.flatten!
 					box_array_again.map! { |elem| elem == ("-") ? missing_digits : elem }.flatten!
-					box_array_again.map! { |elem| elem == ("_") ? missing_digits : elem }.flatten!
 					box_array_again = box_array_again.each_slice(3).to_a
 					box_mod_matrix = convert_array_back_to_matrix(box_array_again)
 

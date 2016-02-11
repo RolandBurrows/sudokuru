@@ -45,7 +45,7 @@ class Determine
 		@candidate_slices = []
 		@prime_slice.each_with_index { |value, index|
 			candidate = []
-			if value =~ /( |-|_)/
+			if value == "-"
 				if best_slice[3] == "row"
 					possible_slice = @pure_puzzle_matrix.column(index)
 				else
@@ -159,10 +159,7 @@ class Determine
 	private
 
 	def count_the_blanks(vector)
-		spaces = vector.each.count(" ")
 		dashes = vector.each.count("-")
-		underscores = vector.each.count("_")
-		return (spaces+dashes+underscores)
 	end
 
 	def return_box_values_from_matrix_and_index(matrix, index)
