@@ -1,4 +1,3 @@
-require_relative 'solve'
 require_relative 'state'
 
 class Loop
@@ -6,24 +5,10 @@ class Loop
 	def initialize(matrix)
 		@pure_puzzle_matrix = matrix
 		@matrix_data = matrix
-		@solver = Solve.new(@pure_puzzle_matrix)
 	end
 
-	def fill_in_naked_singles
-
-		singled_rows = "nil"
-		singled_columns = "null"
-		until singled_rows == singled_columns do
-			singled_rows = @solver.populate_naked_singles_within_rows
-			singled_columns = @solver.populate_naked_singles_within_columns
-			singled_boxes = @solver.populate_naked_singles_within_boxes
-		end
-		@matrix_data = singled_boxes
-		return @matrix_data
-	end
 
 	def fill_puzzle
-		fill_in_naked_singles
 
 		@state = State.new(@matrix_data)
 		determinant = Determine.new(@state.board)

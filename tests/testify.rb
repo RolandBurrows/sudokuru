@@ -109,39 +109,6 @@ describe "sudokuru" do
 
   # POSITIVE FLOWS
 
-  it "should detect naked singles within rows" do
-    ARGV[0] = "./test_files/naked_singles_rows.txt"
-    output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "Naked single (2) detected on row 1"
-    output.must_include "Naked single (3) detected on row 2"
-    output.must_include "Naked single (1) detected on row 3"
-    output.must_include "Modified puzzle data"
-  end
-
-  it "should detect naked singles within columns" do
-    ARGV[0] = "./test_files/naked_singles_columns.txt"
-    output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "Naked single (2) detected on column 1"
-    output.must_include "Naked single (3) detected on column 2"
-    output.must_include "Naked single (1) detected on column 3"
-    output.must_include "Modified puzzle data"
-  end
-
-  it "should detect naked singles within boxes" do
-    ARGV[0] = "./test_files/naked_singles_boxes.txt"
-    output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "Naked single (5) detected in box 1"
-    output.must_include "Naked single (7) detected in box 2"
-    output.must_include "Naked single (2) detected in box 3"
-    output.must_include "Naked single (4) detected in box 4"
-    output.must_include "Naked single (5) detected in box 5"
-    output.must_include "Naked single (1) detected in box 6"
-    output.must_include "Naked single (3) detected in box 7"
-    output.must_include "Naked single (8) detected in box 8"
-    output.must_include "Naked single (9) detected in box 9"
-    output.must_include "Modified puzzle data"
-  end
-
   it "should determine the starting slice to be a row" do
     ENV["DEBUG"] = "yes"
     ARGV[0] = "./test_files/starting_row.txt"
