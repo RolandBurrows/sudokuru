@@ -37,4 +37,18 @@ class Transmute
 		return boxes
 	end
 
+	def convert_boxes_to_matrix(boxes_array)
+		boxes_sorted = []
+		boxes_sorted.push([boxes_array[0], boxes_array[3], boxes_array[6]].flatten!)
+		boxes_sorted.push([boxes_array[1], boxes_array[4], boxes_array[7]].flatten!)
+		boxes_sorted.push([boxes_array[2], boxes_array[5], boxes_array[8]].flatten!)
+		boxes_sorted.push([boxes_array[9], boxes_array[12], boxes_array[15]].flatten!)
+		boxes_sorted.push([boxes_array[10], boxes_array[13], boxes_array[16]].flatten!)
+		boxes_sorted.push([boxes_array[11], boxes_array[14], boxes_array[17]].flatten!)
+		boxes_sorted.push([boxes_array[18], boxes_array[21], boxes_array[24]].flatten!)
+		boxes_sorted.push([boxes_array[19], boxes_array[22], boxes_array[25]].flatten!)
+		boxes_sorted.push([boxes_array[20], boxes_array[23], boxes_array[26]].flatten!)
+		return boxes_sorted
+	end
+
 end
