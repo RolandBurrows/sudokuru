@@ -2,7 +2,6 @@ require_relative "log"
 require_relative "transmute"
 
 class Solve
-	attr_reader :modified_matrix
 
 	def initialize(matrix)
 		@pure_puzzle_data = matrix

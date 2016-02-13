@@ -2,7 +2,6 @@ require_relative "log"
 require "matrix"
 
 class Analyze
-	attr_reader :edge_length
 
 	def initialize(matrix)
 		@edge_length = matrix.column_count

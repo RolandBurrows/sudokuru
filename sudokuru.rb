@@ -20,11 +20,9 @@ end
 begin
 	Log.info("Using provided file: #{input_file}")
 	puzzle_data = File.read(input_file)
-
 	if puzzle_data == ""
 		Log.error("file is empty.")
 	end
-
 rescue
 	Log.error("given file doesn't exist. Halting.")
 end
@@ -37,11 +35,9 @@ begin
 		# Convert raw file lines into a matrix object of individual characters
 		@matrix_data = Matrix.rows(@matrix_data.to_a << (line.split("")))
 	}
-
 	# Display file contents
 	Log.info("File contents:")
 	Log.tab(@matrix_data)
-
 rescue
 	Log.error("Rows and/or columns need to be of consistent length. Please fix and rerun.")
 end
@@ -49,9 +45,8 @@ end
 # Analyze file contents
 
 analysis = Analyze.new(@matrix_data)
-
-analysis.dimensionality									# Ensure data grid is a square
-analysis.data_formatting								# Ensure characters are allowed: (1-9) no larger than puzzle size , space, -, and _
+analysis.dimensionality
+analysis.data_formatting
 analysis.row_uniqueness("log it!")
 analysis.column_uniqueness("log it!")
 analysis.box_uniqueness("log it!")
