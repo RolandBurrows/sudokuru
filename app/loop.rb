@@ -1,12 +1,9 @@
-require_relative 'state'
-
 class Loop
 
 	def initialize(matrix)
 		@pure_puzzle_matrix = matrix
 		@matrix_data = matrix
 	end
-
 
 	def fill_puzzle
 

@@ -1,5 +1,3 @@
-require_relative "log"
-
 class State
 	attr_reader :board
 

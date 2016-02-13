@@ -1,5 +1,3 @@
-require_relative "log"
-require_relative "transmute"
 require "matrix"
 
 class Analyze

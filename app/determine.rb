@@ -1,7 +1,3 @@
-require_relative "log"
-require_relative "analyze"
-require "matrix"
-
 class Determine
 
 	def initialize(matrix)
