@@ -34,7 +34,7 @@ class Solve
 				@modified_puzzle_data = @modified_matrix.to_a
 				@modified_puzzle_data[index_counter] = row_array_again
 
-				@modified_matrix = @transmute.convert_array_back_to_matrix(@modified_puzzle_data)
+				@modified_matrix = @transmute.convert_array_to_matrix(@modified_puzzle_data)
 
 				Log.info("Naked single (#{missing_digits.join("")}) detected on row #{index_counter+1}.\nModified puzzle data:")
 				Log.tab(@modified_puzzle_data)
@@ -68,7 +68,7 @@ class Solve
 					row[index_counter] = column_array_again[position_index]
 				}
 
-				@modified_matrix = @transmute.convert_array_back_to_matrix(@modified_puzzle_data)
+				@modified_matrix = @transmute.convert_array_to_matrix(@modified_puzzle_data)
 
 				Log.info("Naked single (#{missing_digits.join("")}) detected on column #{index_counter+1}.\nModified puzzle data:")
 				Log.tab(@modified_puzzle_data)
@@ -80,7 +80,7 @@ class Solve
 	def populate_naked_singles_within_boxes
 		if @edge_length == 9
 
-			boxes = convert_master_data_into_boxes(@modified_matrix)
+			boxes = @transmute.convert_matrix_to_boxes(@modified_matrix)
 
 			index_counter = (-1)
 			boxes.each { |box|
@@ -97,7 +97,7 @@ class Solve
 					# Insert the missing digit back into whichever blank is present
 					box_array_again.map! { |elem| elem == ("-") ? missing_digits : elem }.flatten!
 					box_array_again = box_array_again.each_slice(3).to_a
-					box_mod_matrix = @transmute.convert_array_back_to_matrix(box_array_again)
+					box_mod_matrix = @transmute.convert_array_to_matrix(box_array_again)
 
 					# Replace the old slice with the new one
 					boxes[index_counter] = box_mod_matrix
@@ -108,7 +108,7 @@ class Solve
 					boxes_array = boxes_array.flatten(1)
 					boxes_sorted = reset_boxed_array_to_master_format(boxes_array)
 
-					@modified_matrix = @transmute.convert_array_back_to_matrix(boxes_sorted)
+					@modified_matrix = @transmute.convert_array_to_matrix(boxes_sorted)
 
 					Log.info("Naked single (#{missing_digits.join("")}) detected in box #{index_counter+1}.\nModified puzzle data:")
 					Log.tab(@modified_matrix)
@@ -120,20 +120,6 @@ class Solve
 
 
 	private
-
-	def convert_master_data_into_boxes(modified_matrix)
-		boxes = []
-		boxes.push( modified_matrix.minor(0..2,0..2) )		# Box 1
-		boxes.push( modified_matrix.minor(0..2,3..5) )		# Box 2
-		boxes.push( modified_matrix.minor(0..2,6..8) )		# Box 3
-		boxes.push( modified_matrix.minor(3..5,0..2) )		# Box 4
-		boxes.push( modified_matrix.minor(3..5,3..5) )		# Box 5
-		boxes.push( modified_matrix.minor(3..5,6..8) )		# Box 6
-		boxes.push( modified_matrix.minor(6..8,0..2) )		# Box 7
-		boxes.push( modified_matrix.minor(6..8,3..5) )		# Box 8
-		boxes.push( modified_matrix.minor(6..8,6..8) )		# Box 9
-		return boxes
-	end
 
 	def reset_boxed_array_to_master_format(boxes_array)
 		boxes_sorted = []
