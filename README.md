@@ -70,8 +70,6 @@ Input (diagnostic checks on validity and formatting):
 Implementation:
 - [X] Find starting row/column by calculating which one has the greatest number of pre-filled items.
 - [X] Find starting index (via the most filled complementary slice relative to the prime slice).
-- [X] Find any naked singles (only one digit remains possible to be placed in a cell) within rows/columns.
-- [X] Find any naked singles within 9x9 puzzle sub-boxes.
 - [X] Attempt to fill a given cell, and solve the puzzle. Backtrack when solution is not found and retry new values.
 
 Scaling Solutions:

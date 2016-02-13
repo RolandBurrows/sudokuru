@@ -24,7 +24,6 @@ class State
 	def pop_state
 		k = @move_order.pop
 		v = @board[*k]
-		# TODO: Convert matrix input at source to use only "-" blank char
 		@board.send(:'[]=', k[0], k[1], "-")
 		[k, v]
 	end
