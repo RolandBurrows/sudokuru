@@ -25,16 +25,14 @@ class Loop
 	def fill_puzzle
 		fill_in_naked_singles
 
-		# Find initial starting point, possibiltiies, and start with first option
-
 		@state = State.new(@matrix_data)
 		determinant = Determine.new(@state.board)
 		start_point = determinant.find_starting_point
 
 		last_move = nil
+		end_time = Time.now + 60
 
-		# TODO: Convert infinite loop to a timed-based maximum
-		while true
+		while Time.now < end_time
 			all_possibilities = determinant.determine_all_possible_digits_per_cell
 			replacement_row = all_possibilities[start_point[0]]
 			replacement_options = replacement_row[start_point[1]]
@@ -56,6 +54,10 @@ class Loop
 				determinant = Determine.new(@state.board)
 				start_point = determinant.find_starting_point
 				last_move = nil
+			end
+
+			if Time.now >= end_time
+				Log.error("Solving the puzzle took longer than 60 seconds. Please reduce puzzle size or diagnose with 'env DEBUG='yes'.")
 			end
 
 		end
