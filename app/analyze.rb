@@ -41,8 +41,6 @@ class Analyze
 	end
 
 	def box_uniqueness(log=nil)
-		# The goal is for all numbers 1-9 to appear only once in each row, column, and 3x3 box
-
 		if @edge_length == 9
 			boxes = @transmute.convert_matrix_to_boxes(@matrix_data)
 			check_digit_uniqueness(boxes, "Box")
@@ -56,7 +54,6 @@ class Analyze
 		# Entity = 'row', 'column', 'box' for logging
 		array.each_with_index { |slice, index|
 			for i in 1..9
-				# Check if digits 1-9 appear more than (once or less)
 				if (slice.count(i.to_s) > 1)
 					Log.error("#{entity} #{index+1} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
 				end

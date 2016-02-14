@@ -3,11 +3,13 @@ class Determine
 	def initialize(matrix)
 		@edge_length = matrix.column_count
 		@pure_puzzle_matrix = matrix
-		Log.success(@pure_puzzle_matrix) if (count_the_blanks(@pure_puzzle_matrix) == 0)
+		Log.success(matrix) if (count_the_blanks(matrix) == 0)
 	end
 
 	def find_starting_point
-		determine_starting_point(find_complementary_starting_slice(find_prime_starting_slice))
+		determine_starting_point(
+			find_complementary_starting_slice(
+				find_prime_starting_slice))
 	end
 
 	def find_prime_starting_slice
@@ -26,17 +28,17 @@ class Determine
 		@best_slice_index = best_slice[0]
 		@prime_slice = best_slice[2]
 
-		scan_slice_for_blanks(best_slice)
+		candidate_slices = scan_slice_for_blanks(best_slice)
 
 		# Find complementary slice with fewest blanks
-		best_complementary_slice = @candidate_slices.min_by{|a| a[2]}
+		best_complementary_slice = candidate_slices.min_by{|a| a[2]}
 
 		# candidates_array composition: [index_of_vector, vector_itself, number_of_blanks]
 		return best_complementary_slice
 	end
 
 	def scan_slice_for_blanks(best_slice)
-		@candidate_slices = []
+		candidate_slices = []
 		@prime_slice.each_with_index { |value, index|
 			candidate = []
 			if value == "-"
@@ -48,9 +50,10 @@ class Determine
 				candidate.push(index)
 				candidate.push(possible_slice.to_a)
 				candidate.push(count_the_blanks(possible_slice))
-				@candidate_slices.push(candidate)
+				candidate_slices.push(candidate)
 			end
 		}
+		return candidate_slices
 	end
 
 	def determine_starting_point(best_complementary_slice)
