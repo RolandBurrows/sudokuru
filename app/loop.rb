@@ -6,11 +6,9 @@ class Loop
 	end
 
 	def fill_puzzle
-
 		@state = State.new(@matrix_data)
 		determinant = Determine.new(@state.board)
 		start_point = determinant.find_starting_point
-
 		last_move = nil
 		end_time = Time.now + 60
 
@@ -41,7 +39,6 @@ class Loop
 			if Time.now >= end_time
 				Log.error("Solving the puzzle took longer than 60 seconds. Please reduce puzzle size or diagnose with 'env DEBUG='yes'.")
 			end
-
 		end
 
 	end
