@@ -43,7 +43,7 @@ describe "sudokuru" do
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "No file specified"
 		output.must_include "input.txt"
-		output.must_include "File contents:"
+		output.must_include "Puzzle file contents:"
 		output.must_include "is a square"
 		output.must_include "data is properly formatted"
 		output.must_include "rows contain no duplicate values"
@@ -151,14 +151,14 @@ describe "sudokuru" do
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "jabberwocky.txt"
     output.must_include "ERROR"
-    output.must_include "given file doesn't exist"
+    output.must_include "given puzzle file doesn't exist"
   end
 
   it "should detect that puzzle is not a rectangle" do
     ARGV[0] = "./test_files/inconsistent_size.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "ERROR"
-    output.must_include "Rows and/or columns need to be of consistent length"
+    output.must_include "Puzzle file rows and/or columns need to be of consistent length"
   end
 
   it "should detect that puzzle dimensions are mismatched" do
