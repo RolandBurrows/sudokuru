@@ -9,7 +9,7 @@ Ruby Sudoku puzzle solver at the speed of light.
 #### Execution
 Within the sudokuru folder:
 ```
-$ ruby sudokuru.rb <path to file>
+$ ruby sudokuru.rb <path to puzzle file> <path to box map file>
 ```
 To see every single solving step:
 ```
@@ -17,14 +17,14 @@ $ env DEBUG=yes ruby sudokuru.rb <path to file>
 ```
 In the absence of a file path provided, sudokuru will default to:
 ```
-$ ruby sudokuru.rb ./puzzles/input.txt
+$ ruby sudokuru.rb ./puzzles/sample_input.txt ./puzzles/sample_input_boxmap.txt
 ```
 To run the specs:
 ```
 $ rake test
 ```
 
-#### Input Formatting
+#### Puzzle Input Formatting
 Input puzzles should be common file types (.txt, .rb, etc.), one row per line, formatted:
 ```
   1-3-              1_3_              1 3               1 3-
@@ -40,7 +40,19 @@ Errors will be returned if the data is not properly formatted, with directions t
 ERROR: Row 7 (-324-9--3) contains duplicate values. Please fix and rerun.
 ```
 
-Otherwise, the solution will be returned:
+#### Box Map Input Formatting (Feature Under Construction)
+Box map files should also be common file types (.txt, .rb, etc.), one row per line, formatted:
+```
+         AABB
+         AABB
+         CCDD
+         CCDD
+ Capitalized Alphabet
+```
+No wildcard box values allowed. Only capitalized alphabet characters.
+
+#### Results
+If formatting is correct, puzzle will be processed until sucessful, or app will error if solution is not found within 60 seconds.
 ```
 SUCCESS! Solution found in: 0.015643 seconds.
 
