@@ -210,4 +210,29 @@ describe "sudokuru" do
     output.must_include "Box 6 (423791846) contains duplicate values"
   end
 
+  # BOX FLOWS
+
+  it "should not process the default box file when no file is specified" do
+    ARGV[0] = nil
+    ARGV[1] = nil
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "No box map file specified"
+    output.must_include "input.txt"
+    output.must_include "Using provided puzzle file"
+    output.wont_include "Using provided box map file"
+    output.wont_include "sample_input_boxmap.txt"
+    output.wont_include "Box Map file contents"
+  end
+
+  it "should process the default box file when default file is specified" do
+    ARGV[0] = "./puzzles/sample_input.txt"
+    ARGV[1] = "./puzzles/sample_input_boxmap.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "Using provided puzzle file"
+    output.must_include "input.txt"
+    output.must_include "Using provided box map file"
+    output.must_include "input_boxmap.txt"
+    output.must_include "Box Map file contents"
+  end
+
 end
