@@ -77,7 +77,7 @@ rescue
 	Log.error("Box map rows and/or columns need to be of consistent length. Please fix and rerun.")
 end
 
-# Analyze file contents
+# Analyze puzzle file contents
 
 analysis = Analyze.new(@matrix_puzzle_data)
 analysis.dimensionality
@@ -85,6 +85,13 @@ analysis.data_formatting
 analysis.row_uniqueness("log it!")
 analysis.column_uniqueness("log it!")
 analysis.box_uniqueness("log it!")
+
+# Analyze box map file contents
+
+boxysis = BoxHandler.new(@matrix_box_data)
+boxysis.dimensionality
+boxysis.data_formatting
+boxysis.data_uniqueness
 
 # Format it
 
