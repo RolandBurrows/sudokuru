@@ -9,11 +9,11 @@ Ruby Sudoku puzzle solver at the speed of light.
 #### Execution
 Within the sudokuru folder:
 ```
-$ ruby sudokuru.rb <path to puzzle file> <path to box map file>
+$ ruby sudokuru.rb <path to puzzle file> <path to optional box map file>
 ```
 To see every single solving step:
 ```
-$ env DEBUG=yes ruby sudokuru.rb <path to file>
+$ env DEBUG=yes ruby sudokuru.rb <path> <path>
 ```
 In the absence of a file path provided, sudokuru will default to:
 ```
