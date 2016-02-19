@@ -222,9 +222,11 @@ describe "sudokuru" do
     output.wont_include "Using provided box map file"
     output.wont_include "sample_input_boxmap.txt"
     output.wont_include "Box Map file contents"
+    output.wont_include "Box Map is a square"
+    output.wont_include "Box Map data is properly formatted"
   end
 
-  it "should process the default box file when default file is specified" do
+  it "should process the box file specified" do
     ARGV[0] = "./puzzles/sample_input.txt"
     ARGV[1] = "./puzzles/sample_input_boxmap.txt"
     output = capture_stdout { load "sudokuru.rb" }
@@ -233,6 +235,8 @@ describe "sudokuru" do
     output.must_include "Using provided box map file"
     output.must_include "input_boxmap.txt"
     output.must_include "Box Map file contents"
+    output.must_include "Box Map is a square"
+    output.must_include "Box Map data is properly formatted"
   end
 
 end

@@ -88,10 +88,12 @@ analysis.box_uniqueness("log it!")
 
 # Analyze box map file contents
 
-boxysis = BoxHandler.new(@matrix_box_data)
-boxysis.dimensionality
-boxysis.data_formatting
-boxysis.data_uniqueness
+if @matrix_box_data
+	boxysis = BoxHandler.new(@matrix_box_data)
+	boxysis.dimensionality
+	boxysis.data_formatting
+	# boxysis.data_uniqueness
+end
 
 # Format it
 
