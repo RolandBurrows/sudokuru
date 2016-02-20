@@ -14,9 +14,10 @@ describe "sudokuru" do
 	  fake.string
 	end
 
-  # def setup
-  #   $time_s = Time.now
-  # end
+  def setup
+    #$time_s = Time.now
+    ARGV[1] = nil
+  end
 
   # def teardown
   #   $time_e = Time.now
@@ -222,7 +223,7 @@ describe "sudokuru" do
     output.wont_include "Using provided box map file"
     output.wont_include "sample_input_boxmap.txt"
     output.wont_include "Box Map file contents"
-    output.wont_include "Box Map is a square"
+    output.wont_include "Box Map is square"
     output.wont_include "Box Map data is properly formatted"
   end
 
@@ -235,7 +236,7 @@ describe "sudokuru" do
     output.must_include "Using provided box map file"
     output.must_include "input_boxmap.txt"
     output.must_include "Box Map file contents"
-    output.must_include "Box Map is a square"
+    output.must_include "Box Map is square"
     output.must_include "Box Map data is properly formatted"
   end
 
