@@ -2,6 +2,10 @@ require 'minitest/autorun'
 
 describe "sudokuru" do
 
+  # Specs are not actually order dependent
+  # This just here to fix flakey minitest file loading
+  i_suck_and_my_tests_are_order_dependent!()
+
 	def capture_stdout(&block)
 	  original_stdout = $stdout
 	  $stdout = fake = StringIO.new
@@ -40,6 +44,7 @@ describe "sudokuru" do
 
   it "should process the default input file when no specific file is given" do
     ARGV[0] = nil
+    ARGV[1] = nil
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "No file specified"
 		output.must_include "input.txt"
@@ -237,6 +242,13 @@ describe "sudokuru" do
     output.must_include "Box Map file contents"
     output.must_include "Box Map is square"
     output.must_include "Box Map data is properly formatted"
+  end
+
+  it "should process the box file specified" do
+    ARGV[0] = "./puzzles/9x9.txt"
+    ARGV[1] = "./test_files/imbalanced_box_map.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "Box Map boxes are not of equal area"
   end
 
 end

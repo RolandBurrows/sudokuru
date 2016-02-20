@@ -1,7 +1,7 @@
 # Sudokuru!
 # Ruby Sudoku puzzle solver at the speed of light.
 
-Dir["#{File.dirname(__FILE__)}/app/**/*.rb"].each { |f| load(f) }
+Dir["#{File.dirname(__FILE__)}/app/**/*.rb"].each { |f| require(f) }
 
 Log.info("Let's solve some Sudoku!")
 $duration_start = Time.now
