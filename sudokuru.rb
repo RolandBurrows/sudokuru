@@ -92,7 +92,7 @@ if @matrix_box_data
 	boxysis = BoxHandler.new(@matrix_box_data)
 	boxysis.dimensionality
 	boxysis.data_formatting
-	# boxysis.data_uniqueness
+	boxysis.data_uniqueness
 end
 
 # Format it

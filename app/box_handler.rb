@@ -20,14 +20,25 @@ class BoxHandler
 	def data_formatting
 		@matrix_box_map.each { |char|
 			if !@allowed_characters.include?(char)
-				Log.error("The box map character (#{char}) is not allowed. Only #{allowed_characters[0]}-#{allowed_characters[-1]} are allowed. Please fix and rerun.")
+				Log.error("The Box Map character (#{char}) is not allowed. Only #{allowed_characters[0]}-#{allowed_characters[-1]} are allowed. Please fix and rerun.")
 			end
 		}
 		Log.info("Box Map data is properly formatted.")
 	end
 
 	def data_uniqueness
-
+		given_characters = []
+		@matrix_box_map.each { |char|
+			given_characters.push(char)
+		}
+		character_counts = []
+		@allowed_characters.each { |char|
+			character_counts.push(given_characters.count(char))
+		}
+		if character_counts.uniq.length != 1
+			Log.error("The Box Map boxes are not of equal area.")
+		end
+		Log.info("Box Map boxes are of equal area.")
 	end
 
 end
