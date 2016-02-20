@@ -12,7 +12,7 @@ class Analyze
 		if @matrix_data.square?
 			Log.info("Puzzle is a square.")
 		else
-			Log.error("Row length does not match column height. Please fix and rerun.")
+			Log.error("Puzzle row length does not match column height. Please fix and rerun.")
 		end
 	end
 
@@ -20,7 +20,7 @@ class Analyze
 		@matrix_data.each { |char|
 			# Only 1-9, " ", "-", "_" are allowed
 			if !char.match("[1-9]| |-|_")
-				Log.error("The character (#{char}) is not allowed. Please fix and rerun.")
+				Log.error("Puzzle character (#{char}) is not allowed. Please fix and rerun.")
 			end
 			# Ensure there is no digit larger than the puzzle size (a 6x6 grid cannot use digits 7-9)
 			if char.to_i > @edge_length.to_i

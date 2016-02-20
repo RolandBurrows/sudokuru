@@ -165,7 +165,7 @@ describe "sudokuru" do
     ARGV[0] = "./test_files/dimensionality_mismatch.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "ERROR"
-    output.must_include "Row length does not match column height"
+    output.must_include "Puzzle row length does not match column height"
   end
 
   it "should detect that puzzle file is empty" do
@@ -179,7 +179,7 @@ describe "sudokuru" do
     ARGV[0] = "./test_files/non_allowed_character.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "ERROR"
-    output.must_include "The character (z) is not allowed"
+    output.must_include "Puzzle character (z) is not allowed"
   end
 
   it "should detect that puzzle file has allowed, but inappropriate, characters" do

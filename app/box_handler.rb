@@ -11,7 +11,7 @@ class BoxHandler
 		if @matrix_box_map.square?
 			Log.info("Box Map is a square.")
 		else
-			Log.error("Row length does not match column height. Please fix and rerun.")
+			Log.error("Box Map row length does not match column height. Please fix and rerun.")
 		end
 	end
 
@@ -20,7 +20,7 @@ class BoxHandler
 		allowed_characters = alphabet[0, @edge_length]
 		@matrix_box_map.each { |char|
 			if !allowed_characters.include?(char)
-				Log.error("The character (#{char}) is not allowed. Only #{allowed_characters[0]}-#{allowed_characters[-1]} are allowed. Please fix and rerun.")
+				Log.error("The box map character (#{char}) is not allowed. Only #{allowed_characters[0]}-#{allowed_characters[-1]} are allowed. Please fix and rerun.")
 			end
 		}
 		Log.info("Box Map data is properly formatted.")
