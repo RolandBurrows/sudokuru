@@ -14,10 +14,9 @@ describe "sudokuru" do
 	  fake.string
 	end
 
-  def setup
-    #$time_s = Time.now
-    ARGV[1] = nil
-  end
+  # def setup
+  #   $time_s = Time.now
+  # end
 
   # def teardown
   #   $time_e = Time.now
