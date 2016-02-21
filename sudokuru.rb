@@ -45,7 +45,7 @@ rescue
 	Log.error("given box map file doesn't exist. Halting.")
 end
 
-# Convert puzzle file contexts to matrix
+# Convert puzzle file and box map contexts to matrices
 
 converter = Transmute.new()
 
@@ -56,8 +56,6 @@ begin
 rescue
 	Log.error("Puzzle file rows and/or columns need to be of consistent length. Please fix and rerun.")
 end
-
-# Convert box map file contexts to matrix
 
 begin
 	if box_map_file

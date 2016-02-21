@@ -36,6 +36,12 @@ class BoxHandler
 			character_counts.push(given_characters.count(char))
 		}
 		if character_counts.uniq.length != 1
+			Log.info("Box Map items and counts:")
+			i = 0
+			character_counts.each { |count|
+				puts "Character: (#{@allowed_characters[i]}), count: (#{count})"
+				i += 1
+			}
 			Log.error("The Box Map boxes are not of equal area.")
 		end
 		Log.info("Box Map boxes are of equal area.")
