@@ -1,7 +1,15 @@
 class Transmute
 
-	def initialize(matrix)
+	def initialize(matrix=nil)
 		@pure_puzzle_data = matrix
+	end
+
+	def convert_file_data_to_matrix(file_data)
+		matrix_data = Matrix[]
+		file_data.split("\n").each { |line|
+			matrix_data = Matrix.rows(matrix_data.to_a << (line.split("")))
+		}
+		return matrix_data
 	end
 
 	def standardize_blanks

@@ -47,13 +47,10 @@ end
 
 # Convert puzzle file contexts to matrix
 
+converter = Transmute.new()
+
 begin
-	@matrix_puzzle_data = Matrix[]
-	puzzle_data.split("\n").each { |line|
-		# Convert raw file lines into a matrix object of individual characters
-		@matrix_puzzle_data = Matrix.rows(@matrix_puzzle_data.to_a << (line.split("")))
-	}
-	# Display file contents
+	@matrix_puzzle_data = converter.convert_file_data_to_matrix(puzzle_data)
 	Log.info("Puzzle file contents:")
 	Log.tab(@matrix_puzzle_data)
 rescue
@@ -64,12 +61,7 @@ end
 
 begin
 	if box_map_file
-		@matrix_box_data = Matrix[]
-		box_map_data.split("\n").each { |line|
-			# Convert raw file lines into a matrix object of individual characters
-			@matrix_box_data = Matrix.rows(@matrix_box_data.to_a << (line.split("")))
-		}
-		# Display box map file contents
+		@matrix_box_data = converter.convert_file_data_to_matrix(box_map_data)
 		Log.info("Box Map file contents:")
 		Log.tab(@matrix_box_data)
 	end
