@@ -53,7 +53,6 @@ describe "sudokuru" do
 		output.must_include "data is properly formatted"
 		output.must_include "rows contain no duplicate values"
 		output.must_include "columns contain no duplicate values"
-    output.must_include "boxes contain no duplicate values"
 		output.must_include "SUCCESS"
 		output.must_include "Solution found in:"
   end
@@ -143,12 +142,6 @@ describe "sudokuru" do
     output.must_include "data is properly formatted"
   end
 
-  it "should detect that puzzle is too small for determining box uniqueness" do
-    ARGV[0] = "./test_files/too_small_for_box_uniqueness.txt"
-    output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "Determining box uniqueness is for"
-  end
-
   # NEGATIVE FLOWS
 
   it "should detect that a given input file doesnt exist" do
@@ -208,12 +201,8 @@ describe "sudokuru" do
     output.must_include "Column 4 (4412) contains duplicate values"
   end
 
-  it "should detect that puzzle file has non-unique boxes" do
-    ARGV[0] = "./test_files/non_unique_boxes.txt"
-    output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "ERROR"
-    output.must_include "Box 6 (423791846) contains duplicate values"
-  end
+  # it "should detect that puzzle file has non-unique boxes" do
+  # end
 
   # BOX FLOWS
 

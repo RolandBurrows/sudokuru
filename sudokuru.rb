@@ -74,7 +74,6 @@ analysis.dimensionality
 analysis.data_formatting
 analysis.row_uniqueness("log it!")
 analysis.column_uniqueness("log it!")
-analysis.box_uniqueness("log it!")
 
 # Analyze box map file contents
 
