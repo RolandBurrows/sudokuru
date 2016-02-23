@@ -85,7 +85,7 @@ if @matrix_box_data
 	boxysis.data_uniqueness
 end
 
-# Format it
+# Format puzzle
 
 transmute = Transmute.new(@matrix_puzzle_data)
 @trans_matrix = transmute.standardize_blanks

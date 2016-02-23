@@ -3,7 +3,7 @@ require 'minitest/autorun'
 describe "sudokuru" do
 
   # Specs are not actually order dependent
-  # This just here to fix flakey minitest file loading
+  # This is just here to fix flakey minitest file loading
   i_suck_and_my_tests_are_order_dependent!()
 
 	def capture_stdout(&block)
