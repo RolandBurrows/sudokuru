@@ -9,11 +9,17 @@ class BoxHandler
 		@allowed_characters = alphabet[0, @edge_length]
 	end
 
-	def dimensionality
+	def dimensionality(puzzle_matrix)
 		if @matrix_box_map.square?
 			Log.info("Box Map is square.")
 		else
 			Log.error("Box Map row length does not match column height. Please fix and rerun.")
+		end
+		@puzzle_edge_len = puzzle_matrix.column_count
+		if @puzzle_edge_len == @edge_length
+			Log.info("Puzzle and Box Map are equally sized.")
+		else
+			Log.error("Puzzle is (#{@puzzle_edge_len}x#{@puzzle_edge_len}), but Box Map is (#{@edge_length}x#{@edge_length}). Please fix and rerun.")
 		end
 	end
 

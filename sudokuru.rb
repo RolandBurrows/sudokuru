@@ -80,7 +80,7 @@ analysis.box_uniqueness("log it!")
 
 if @matrix_box_data
 	boxysis = BoxHandler.new(@matrix_box_data)
-	boxysis.dimensionality
+	boxysis.dimensionality(@matrix_puzzle_data)
 	boxysis.data_formatting
 	boxysis.data_uniqueness
 end
