@@ -248,7 +248,16 @@ describe "sudokuru" do
     ARGV[0] = "./puzzles/9x9.txt"
     ARGV[1] = "./test_files/imbalanced_box_map.txt"
     output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "ERROR"
     output.must_include "Box Map boxes are not of equal area"
+  end
+
+  it "should detect that the puzzle and box map are unequal in size" do
+    ARGV[0] = "./test_files/puzzleboxmap_mismatch.txt"
+    ARGV[1] = "./test_files/boxmappuzzle_mismatch.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "ERROR"
+    output.must_include "Puzzle is (8x8), but Box Map is (6x6)"
   end
 
 end
