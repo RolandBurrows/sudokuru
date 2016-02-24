@@ -1,13 +1,14 @@
 class Loop
 
-	def initialize(matrix)
+	def initialize(matrix, box_map)
 		@pure_puzzle_matrix = matrix
+		@pure_boxmap_matrix = box_map
 		@matrix_data = matrix
 	end
 
 	def fill_puzzle
 		@state = State.new(@matrix_data)
-		determinant = Determine.new(@state.board)
+		determinant = Determine.new(@state.board, @pure_boxmap_matrix)
 		start_point = determinant.find_starting_point
 		last_move = nil
 		end_time = Time.now + 60
@@ -31,7 +32,7 @@ class Loop
 			else
 				@state[start_point[0], start_point[1]] = move
 				# Use Determine initializer to break if success
-				determinant = Determine.new(@state.board)
+				determinant = Determine.new(@state.board, @pure_boxmap_matrix)
 				start_point = determinant.find_starting_point
 				last_move = nil
 			end

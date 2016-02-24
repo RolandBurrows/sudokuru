@@ -1,8 +1,9 @@
 class Determine
 
-	def initialize(matrix)
+	def initialize(matrix, box_map)
 		@edge_length = matrix.column_count
 		@pure_puzzle_matrix = matrix
+		@pure_boxmap_matrix = box_map
 		Log.success(matrix) if (count_the_blanks(matrix) == 0)
 	end
 
@@ -152,16 +153,16 @@ class Determine
 		return possible_digits_formatted
 	end
 
+	def return_box_values_from_matrix_and_index(matrix, index)
+	  x, y = index.map {|i| i/3*3}
+	  matrix.minor(x..x+2,y..y+2).to_a.flatten
+	end
+
 
 	private
 
 	def count_the_blanks(vector)
 		vector.each.count("-")
-	end
-
-	def return_box_values_from_matrix_and_index(matrix, index)
-	  x, y = index.map {|i| i/3*3}
-	  matrix.minor(x..x+2,y..y+2).to_a.flatten
 	end
 
 end

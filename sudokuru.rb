@@ -87,9 +87,9 @@ end
 # Format puzzle
 
 transmute = Transmute.new(@matrix_puzzle_data)
-@trans_matrix = transmute.standardize_blanks
+@puzzle_matrix = transmute.standardize_blanks
 
 # Solve!
 
-looper = Loop.new(@trans_matrix)
+looper = Loop.new(@puzzle_matrix, @matrix_box_data)
 looper.fill_puzzle
