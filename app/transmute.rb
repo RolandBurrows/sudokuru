@@ -1,7 +1,8 @@
 class Transmute
 
-	def initialize(matrix=nil)
+	def initialize(matrix=nil, box_map=nil)
 		@pure_puzzle_data = matrix
+		@pure_boxmap_data = box_map
 	end
 
 	def convert_file_data_to_matrix(file_data)
@@ -57,6 +58,19 @@ class Transmute
 		boxes_sorted.push([boxes_array[19], boxes_array[22], boxes_array[25]].flatten!)
 		boxes_sorted.push([boxes_array[20], boxes_array[23], boxes_array[26]].flatten!)
 		return boxes_sorted
+	end
+
+	def zip_together_puzzle_and_boxmap(puzzle, box_map)
+		puzzle_array = []
+		puzzle.each_with_index { |cell_contents, row, col|
+			puzzle_array.push([cell_contents, row, col])
+		}
+		boxmap_array = box_map.to_a
+		puzzlebox_zipped_array = puzzle_array.zip(boxmap_array.flatten)
+		puzzlebox_zipped_array.each { |dataset|
+			dataset.flatten!
+		}
+		return puzzlebox_zipped_array
 	end
 
 end

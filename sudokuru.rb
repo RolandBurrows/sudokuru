@@ -84,9 +84,13 @@ if @matrix_box_data
 	boxysis.data_uniqueness
 end
 
-# Format puzzle
+# Combine puzzle and box map
 
 transmute = Transmute.new(@matrix_puzzle_data)
+@master_reference = transmute.zip_together_puzzle_and_boxmap(@matrix_puzzle_data, @matrix_box_data)
+
+# Format puzzle
+
 @puzzle_matrix = transmute.standardize_blanks
 
 # Solve!
