@@ -156,6 +156,8 @@ class Determine
 	def return_box_values_from_matrix_and_index(matrix, index)
 	  x, y = index.map {|i| i/3*3}
 	  matrix.minor(x..x+2,y..y+2).to_a.flatten
+	  # transmute = Transmute.new(matrix, @pure_boxmap_matrix)
+	  # transmute.zip_together_puzzle_and_boxmap(@matrix, @pure_boxmap_matrix)
 	end
 
 
