@@ -70,6 +70,7 @@ class Transmute
 		puzzlebox_zipped_array.each { |dataset|
 			dataset.flatten!
 		}
+		# Format: Array of each grid element, as ["cell_contents", rol, col, "box_map_value"]
 		return puzzlebox_zipped_array
 	end
 
