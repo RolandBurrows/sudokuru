@@ -218,6 +218,7 @@ describe "sudokuru" do
     output.wont_include "Box Map file contents"
     output.wont_include "Box Map is square"
     output.wont_include "Box Map data is properly formatted"
+    output.must_include "SUCCESS"
   end
 
   it "should process the box file specified" do
@@ -231,6 +232,7 @@ describe "sudokuru" do
     output.must_include "Box Map file contents"
     output.must_include "Box Map is square"
     output.must_include "Box Map data is properly formatted"
+    output.must_include "SUCCESS"
   end
 
   it "should process the box file specified" do

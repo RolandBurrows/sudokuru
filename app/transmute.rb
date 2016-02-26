@@ -74,4 +74,20 @@ class Transmute
 		return puzzlebox_zipped_array
 	end
 
+	def extract_box_values_from_zipped_puzzlebox(puzzlebox)
+		box_handler = BoxHandler.new(@pure_boxmap_data)
+		chars_range = box_handler.allowed_characters
+		box_values = []
+		chars_range.each { |char|
+			box_loader = []
+			puzzlebox.each { |dataset|
+				if dataset[3] == char
+					box_loader.push(dataset[0])
+				end
+			}
+			box_values.push(box_loader)
+		}
+		return box_values
+	end
+
 end

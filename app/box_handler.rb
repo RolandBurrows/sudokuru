@@ -1,6 +1,7 @@
 require "matrix"
 
 class BoxHandler
+	attr_reader :allowed_characters
 
 	def initialize(box_map)
 		@matrix_box_map = box_map

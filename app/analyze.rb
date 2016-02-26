@@ -2,9 +2,10 @@ require "matrix"
 
 class Analyze
 
-	def initialize(matrix)
+	def initialize(matrix, box_map)
 		@edge_length = matrix.column_count
 		@matrix_data = matrix
+		@boxmap_data = box_map
 		@transmute = Transmute.new(matrix)
 	end
 
@@ -41,8 +42,10 @@ class Analyze
 	end
 
 	def box_uniqueness(log=nil)
-		if @edge_length == 9
-			boxes = @transmute.convert_matrix_to_boxes(@matrix_data)
+		if $box_map_used
+			transmute = Transmute.new(@matrix_data, @boxmap_data)
+	  	puzzlebox = transmute.zip_together_puzzle_and_boxmap(@matrix_data, @boxmap_data)
+	  	boxes = transmute.extract_box_values_from_zipped_puzzlebox(puzzlebox)
 			check_digit_uniqueness(boxes, "Box")
 			Log.info("Puzzle boxes contain no duplicate values.") if log
 		else

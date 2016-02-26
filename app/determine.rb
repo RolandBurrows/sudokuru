@@ -132,7 +132,7 @@ class Determine
 				column_array = @pure_puzzle_matrix.column(col).to_a
 				combo_array.push(column_array)
 
-				if @edge_length == 9
+				if $box_map_used
 					box_array = return_box_values_from_matrix_and_index(@pure_puzzle_matrix, [row,col])
 					combo_array.push(box_array)
 				end
@@ -154,10 +154,17 @@ class Determine
 	end
 
 	def return_box_values_from_matrix_and_index(matrix, index)
-	  x, y = index.map {|i| i/3*3}
-	  matrix.minor(x..x+2,y..y+2).to_a.flatten
-	  # transmute = Transmute.new(matrix, @pure_boxmap_matrix)
-	  # transmute.zip_together_puzzle_and_boxmap(@matrix, @pure_boxmap_matrix)
+	  transmute = Transmute.new(matrix, @pure_boxmap_matrix)
+	  puzzlebox = transmute.zip_together_puzzle_and_boxmap(matrix, @pure_boxmap_matrix)
+	  index_data = puzzlebox.detect { |dataset| dataset[1] == index[0] and dataset[2] == index[1]}
+	  boxchar = index_data[3]
+	  box_values = []
+	  puzzlebox.each { |dataslice|
+	  	if dataslice[3] == boxchar
+	  		box_values.push(dataslice[0])
+	  	end
+	  }
+	  return box_values
 	end
 
 

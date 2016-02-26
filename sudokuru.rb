@@ -5,6 +5,7 @@ Dir["#{File.dirname(__FILE__)}/app/**/*.rb"].each { |f| require(f) }
 
 Log.info("Let's solve some Sudoku!")
 $duration_start = Time.now
+$box_map_used = false
 
 # Initialize test file from the user or provide a default
 
@@ -35,6 +36,7 @@ end
 
 begin
 	if box_map_file
+		$box_map_used = true
 		Log.info("Using provided box map file: #{box_map_file}")
 		box_map_data = File.read(box_map_file)
 		if box_map_file == ""
@@ -69,7 +71,7 @@ end
 
 # Analyze puzzle file contents
 
-analysis = Analyze.new(@matrix_puzzle_data)
+analysis = Analyze.new(@matrix_puzzle_data, @matrix_box_data)
 analysis.dimensionality
 analysis.data_formatting
 analysis.row_uniqueness("log it!")
@@ -82,6 +84,7 @@ if @matrix_box_data
 	boxysis.dimensionality(@matrix_puzzle_data)
 	boxysis.data_formatting
 	boxysis.data_uniqueness
+	analysis.box_uniqueness("log it!")
 end
 
 # Format puzzle
