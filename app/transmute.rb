@@ -32,34 +32,6 @@ class Transmute
 		return matrix_data
 	end
 
-	def convert_matrix_to_boxes(matrix)
-		boxes = []
-		boxes.push( matrix.minor(0..2,0..2) )		# Box 1
-		boxes.push( matrix.minor(0..2,3..5) )		# Box 2
-		boxes.push( matrix.minor(0..2,6..8) )		# Box 3
-		boxes.push( matrix.minor(3..5,0..2) )		# Box 4
-		boxes.push( matrix.minor(3..5,3..5) )		# Box 5
-		boxes.push( matrix.minor(3..5,6..8) )		# Box 6
-		boxes.push( matrix.minor(6..8,0..2) )		# Box 7
-		boxes.push( matrix.minor(6..8,3..5) )		# Box 8
-		boxes.push( matrix.minor(6..8,6..8) )		# Box 9
-		return boxes
-	end
-
-	def convert_boxes_to_matrix(boxes_array)
-		boxes_sorted = []
-		boxes_sorted.push([boxes_array[0], boxes_array[3], boxes_array[6]].flatten!)
-		boxes_sorted.push([boxes_array[1], boxes_array[4], boxes_array[7]].flatten!)
-		boxes_sorted.push([boxes_array[2], boxes_array[5], boxes_array[8]].flatten!)
-		boxes_sorted.push([boxes_array[9], boxes_array[12], boxes_array[15]].flatten!)
-		boxes_sorted.push([boxes_array[10], boxes_array[13], boxes_array[16]].flatten!)
-		boxes_sorted.push([boxes_array[11], boxes_array[14], boxes_array[17]].flatten!)
-		boxes_sorted.push([boxes_array[18], boxes_array[21], boxes_array[24]].flatten!)
-		boxes_sorted.push([boxes_array[19], boxes_array[22], boxes_array[25]].flatten!)
-		boxes_sorted.push([boxes_array[20], boxes_array[23], boxes_array[26]].flatten!)
-		return boxes_sorted
-	end
-
 	def zip_together_puzzle_and_boxmap(puzzle, box_map)
 		puzzle_array = []
 		puzzle.each_with_index { |cell_contents, row, col|
