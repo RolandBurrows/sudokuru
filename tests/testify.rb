@@ -264,4 +264,12 @@ describe "sudokuru" do
     output.must_include "SUCCESS"
   end
 
+  it "should detect that a puzzle and box map combo has no solution" do
+    ARGV[0] = "./puzzles/6x6.txt"
+    ARGV[1] = "./puzzles/6x6boxb.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "ERROR"
+    output.must_include "combination has no solution"
+  end
+
 end
