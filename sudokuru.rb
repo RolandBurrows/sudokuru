@@ -95,4 +95,12 @@ transmute = Transmute.new(@matrix_puzzle_data)
 # Solve!
 
 looper = Loop.new(@puzzle_matrix, @matrix_box_data)
-looper.fill_puzzle
+begin
+	looper.fill_puzzle
+rescue
+	if $box_map_used
+		Log.error("Puzzle + box map combination has no solution.")
+	else
+		Log.error("Puzzle has no solution.")
+	end
+end
