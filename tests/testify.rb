@@ -235,7 +235,7 @@ describe "sudokuru" do
     output.must_include "SUCCESS"
   end
 
-  it "should process the box file specified" do
+  it "should detect an imbalanced box map" do
     ARGV[0] = "./puzzles/9x9.txt"
     ARGV[1] = "./test_files/imbalanced_box_map.txt"
     output = capture_stdout { load "sudokuru.rb" }
@@ -249,6 +249,19 @@ describe "sudokuru" do
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "ERROR"
     output.must_include "Puzzle is (8x8), but Box Map is (6x6)"
+  end
+
+  it "should solve a puzzle with two possible box maps" do
+    # Box Map A
+    ARGV[0] = "./puzzles/6x6blank.txt"
+    ARGV[1] = "./puzzles/6x6boxa.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "SUCCESS"
+    # Box Map B
+    ARGV[0] = "./puzzles/6x6blank.txt"
+    ARGV[1] = "./puzzles/6x6boxb.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "SUCCESS"
   end
 
 end
