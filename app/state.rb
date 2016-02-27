@@ -6,16 +6,16 @@ class State
 		@move_order = []
 	end
 
-	def [](r, c)
-		@board[r, c]
+	def [](row, col)
+		@board[row, col]
 	end
 
-	def []=(r, c, value)
-		i = [r, c]
+	def []=(row, col, value)
+		i = [row, col]
 		@move_order.push(i)
 		# Override private method because Matrices are default immutable
-		@board.send(:'[]=', r, c, value)
-		Log.debug("Filling cell (#{r+1}, #{c+1}) with (#{value}):")
+		@board.send(:'[]=', row, col, value)
+		Log.debug("Filling cell (#{row+1}, #{col+1}) with (#{value}):")
 		Log.tab(@board, "debug_only")
 	end
 
