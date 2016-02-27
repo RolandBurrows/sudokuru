@@ -40,7 +40,7 @@ Errors will be returned if the data is not properly formatted, with directions t
 ERROR: Row 7 (-324-9--3) contains duplicate values. Please fix and rerun.
 ```
 
-#### Box Map Input Formatting (Feature Under Construction)
+#### Box Map Input Formatting
 Box map files should also be common file types (.txt, .rb, etc.), one row per line, formatted:
 ```
          AABB
@@ -87,9 +87,10 @@ Implementation:
 Scaling Solutions:
 - [X] 2x2 puzzles.
 - [X] ...
-- [X] 9x9 puzzles with box uniqueness.
+- [X] 9x9 puzzles.
 
 Stretch Goals:
-- [ ] Use mirror file with box map (A-I) characters to determine boxes.
+- [X] Use mirror file with box map (A-I) characters to determine boxes.
+- [ ] Add a variable for determining when the puzzle finder will time out (currently hardcoded to 60 seconds).
 - [ ] Ability to use photo of sudoku puzzle, and OCR loads the data for solving.
 - [ ] Smartphone app.
