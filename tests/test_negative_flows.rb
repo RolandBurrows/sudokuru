@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 
-describe "sudokuru_main" do
+describe "sudokuru_negatives" do
 
   # Specs are not actually order dependent
   # This is just here to fix flakey minitest file loading

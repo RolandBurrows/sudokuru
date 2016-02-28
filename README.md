@@ -92,5 +92,6 @@ Scaling Solutions:
 Stretch Goals:
 - [X] Use mirror file with box map (A-I) characters to determine boxes.
 - [ ] Add a variable for determining when the puzzle finder will time out (currently hardcoded to 60 seconds).
+- [ ] Rails app.
 - [ ] Ability to use photo of sudoku puzzle, and OCR loads the data for solving.
 - [ ] Smartphone app.
