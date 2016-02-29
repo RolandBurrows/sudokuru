@@ -2,10 +2,6 @@ require 'minitest/autorun'
 
 describe "sudokuru_negatives" do
 
-  # Specs are not actually order dependent
-  # This is just here to fix flakey minitest file loading
-  i_suck_and_my_tests_are_order_dependent!()
-
 	def capture_stdout(&block)
 	  original_stdout = $stdout
 	  $stdout = fake = StringIO.new
@@ -18,9 +14,11 @@ describe "sudokuru_negatives" do
 	  fake.string
 	end
 
-  # def setup
-  #   $time_s = Time.now
-  # end
+  def setup
+    # $time_s = Time.now
+    ARGV[0] = nil
+    ARGV[1] = nil
+  end
 
   # def teardown
   #   $time_e = Time.now

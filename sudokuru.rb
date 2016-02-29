@@ -5,7 +5,12 @@ Dir["#{File.dirname(__FILE__)}/app/**/*.rb"].each { |f| require(f) }
 
 Log.info("Let's solve some Sudoku!")
 $duration_start = Time.now
+# Reset variables to help with spec execution
 $box_map_used = false
+input_file = nil
+@matrix_puzzle_data = nil
+box_map_file = nil
+@matrix_box_data = nil
 
 # Initialize test file from the user or provide a default
 
@@ -39,7 +44,7 @@ begin
 		$box_map_used = true
 		Log.info("Using provided box map file: #{box_map_file}")
 		box_map_data = File.read(box_map_file)
-		if box_map_file == ""
+		if box_map_data == ""
 			Log.error("box map file is empty.")
 		end
 	end
