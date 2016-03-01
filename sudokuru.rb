@@ -85,11 +85,11 @@ analysis.column_uniqueness("log it!")
 # Analyze box map file contents
 
 if @matrix_box_data
-	boxysis = BoxHandler.new(@matrix_box_data)
+	boxysis = BoxHandler.new(@matrix_puzzle_data,@matrix_box_data)
 	boxysis.dimensionality(@matrix_puzzle_data)
 	boxysis.data_formatting
 	boxysis.data_uniqueness
-	analysis.box_uniqueness("log it!")
+	boxysis.box_uniqueness("log it!")
 end
 
 # Format puzzle

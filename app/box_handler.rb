@@ -3,7 +3,8 @@ require "matrix"
 class BoxHandler
 	attr_reader :allowed_characters
 
-	def initialize(box_map)
+	def initialize(puzzle_matrix, box_map)
+		@matrix_puzzle_data = puzzle_matrix
 		@matrix_box_map = box_map
 		@edge_length = box_map.column_count
 		alphabet = ("A".."Z").to_a
@@ -52,6 +53,15 @@ class BoxHandler
 			Log.error("The Box Map boxes are not of equal area.")
 		end
 		Log.info("Box Map boxes are of equal area.")
+	end
+
+	def box_uniqueness(log=nil)
+		transmute = Transmute.new(@matrix_puzzle_data, @matrix_box_map)
+  	puzzlebox = transmute.zip_together_puzzle_and_boxmap(@matrix_puzzle_data, @matrix_box_map)
+  	boxes = transmute.extract_box_values_from_zipped_puzzlebox(puzzlebox)
+  	analyze = Analyze.new(@matrix_puzzle_data, @matrix_box_map)
+		analyze.check_digit_uniqueness(boxes, "Box")
+		Log.info("Puzzle boxes contain no duplicate values.") if log
 	end
 
 end

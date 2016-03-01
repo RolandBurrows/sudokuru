@@ -41,18 +41,6 @@ class Analyze
 		Log.info("Puzzle columns contain no duplicate values.") if log
 	end
 
-	def box_uniqueness(log=nil)
-		if $box_map_used
-			transmute = Transmute.new(@matrix_data, @boxmap_data)
-	  	puzzlebox = transmute.zip_together_puzzle_and_boxmap(@matrix_data, @boxmap_data)
-	  	boxes = transmute.extract_box_values_from_zipped_puzzlebox(puzzlebox)
-			check_digit_uniqueness(boxes, "Box")
-			Log.info("Puzzle boxes contain no duplicate values.") if log
-		else
-			Log.info("Determining box uniqueness is for 9x9, not (#{@edge_length}x#{@edge_length}).") if log
-		end
-	end
-
 	def check_digit_uniqueness(array, entity)
 		# Entity = 'row', 'column', 'box' for logging
 		array.each_with_index { |slice, index|

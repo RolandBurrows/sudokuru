@@ -47,7 +47,7 @@ class Transmute
 	end
 
 	def extract_box_values_from_zipped_puzzlebox(puzzlebox)
-		box_handler = BoxHandler.new(@pure_boxmap_data)
+		box_handler = BoxHandler.new(@pure_puzzle_data, @pure_boxmap_data)
 		chars_range = box_handler.allowed_characters
 		box_values = []
 		chars_range.each { |char|
