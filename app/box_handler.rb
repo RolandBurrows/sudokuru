@@ -64,4 +64,14 @@ class BoxHandler
 		Log.info("Puzzle boxes contain no duplicate values.") if log
 	end
 
+	def replace_non_erroneous_box_values_with_blanks(box_map, value)
+		box_details = box_map.to_a
+		box_details.each { |slice|
+			slice.map! { |elem| elem != value ? "-" : elem }.flatten!
+		}
+		transmute = Transmute.new()
+		box_details = transmute.convert_array_to_matrix(box_details)
+		return box_details
+	end
+
 end

@@ -49,9 +49,12 @@ class Analyze
 					if ["Row","Column"].include? entity
 						Log.error("#{entity} #{index+1} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
 					elsif entity == "Box"
+						value = (index+65).chr
 						Log.info("Error details:")
-						Log.tab(@boxmap_data)
-						Log.error("#{entity} #{(index+65).chr} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
+						box_handler = BoxHandler.new(@matrix_data, @boxmap_data)
+						box_details = box_handler.replace_non_erroneous_box_values_with_blanks(@boxmap_data, value)
+						Log.tab(box_details)
+						Log.error("#{entity} #{value} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
 					else
 						Log.error("Contact application creator, because they done goofed.")
 					end
