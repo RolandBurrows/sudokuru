@@ -43,10 +43,17 @@ class Analyze
 
 	def check_digit_uniqueness(array, entity)
 		# Entity = 'row', 'column', 'box' for logging
+
 		array.each_with_index { |slice, index|
+			if entity == "Box"
+				value = (index+65).chr
+			else
+				value = index+1
+			end
+
 			for i in 1..9
 				if (slice.count(i.to_s) > 1)
-					Log.error("#{entity} #{index+1} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
+					Log.error("#{entity} #{value} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
 				end
 			end
 		}
