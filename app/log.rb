@@ -36,5 +36,17 @@ class Log
 			end
 		end
 
+		def double_tab(to_move_boxmap, to_move_puzzle)
+			move_overs_box = to_move_boxmap.to_a
+			move_overs_puzz = to_move_puzzle.to_a
+
+			tabbed_box = move_overs_box.collect{|row| row.join("")}
+			tabbed_puzz = move_overs_puzz.collect{|row| row.join("")}
+			puts "\n"
+			tabbed_box.zip(tabbed_puzz).each do |box_line, puzzle_line|
+				puts "  #{box_line}  #{puzzle_line}"
+			end
+		end
+
 	end
 end

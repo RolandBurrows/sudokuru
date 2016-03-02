@@ -53,7 +53,8 @@ class Analyze
 						Log.info("Error details:")
 						box_handler = BoxHandler.new(@matrix_data, @boxmap_data)
 						box_details = box_handler.replace_non_erroneous_box_values_with_blanks(@boxmap_data, value)
-						Log.tab(box_details)
+						puzzle_details = replace_box_values_with_puzzle_values(box_details, value, slice)
+						Log.double_tab(box_details, puzzle_details)
 						Log.error("#{entity} #{value} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
 					else
 						Log.error("Contact application creator, because they done goofed.")
@@ -61,6 +62,18 @@ class Analyze
 				end
 			end
 		}
+	end
+
+	private
+
+	def replace_box_values_with_puzzle_values(box_matrix, value, puzzle_slice)
+		puzzle_details = box_matrix.clone
+		puzzle_slice.each { |kajigger|
+			box_index = puzzle_details.find_index(value)
+			# Override private method because Matrices are default immutable
+			puzzle_details.send(:'[]=', box_index[0], box_index[1], kajigger)
+		}
+		return puzzle_details
 	end
 
 end
