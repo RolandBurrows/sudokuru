@@ -42,18 +42,19 @@ class Analyze
 	end
 
 	def check_digit_uniqueness(array, entity)
-		# Entity = 'row', 'column', 'box' for logging
-
+		# Entity = 'Row', 'Column', 'Box' for logging
 		array.each_with_index { |slice, index|
-			if entity == "Box"
-				value = (index+65).chr
-			else
-				value = index+1
-			end
-
 			for i in 1..9
 				if (slice.count(i.to_s) > 1)
-					Log.error("#{entity} #{value} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
+					if ["Row","Column"].include? entity
+						Log.error("#{entity} #{index+1} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
+					elsif entity == "Box"
+						Log.info("Error details:")
+						Log.tab(@boxmap_data)
+						Log.error("#{entity} #{(index+65).chr} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
+					else
+						Log.error("Contact application creator, because they done goofed.")
+					end
 				end
 			end
 		}
