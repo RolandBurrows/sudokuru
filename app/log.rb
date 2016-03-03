@@ -2,7 +2,7 @@ class Log
 	class << self
 
 		def debug(inner_werkings)
-			if ENV["DEBUG"] != nil
+			if Config::DEBUG != nil
 				puts "\n"
 				puts inner_werkings.to_s
 			end
@@ -28,7 +28,7 @@ class Log
 		end
 
 		def tab(move_overs_matrix, debug_on=nil)
-			if (debug_on == nil) || ((debug_on != nil) && (ENV["DEBUG"] != nil))
+			if (debug_on == nil) || ((debug_on != nil) && (Config::DEBUG != nil))
 				move_overs_array = move_overs_matrix.to_a
 				tabbed_data = move_overs_array.collect{|row| row.join("")}
 				puts "\n"

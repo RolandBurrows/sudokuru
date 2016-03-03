@@ -18,6 +18,7 @@ describe "sudokuru_negatives" do
     # $time_s = Time.now
     ARGV[0] = nil
     ARGV[1] = nil
+    ENV['DEBUG'] = "yes"
   end
 
   # def teardown

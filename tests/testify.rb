@@ -18,6 +18,7 @@ describe "sudokuru_main" do
     # $time_s = Time.now
     ARGV[0] = nil
     ARGV[1] = nil
+    ENV['DEBUG'] = "yes"
   end
 
   # def teardown
@@ -33,7 +34,6 @@ describe "sudokuru_main" do
   # LOGGING
 
   it "should print debug logging when the DEBUG env var is activated" do
-    ENV["DEBUG"] = "yes"
     output = capture_stdout { require "././app/log"; Log.debug("Doot Doot") }
     output.must_include "Doot Doot"
   end
@@ -112,21 +112,18 @@ describe "sudokuru_main" do
   # POSITIVE FLOWS
 
   it "should determine the starting slice to be a row" do
-    ENV["DEBUG"] = "yes"
     ARGV[0] = "./test_files/starting_row.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "Starting slice is row 3, with 2 of 4 elements filled."
   end
 
   it "should determine the starting slice to be a column" do
-    ENV["DEBUG"] = "yes"
     ARGV[0] = "./test_files/starting_column.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "Starting slice is column 4, with 2 of 4 elements filled."
   end
 
   it "should determine the starting point" do
-    ENV["DEBUG"] = "yes"
     ARGV[0] = "./test_files/starting_index.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "Starting slice is row 6, with 4 of 6 elements filled."
