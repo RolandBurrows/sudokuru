@@ -11,7 +11,7 @@ class Loop
 		determinant = Determine.new(@state.board, @pure_boxmap_matrix)
 		start_point = determinant.find_starting_point
 		last_move = nil
-		end_time = Time.now + 60
+		end_time = Time.now + Config::RUNTIME
 
 		while Time.now < end_time
 			all_possibilities = determinant.determine_all_possible_digits_per_cell
