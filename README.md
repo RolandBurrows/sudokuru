@@ -51,6 +51,22 @@ Box map files should also be common file types (.txt, .rb, etc.), one row per li
 ```
 No wildcard box values allowed. Only capitalized alphabet characters.
 
+Errors will be returned if the data is not properly formatted, or if there are duplicates:
+```
+Error details:
+
+  AAA------  -28------
+  AAA------  -16------
+  A--------  ---------
+  AA-------  13-------
+  ---------  ---------
+  ---------  ---------
+  ---------  ---------
+  ---------  ---------
+  ---------  ---------
+
+ERROR: Box A (-28-16-13) contains duplicate values. Please fix and rerun.
+```
 #### Results
 If formatting is correct, puzzle will be processed until sucessful, or app will error if solution is not found within 60 seconds.
 ```
