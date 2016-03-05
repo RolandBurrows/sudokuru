@@ -43,6 +43,18 @@ describe "sudokuru_main" do
 
   # LOGGING
 
+  it "should not print debug logging when the DEBUG env var is not activated" do
+    activate_debug_logging
+    output = capture_stdout {
+      ENV['DEBUG'] = nil;
+      load "././app/config.rb";
+      load "././app/log.rb";
+      Log.debug("Doot Doot");
+    }
+    deactivate_debug_logging
+    output.wont_include "Doot Doot"
+  end
+
   it "should print debug logging when the DEBUG env var is activated" do
     activate_debug_logging
     output = capture_stdout {
