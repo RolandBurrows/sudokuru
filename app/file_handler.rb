@@ -5,12 +5,21 @@ class FileHandler
 		@box_map_file = box_map_file
 	end
 
-	def set_up_puzzle_file
+	def extract_puzzle_data_from_file
 		if @puzzle_file.nil?
 			Log.info("No file specified. Searching for default input file.")
 			@puzzle_file = "./puzzles/sample_input.txt"
 		end
-		return @puzzle_file
+		begin
+			Log.info("Using puzzle file: #{@puzzle_file}")
+			puzzle_data = File.read(@puzzle_file)
+			if puzzle_data == ""
+				Log.error("puzzle file is empty.")
+			end
+		rescue
+			Log.error("given puzzle file doesn't exist. Halting.")
+		end
+		return puzzle_data
 	end
 
 	def set_up_boxmap_file

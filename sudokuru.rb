@@ -13,20 +13,10 @@ $box_map_used = false
 # ARGV[0] == puzzle file, ARGV[1] == box map file
 
 file_handler = FileHandler.new(ARGV[0], ARGV[1])
-puzzle_file = file_handler.set_up_puzzle_file
+puzzle_data = file_handler.extract_puzzle_data_from_file
 box_map_file = file_handler.set_up_boxmap_file
 
-# Extract file data or warn user of non-existences
-
-begin
-	Log.info("Using provided puzzle file: #{puzzle_file}")
-	puzzle_data = File.read(puzzle_file)
-	if puzzle_data == ""
-		Log.error("puzzle file is empty.")
-	end
-rescue
-	Log.error("given puzzle file doesn't exist. Halting.")
-end
+# Extract box map data
 
 begin
 	if box_map_file

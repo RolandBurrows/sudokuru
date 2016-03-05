@@ -39,7 +39,7 @@ describe "sudokuru_boxes" do
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "No box map file specified"
     output.must_include "input.txt"
-    output.must_include "Using provided puzzle file"
+    output.must_include "Using puzzle file"
     output.wont_include "Using provided box map file"
     output.wont_include "sample_input_boxmap.txt"
     output.wont_include "Box Map file contents"
@@ -52,7 +52,7 @@ describe "sudokuru_boxes" do
     ARGV[0] = "./puzzles/sample_input.txt"
     ARGV[1] = "./puzzles/sample_input_boxmap.txt"
     output = capture_stdout { load "sudokuru.rb" }
-    output.must_include "Using provided puzzle file"
+    output.must_include "Using puzzle file"
     output.must_include "input.txt"
     output.must_include "Using provided box map file"
     output.must_include "input_boxmap.txt"
