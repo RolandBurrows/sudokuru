@@ -18,7 +18,6 @@ describe "sudokuru_main" do
     # $time_s = Time.now
     ARGV[0] = nil
     ARGV[1] = nil
-    ENV['DEBUG'] = "yes"
   end
 
   # def teardown
@@ -31,10 +30,28 @@ describe "sudokuru_main" do
   #   super(name) unless name.nil?
   # end
 
+  def activate_debug_logging
+    @warn_level = $VERBOSE
+    $VERBOSE = nil
+    ENV['DEBUG'] = nil
+  end
+
+  def deactivate_debug_logging
+    $VERBOSE = @warn_level
+    ENV['DEBUG'] = nil
+  end
+
   # LOGGING
 
   it "should print debug logging when the DEBUG env var is activated" do
-    output = capture_stdout { require "././app/log"; Log.debug("Doot Doot") }
+    activate_debug_logging
+    output = capture_stdout {
+      ENV['DEBUG'] = "yes";
+      load "././app/config.rb";
+      load "././app/log.rb";
+      Log.debug("Doot Doot");
+    }
+    deactivate_debug_logging
     output.must_include "Doot Doot"
   end
 
@@ -112,20 +129,26 @@ describe "sudokuru_main" do
   # POSITIVE FLOWS
 
   it "should determine the starting slice to be a row" do
+    activate_debug_logging
     ARGV[0] = "./test_files/starting_row.txt"
     output = capture_stdout { load "sudokuru.rb" }
+    deactivate_debug_logging
     output.must_include "Starting slice is row 3, with 2 of 4 elements filled."
   end
 
   it "should determine the starting slice to be a column" do
+    activate_debug_logging
     ARGV[0] = "./test_files/starting_column.txt"
     output = capture_stdout { load "sudokuru.rb" }
+    deactivate_debug_logging
     output.must_include "Starting slice is column 4, with 2 of 4 elements filled."
   end
 
   it "should determine the starting point" do
+    activate_debug_logging
     ARGV[0] = "./test_files/starting_index.txt"
     output = capture_stdout { load "sudokuru.rb" }
+    deactivate_debug_logging
     output.must_include "Starting slice is row 6, with 4 of 6 elements filled."
     output.must_include "Best point to start solving: (6,6)"
   end
