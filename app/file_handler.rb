@@ -13,4 +13,11 @@ class FileHandler
 		return @puzzle_file
 	end
 
+	def set_up_boxmap_file
+		if @box_map_file.nil?
+			Log.info("No box map file specified for the given puzzle. Proceeding without.")
+		end
+		return @box_map_file
+	end
+
 end

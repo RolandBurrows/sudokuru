@@ -7,21 +7,14 @@ Log.info("Let's solve some Sudoku!")
 $duration_start = Time.now
 # Reset variables to help with spec execution
 $box_map_used = false
-input_file = nil
 @matrix_puzzle_data = nil
-box_map_file = nil
 @matrix_box_data = nil
 
-# Initialize test file from the user or provide a default
+# ARGV[0] == puzzle file, ARGV[1] == box map file
 
 file_handler = FileHandler.new(ARGV[0], ARGV[1])
 puzzle_file = file_handler.set_up_puzzle_file
-
-if ARGV[1]
-	box_map_file = ARGV[1]
-else
-	Log.info("No box map file specified for the given puzzle. Proceeding without.")
-end
+box_map_file = file_handler.set_up_boxmap_file
 
 # Extract file data or warn user of non-existences
 
