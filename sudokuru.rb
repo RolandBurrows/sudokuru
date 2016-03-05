@@ -14,22 +14,7 @@ $box_map_used = false
 
 file_handler = FileHandler.new(ARGV[0], ARGV[1])
 puzzle_data = file_handler.extract_puzzle_data_from_file
-box_map_file = file_handler.set_up_boxmap_file
-
-# Extract box map data
-
-begin
-	if box_map_file
-		$box_map_used = true
-		Log.info("Using provided box map file: #{box_map_file}")
-		box_map_data = File.read(box_map_file)
-		if box_map_data == ""
-			Log.error("box map file is empty.")
-		end
-	end
-rescue
-	Log.error("given box map file doesn't exist. Halting.")
-end
+box_map_data = file_handler.extract_boxmap_data_from_file
 
 # Convert puzzle file and box map contexts to matrices
 
@@ -44,7 +29,7 @@ rescue
 end
 
 begin
-	if box_map_file
+	if $box_map_used
 		@matrix_box_data = converter.convert_file_data_to_matrix(box_map_data)
 		Log.info("Box Map file contents:")
 		Log.tab(@matrix_box_data)

@@ -22,11 +22,23 @@ class FileHandler
 		return puzzle_data
 	end
 
-	def set_up_boxmap_file
+	def extract_boxmap_data_from_file
 		if @box_map_file.nil?
 			Log.info("No box map file specified for the given puzzle. Proceeding without.")
 		end
-		return @box_map_file
+		begin
+			if @box_map_file
+				$box_map_used = true
+				Log.info("Using provided box map file: #{@box_map_file}")
+				box_map_data = File.read(@box_map_file)
+				if box_map_data == ""
+					Log.error("box map file is empty.")
+				end
+			end
+		rescue
+			Log.error("given box map file doesn't exist. Halting.")
+		end
+		return box_map_data
 	end
 
 end
