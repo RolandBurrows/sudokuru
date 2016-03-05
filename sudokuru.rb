@@ -14,12 +14,8 @@ box_map_file = nil
 
 # Initialize test file from the user or provide a default
 
-if ARGV[0]
-	input_file = ARGV[0]
-else
-	Log.info("No file specified. Searching for default input file.")
-	input_file = "./puzzles/sample_input.txt"
-end
+file_handler = FileHandler.new(ARGV[0], ARGV[1])
+puzzle_file = file_handler.set_up_puzzle_file
 
 if ARGV[1]
 	box_map_file = ARGV[1]
@@ -30,8 +26,8 @@ end
 # Extract file data or warn user of non-existences
 
 begin
-	Log.info("Using provided puzzle file: #{input_file}")
-	puzzle_data = File.read(input_file)
+	Log.info("Using provided puzzle file: #{puzzle_file}")
+	puzzle_data = File.read(puzzle_file)
 	if puzzle_data == ""
 		Log.error("puzzle file is empty.")
 	end
