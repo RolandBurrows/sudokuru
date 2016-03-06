@@ -1,10 +1,10 @@
 class Determine
 
-	def initialize(matrix, box_map)
-		@edge_length = matrix.column_count
-		@pure_puzzle_matrix = matrix
-		@pure_boxmap_matrix = box_map
-		Log.success(matrix) if (count_the_blanks(matrix) == 0)
+	def initialize(puzzle_matrix, box_map_matrix)
+		@edge_length = puzzle_matrix.column_count
+		@pure_puzzle_matrix = puzzle_matrix
+		@pure_boxmap_matrix = box_map_matrix
+		Log.success(puzzle_matrix) if (count_the_blanks(puzzle_matrix) == 0)
 	end
 
 	def find_starting_point

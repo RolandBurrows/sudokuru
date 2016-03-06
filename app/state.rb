@@ -1,8 +1,8 @@
 class State
 	attr_reader :board
 
-	def initialize(matrix)
-		@board = matrix
+	def initialize(puzzle_matrix)
+		@board = puzzle_matrix
 		@move_order = []
 	end
 

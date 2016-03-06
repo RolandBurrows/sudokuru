@@ -3,10 +3,10 @@ require "matrix"
 class BoxHandler
 	attr_reader :allowed_characters
 
-	def initialize(puzzle_matrix, box_map)
+	def initialize(puzzle_matrix, box_map_matrix)
 		@matrix_puzzle_data = puzzle_matrix
-		@matrix_box_map = box_map
-		@edge_length = box_map.column_count
+		@matrix_box_map = box_map_matrix
+		@edge_length = box_map_matrix.column_count
 		alphabet = ("A".."Z").to_a
 		@allowed_characters = alphabet[0, @edge_length]
 	end

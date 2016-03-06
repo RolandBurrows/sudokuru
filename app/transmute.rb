@@ -1,8 +1,8 @@
 class Transmute
 
-	def initialize(matrix=nil, box_map=nil)
-		@pure_puzzle_data = matrix
-		@pure_boxmap_data = box_map
+	def initialize(puzzle_matrix=nil, box_map_matrix=nil)
+		@pure_puzzle_data = puzzle_matrix
+		@pure_boxmap_data = box_map_matrix
 	end
 
 	def convert_file_data_to_matrix(file_data)

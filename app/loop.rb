@@ -1,9 +1,9 @@
 class Loop
 
-	def initialize(matrix, box_map)
-		@pure_puzzle_matrix = matrix
-		@pure_boxmap_matrix = box_map
-		@matrix_data = matrix
+	def initialize(puzzle_matrix, box_map_matrix)
+		@pure_puzzle_matrix = puzzle_matrix
+		@pure_boxmap_matrix = box_map_matrix
+		@matrix_data = puzzle_matrix
 	end
 
 	def fill_puzzle

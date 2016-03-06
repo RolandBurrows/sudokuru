@@ -2,11 +2,11 @@ require "matrix"
 
 class Analyze
 
-	def initialize(matrix, box_map)
-		@edge_length = matrix.column_count
-		@matrix_data = matrix
-		@boxmap_data = box_map
-		@transmute = Transmute.new(matrix)
+	def initialize(puzzle_matrix, box_map_matrix)
+		@edge_length = puzzle_matrix.column_count
+		@matrix_data = puzzle_matrix
+		@boxmap_data = box_map_matrix
+		@transmute = Transmute.new(puzzle_matrix)
 	end
 
 	def dimensionality
