@@ -1,4 +1,4 @@
-class Sudokuru
+class Sudoku
 
 	def initialize(puzzle_file, boxmap_file)
 
