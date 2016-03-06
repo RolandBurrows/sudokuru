@@ -27,7 +27,7 @@ rescue
 end
 
 Log.display_raw_data(@matrix_puzzle_data, "Puzzle")
-Log.display_raw_data(@matrix_box_data, "Box Map")
+Log.display_raw_data(@matrix_box_data, "Box Map") if @matrix_box_data
 
 # Analyze puzzle file contents
 
