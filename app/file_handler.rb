@@ -28,7 +28,6 @@ class FileHandler
 		end
 		begin
 			if @box_map_file
-				$box_map_used = true
 				Log.info("Using provided box map file: #{@box_map_file}")
 				box_map_data = File.read(@box_map_file)
 				if box_map_data == ""

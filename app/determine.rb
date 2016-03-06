@@ -132,7 +132,7 @@ class Determine
 				column_array = @pure_puzzle_matrix.column(col).to_a
 				combo_array.push(column_array)
 
-				if $box_map_used
+				if @pure_boxmap_matrix
 					box_array = return_box_values_from_matrix_and_index(@pure_puzzle_matrix, [row,col])
 					combo_array.push(box_array)
 				end

@@ -6,7 +6,6 @@ Dir["#{File.dirname(__FILE__)}/app/**/*.rb"].each { |f| require(f) }
 Log.info("Let's solve some Sudoku!")
 $duration_start = Time.now
 # Reset variables to help with spec execution
-$box_map_used = false
 @matrix_puzzle_data = nil
 @matrix_box_data = nil
 
@@ -29,7 +28,7 @@ rescue
 end
 
 begin
-	if $box_map_used
+	if box_map_data
 		@matrix_box_data = converter.convert_file_data_to_matrix(box_map_data)
 		Log.info("Box Map file contents:")
 		Log.tab(@matrix_box_data)
@@ -67,7 +66,7 @@ looper = Loop.new(@puzzle_matrix, @matrix_box_data)
 begin
 	looper.fill_puzzle
 rescue
-	if $box_map_used
+	if box_map_data
 		Log.error("Puzzle + box map combination has no solution.")
 	else
 		Log.error("Puzzle has no solution.")
