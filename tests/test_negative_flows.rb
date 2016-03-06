@@ -45,7 +45,7 @@ describe "sudokuru_negatives" do
     ARGV[0] = "./test_files/inconsistent_size.txt"
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "ERROR"
-    output.must_include "Puzzle file rows and/or columns need to be of consistent length"
+    output.must_include "Puzzle/BoxMap file rows and/or columns need to be of consistent length"
   end
 
   it "should detect that puzzle dimensions are mismatched" do

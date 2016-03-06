@@ -15,27 +15,19 @@ file_handler = FileHandler.new(ARGV[0], ARGV[1])
 puzzle_data = file_handler.extract_puzzle_data_from_file
 box_map_data = file_handler.extract_boxmap_data_from_file
 
-# Convert puzzle file and box map contexts to matrices
+# Convert file contents and display
 
 converter = Transmute.new()
 
 begin
 	@matrix_puzzle_data = converter.convert_file_data_to_matrix(puzzle_data)
-	Log.info("Puzzle file contents:")
-	Log.tab(@matrix_puzzle_data)
+	@matrix_box_data = converter.convert_file_data_to_matrix(box_map_data) if box_map_data
 rescue
-	Log.error("Puzzle file rows and/or columns need to be of consistent length. Please fix and rerun.")
+	Log.error("Puzzle/BoxMap file rows and/or columns need to be of consistent length. Please fix and rerun.")
 end
 
-begin
-	if box_map_data
-		@matrix_box_data = converter.convert_file_data_to_matrix(box_map_data)
-		Log.info("Box Map file contents:")
-		Log.tab(@matrix_box_data)
-	end
-rescue
-	Log.error("Box map rows and/or columns need to be of consistent length. Please fix and rerun.")
-end
+Log.display_raw_data(@matrix_puzzle_data, "Puzzle")
+Log.display_raw_data(@matrix_box_data, "Box Map")
 
 # Analyze puzzle file contents
 
@@ -48,7 +40,7 @@ analysis.column_uniqueness("log it!")
 # Analyze box map file contents
 
 if @matrix_box_data
-	boxysis = BoxHandler.new(@matrix_puzzle_data,@matrix_box_data)
+	boxysis = BoxHandler.new(@matrix_puzzle_data, @matrix_box_data)
 	boxysis.dimensionality(@matrix_puzzle_data)
 	boxysis.data_formatting
 	boxysis.data_uniqueness

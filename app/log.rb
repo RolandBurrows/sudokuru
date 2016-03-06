@@ -48,5 +48,13 @@ class Log
 			end
 		end
 
+		def display_raw_data(input_data=nil, entity=nil)
+			# Entity == "Puzzle" or "Box Map" for logging
+			if input_data
+				Log.info("#{entity} file contents:")
+				Log.tab(input_data)
+			end
+		end
+
 	end
 end
