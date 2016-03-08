@@ -2,17 +2,17 @@ require 'minitest/autorun'
 
 describe "sudokuru_main" do
 
-	def capture_stdout(&block)
-	  original_stdout = $stdout
-	  $stdout = fake = StringIO.new
-	  begin
-	    yield
-	  rescue SystemExit => e
-	  ensure
-	    $stdout = original_stdout
-	  end
-	  fake.string
-	end
+  def capture_stdout(&block)
+    original_stdout = $stdout
+    $stdout = fake = StringIO.new
+    begin
+      yield
+    rescue SystemExit => e
+    ensure
+      $stdout = original_stdout
+    end
+    fake.string
+  end
 
   def setup
     # $time_s = Time.now
@@ -75,14 +75,14 @@ describe "sudokuru_main" do
     ARGV[1] = nil
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "No file specified"
-		output.must_include "input.txt"
-		output.must_include "Puzzle file contents:"
-		output.must_include "is a square"
-		output.must_include "data is properly formatted"
-		output.must_include "rows contain no duplicate values"
-		output.must_include "columns contain no duplicate values"
-		output.must_include "SUCCESS"
-		output.must_include "Solution found in:"
+    output.must_include "input.txt"
+    output.must_include "Puzzle file contents:"
+    output.must_include "is a square"
+    output.must_include "data is properly formatted"
+    output.must_include "rows contain no duplicate values"
+    output.must_include "columns contain no duplicate values"
+    output.must_include "SUCCESS"
+    output.must_include "Solution found in:"
   end
 
   it "should solve a blank puzzle" do

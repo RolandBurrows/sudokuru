@@ -1,58 +1,58 @@
 class Loop
 
-	def initialize(puzzle_matrix, box_map_matrix)
-		@puzzle_matrix = puzzle_matrix
-		@box_map_matrix = box_map_matrix
-		@matrix_data = puzzle_matrix
-	end
+  def initialize(puzzle_matrix, box_map_matrix)
+    @puzzle_matrix = puzzle_matrix
+    @box_map_matrix = box_map_matrix
+    @matrix_data = puzzle_matrix
+  end
 
-	def fill_puzzle
-		@state = State.new(@matrix_data)
-		determinant = Determine.new(@state.board, @box_map_matrix)
-		start_point = determinant.find_starting_point
-		last_move = nil
-		end_time = Time.now + Config::RUNTIME
+  def fill_puzzle
+    @state = State.new(@matrix_data)
+    determinant = Determine.new(@state.board, @box_map_matrix)
+    start_point = determinant.find_starting_point
+    last_move = nil
+    end_time = Time.now + Config::RUNTIME
 
-		while Time.now < end_time
-			all_possibilities = determinant.determine_all_possible_digits_per_cell
-			replacement_row = all_possibilities[start_point[0]]
-			replacement_options = replacement_row[start_point[1]]
+    while Time.now < end_time
+      all_possibilities = determinant.determine_all_possible_digits_per_cell
+      replacement_row = all_possibilities[start_point[0]]
+      replacement_options = replacement_row[start_point[1]]
 
-			if last_move != nil
-				iter = replacement_options.index(last_move)
-				replacement_options = replacement_options[iter+1, replacement_options.size]
-				last_move = nil
-			end
+      if last_move != nil
+        iter = replacement_options.index(last_move)
+        replacement_options = replacement_options[iter+1, replacement_options.size]
+        last_move = nil
+      end
 
-			move = choose_move(replacement_options)
+      move = choose_move(replacement_options)
 
-			if move == nil
-				# Backtrack due to illegal move
-				start_point, last_move = @state.pop_state
-			else
-				@state[start_point[0], start_point[1]] = move
-				# Use Determine initializer to break if success
-				determinant = Determine.new(@state.board, @box_map_matrix)
-				start_point = determinant.find_starting_point
-				last_move = nil
-			end
+      if move == nil
+        # Backtrack due to illegal move
+        start_point, last_move = @state.pop_state
+      else
+        @state[start_point[0], start_point[1]] = move
+        # Use Determine initializer to break if success
+        determinant = Determine.new(@state.board, @box_map_matrix)
+        start_point = determinant.find_starting_point
+        last_move = nil
+      end
 
-			if Time.now >= end_time
-				Log.error("Solving the puzzle took longer than 60 seconds. Please reduce puzzle size or diagnose with 'env DEBUG='yes'.")
-			end
-		end
+      if Time.now >= end_time
+        Log.error("Solving the puzzle took longer than 60 seconds. Please reduce puzzle size or diagnose with 'env DEBUG='yes'.")
+      end
+    end
 
-	end
+  end
 
 
-	private
+  private
 
-	def choose_move(values)
-		if values.size == 0
-			return nil
-		else
-			return values[0]
-		end
-	end
+  def choose_move(values)
+    if values.size == 0
+      return nil
+    else
+      return values[0]
+    end
+  end
 
 end

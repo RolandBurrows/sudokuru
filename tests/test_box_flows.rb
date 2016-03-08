@@ -2,17 +2,17 @@ require 'minitest/autorun'
 
 describe "sudokuru_boxes" do
 
-	def capture_stdout(&block)
-	  original_stdout = $stdout
-	  $stdout = fake = StringIO.new
-	  begin
-	    yield
-	  rescue SystemExit => e
-	  ensure
-	    $stdout = original_stdout
-	  end
-	  fake.string
-	end
+  def capture_stdout(&block)
+    original_stdout = $stdout
+    $stdout = fake = StringIO.new
+    begin
+      yield
+    rescue SystemExit => e
+    ensure
+      $stdout = original_stdout
+    end
+    fake.string
+  end
 
   def setup
     # $time_s = Time.now
