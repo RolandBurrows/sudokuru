@@ -1,9 +1,9 @@
 class Determine
 
 	def initialize(puzzle_matrix, box_map_matrix)
+		@puzzle_matrix = puzzle_matrix
+		@box_map_matrix = box_map_matrix
 		@edge_length = puzzle_matrix.column_count
-		@pure_puzzle_matrix = puzzle_matrix
-		@pure_boxmap_matrix = box_map_matrix
 		Log.success(puzzle_matrix) if (count_the_blanks(puzzle_matrix) == 0)
 	end
 
@@ -14,8 +14,8 @@ class Determine
 	end
 
 	def find_prime_starting_slice
-		best_row = determine_most_filled_incomplete_row(@pure_puzzle_matrix)
-		best_column = determine_most_filled_incomplete_column(@pure_puzzle_matrix)
+		best_row = determine_most_filled_incomplete_row(@puzzle_matrix)
+		best_column = determine_most_filled_incomplete_column(@puzzle_matrix)
 
 		# If a row and column are of equal goodness, prefer the row
 		@best_slice = (best_row[1] >= best_column[1]) ? best_row : best_column
@@ -44,9 +44,9 @@ class Determine
 			candidate = []
 			if value == "-"
 				if best_slice[3] == "row"
-					possible_slice = @pure_puzzle_matrix.column(index)
+					possible_slice = @puzzle_matrix.column(index)
 				else
-					possible_slice = @pure_puzzle_matrix.row(index)
+					possible_slice = @puzzle_matrix.row(index)
 				end
 				candidate.push(index)
 				candidate.push(possible_slice.to_a)
@@ -120,20 +120,20 @@ class Determine
 
 	def determine_all_possible_digits_per_cell
 		possible_digits_array = []
-		@pure_puzzle_matrix.each_with_index { |cell_contents, row, col|
+		@puzzle_matrix.each_with_index { |cell_contents, row, col|
 			if ("1".."9").include?(cell_contents)
 				possible_digits_array.push("X")
 			else
 				combo_array = []
 
-				row_array = @pure_puzzle_matrix.row(row).to_a
+				row_array = @puzzle_matrix.row(row).to_a
 				combo_array.push(row_array)
 
-				column_array = @pure_puzzle_matrix.column(col).to_a
+				column_array = @puzzle_matrix.column(col).to_a
 				combo_array.push(column_array)
 
-				if @pure_boxmap_matrix
-					box_array = return_box_values_from_matrix_and_index(@pure_puzzle_matrix, [row,col])
+				if @box_map_matrix
+					box_array = return_box_values_from_matrix_and_index(@puzzle_matrix, [row,col])
 					combo_array.push(box_array)
 				end
 
@@ -154,8 +154,8 @@ class Determine
 	end
 
 	def return_box_values_from_matrix_and_index(matrix, index)
-	  transmute = Transmute.new(matrix, @pure_boxmap_matrix)
-	  puzzlebox = transmute.zip_together_puzzle_and_boxmap(matrix, @pure_boxmap_matrix)
+	  transmute = Transmute.new(matrix, @box_map_matrix)
+	  puzzlebox = transmute.zip_together_puzzle_and_boxmap(matrix, @box_map_matrix)
 	  index_data = puzzlebox.detect { |dataset| dataset[1] == index[0] and dataset[2] == index[1]}
 	  boxchar = index_data[3]
 	  box_values = []

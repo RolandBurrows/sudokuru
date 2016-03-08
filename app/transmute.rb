@@ -1,8 +1,8 @@
 class Transmute
 
 	def initialize(puzzle_matrix=nil, box_map_matrix=nil)
-		@pure_puzzle_data = puzzle_matrix
-		@pure_boxmap_data = box_map_matrix
+		@puzzle_matrix = puzzle_matrix
+		@box_map_matrix = box_map_matrix
 	end
 
 	def convert_file_data_to_matrix(file_data)
@@ -15,7 +15,7 @@ class Transmute
 
 	def standardize_blanks
 		@puzzle_array = []
-		@pure_puzzle_data.row_vectors.each { |row|
+		@puzzle_matrix.row_vectors.each { |row|
 			row_array = row.to_a
 			row_array.map! { |elem| elem =~ /( |_)/ ? "-" : elem }.flatten!
 			@puzzle_array.push(row_array)
@@ -47,7 +47,7 @@ class Transmute
 	end
 
 	def extract_box_values_from_zipped_puzzlebox(puzzlebox)
-		box_handler = BoxHandler.new(@pure_puzzle_data, @pure_boxmap_data)
+		box_handler = BoxHandler.new(@puzzle_matrix, @box_map_matrix)
 		chars_range = box_handler.allowed_characters
 		box_values = []
 		chars_range.each { |char|

@@ -3,14 +3,14 @@ require "matrix"
 class Analyze
 
 	def initialize(puzzle_matrix, box_map_matrix)
+		@puzzle_matrix = puzzle_matrix
+		@box_map_matrix = box_map_matrix
 		@edge_length = puzzle_matrix.column_count
-		@matrix_data = puzzle_matrix
-		@boxmap_data = box_map_matrix
 		@transmute = Transmute.new(puzzle_matrix)
 	end
 
 	def dimensionality
-		if @matrix_data.square?
+		if @puzzle_matrix.square?
 			Log.info("Puzzle is a square.")
 		else
 			Log.error("Puzzle row length does not match column height. Please fix and rerun.")
@@ -18,7 +18,7 @@ class Analyze
 	end
 
 	def data_formatting
-		@matrix_data.each { |char|
+		@puzzle_matrix.each { |char|
 			# Only 1-9, " ", "-", "_" are allowed
 			if !char.match("[1-9]| |-|_")
 				Log.error("Puzzle character (#{char}) is not allowed. Please fix and rerun.")
@@ -32,12 +32,12 @@ class Analyze
 	end
 
 	def row_uniqueness(log=nil)
-		check_digit_uniqueness(@matrix_data.row_vectors, "Row")
+		check_digit_uniqueness(@puzzle_matrix.row_vectors, "Row")
 		Log.info("Puzzle rows contain no duplicate values.") if log
 	end
 
 	def column_uniqueness(log=nil)
-		check_digit_uniqueness(@matrix_data.column_vectors, "Column")
+		check_digit_uniqueness(@puzzle_matrix.column_vectors, "Column")
 		Log.info("Puzzle columns contain no duplicate values.") if log
 	end
 
@@ -51,8 +51,8 @@ class Analyze
 					elsif entity == "Box"
 						value = (index+65).chr
 						Log.info("Error details:")
-						box_handler = BoxHandler.new(@matrix_data, @boxmap_data)
-						box_details = box_handler.replace_non_erroneous_box_values_with_blanks(@boxmap_data, value)
+						box_handler = BoxHandler.new(@puzzle_matrix, @box_map_matrix)
+						box_details = box_handler.replace_non_erroneous_box_values_with_blanks(@box_map_matrix, value)
 						puzzle_details = replace_box_values_with_puzzle_values(box_details, value, slice)
 						Log.double_tab(box_details, puzzle_details)
 						Log.error("#{entity} #{value} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")

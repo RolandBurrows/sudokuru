@@ -4,29 +4,29 @@ class BoxHandler
 	attr_reader :allowed_characters
 
 	def initialize(puzzle_matrix, box_map_matrix)
-		@matrix_puzzle_data = puzzle_matrix
-		@matrix_box_map = box_map_matrix
-		@edge_length = box_map_matrix.column_count
+		@puzzle_matrix = puzzle_matrix
+		@box_map_matrix = box_map_matrix
+		@box_edge_length = box_map_matrix.column_count
 		alphabet = ("A".."Z").to_a
-		@allowed_characters = alphabet[0, @edge_length]
+		@allowed_characters = alphabet[0, @box_edge_length]
 	end
 
 	def dimensionality(puzzle_matrix)
-		if @matrix_box_map.square?
+		if @box_map_matrix.square?
 			Log.info("Box Map is square.")
 		else
 			Log.error("Box Map row length does not match column height. Please fix and rerun.")
 		end
 		@puzzle_edge_len = puzzle_matrix.column_count
-		if @puzzle_edge_len == @edge_length
+		if @puzzle_edge_len == @box_edge_length
 			Log.info("Puzzle and Box Map are equally sized.")
 		else
-			Log.error("Puzzle is (#{@puzzle_edge_len}x#{@puzzle_edge_len}), but Box Map is (#{@edge_length}x#{@edge_length}). Please fix and rerun.")
+			Log.error("Puzzle is (#{@puzzle_edge_len}x#{@puzzle_edge_len}), but Box Map is (#{@box_edge_length}x#{@box_edge_length}). Please fix and rerun.")
 		end
 	end
 
 	def data_formatting
-		@matrix_box_map.each { |char|
+		@box_map_matrix.each { |char|
 			if !@allowed_characters.include?(char)
 				Log.error("The Box Map character (#{char}) is not allowed. Only #{allowed_characters[0]}-#{allowed_characters[-1]} are allowed. Please fix and rerun.")
 			end
@@ -36,7 +36,7 @@ class BoxHandler
 
 	def data_uniqueness
 		given_characters = []
-		@matrix_box_map.each { |char|
+		@box_map_matrix.each { |char|
 			given_characters.push(char)
 		}
 		character_counts = []
@@ -56,10 +56,10 @@ class BoxHandler
 	end
 
 	def box_uniqueness(log=nil)
-		transmute = Transmute.new(@matrix_puzzle_data, @matrix_box_map)
-  	puzzlebox = transmute.zip_together_puzzle_and_boxmap(@matrix_puzzle_data, @matrix_box_map)
+		transmute = Transmute.new(@puzzle_matrix, @box_map_matrix)
+  	puzzlebox = transmute.zip_together_puzzle_and_boxmap(@puzzle_matrix, @box_map_matrix)
   	boxes = transmute.extract_box_values_from_zipped_puzzlebox(puzzlebox)
-  	analyze = Analyze.new(@matrix_puzzle_data, @matrix_box_map)
+  	analyze = Analyze.new(@puzzle_matrix, @box_map_matrix)
 		analyze.check_digit_uniqueness(boxes, "Box")
 		Log.info("Puzzle boxes contain no duplicate values.") if log
 	end
