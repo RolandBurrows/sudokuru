@@ -23,12 +23,12 @@ describe "sudokuru_unit_log" do
   # def initialize
   # end
 
-  def activate_debug_logging
+  def squelch_warnings
     @warn_level = $VERBOSE
     $VERBOSE = nil
   end
 
-  def deactivate_debug_logging
+  def unsquelch_warnings
     $VERBOSE = @warn_level
   end
 
@@ -36,34 +36,36 @@ describe "sudokuru_unit_log" do
   # LOGGING
 
   it "should not print debug logging when the DEBUG env var is not activated" do
-    activate_debug_logging
+    squelch_warnings
     output = capture_stdout {
       ENV['DEBUG'] = nil;
       load "././app/config.rb";
       load "././app/log.rb";
       Log.debug("Doot Doot");
     }
-    deactivate_debug_logging
+    unsquelch_warnings
     output.wont_include "Doot Doot"
   end
 
   it "should print debug logging when the DEBUG env var is activated" do
-    activate_debug_logging
+    squelch_warnings
     output = capture_stdout {
       ENV['DEBUG'] = "yes";
       load "././app/config.rb";
       load "././app/log.rb";
       Log.debug("Doot Doot");
     }
-    deactivate_debug_logging
+    unsquelch_warnings
     output.must_include "Doot Doot"
   end
 
   it "should print info logging" do
+    squelch_warnings
     output = capture_stdout {
       load "././app/log.rb";
       Log.info("Generic (useful) information about system operation.");
     }
+    unsquelch_warnings
     output.must_include "Generic (useful) information about system operation."
   end
 

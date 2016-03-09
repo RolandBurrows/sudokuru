@@ -18,18 +18,28 @@ describe "sudokuru_negatives" do
     # $time_s = Time.now
     ARGV[0] = nil
     ARGV[1] = nil
+    squelch_warnings
   end
 
-  # def teardown
-  #   $time_e = Time.now
-  #   puts "#{@test_name} : #{$time_e - $time_s}"
-  # end
+  def teardown
+    # $time_e = Time.now
+    # puts "#{@test_name} : #{$time_e - $time_s}"
+    unsquelch_warnings
+  end
 
   # def initialize(name = nil)
   #   @test_name = name
   #   super(name) unless name.nil?
   # end
 
+  def squelch_warnings
+    @warn_level = $VERBOSE
+    $VERBOSE = nil
+  end
+
+  def unsquelch_warnings
+    $VERBOSE = @warn_level
+  end
 
   # NEGATIVE FLOWS
 
