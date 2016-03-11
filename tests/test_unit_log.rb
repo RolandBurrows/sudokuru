@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require "matrix"
 
 describe "sudokuru_unit_log" do
 
@@ -14,11 +15,13 @@ describe "sudokuru_unit_log" do
     fake.string
   end
 
-  # def setup
-  # end
+  def setup
+    squelch_warnings
+  end
 
-  # def teardown
-  # end
+  def teardown
+    unsquelch_warnings
+  end
 
   # def initialize
   # end
@@ -36,37 +39,47 @@ describe "sudokuru_unit_log" do
   # LOGGING
 
   it "should not print debug logging when the DEBUG env var is not activated" do
-    squelch_warnings
     output = capture_stdout {
       ENV['DEBUG'] = nil;
       load "././app/config.rb";
       load "././app/log.rb";
       Log.debug("Doot Doot");
     }
-    unsquelch_warnings
     output.wont_include "Doot Doot"
   end
 
   it "should print debug logging when the DEBUG env var is activated" do
-    squelch_warnings
     output = capture_stdout {
       ENV['DEBUG'] = "yes";
       load "././app/config.rb";
       load "././app/log.rb";
       Log.debug("Doot Doot");
     }
-    unsquelch_warnings
     output.must_include "Doot Doot"
   end
 
   it "should print info logging" do
-    squelch_warnings
     output = capture_stdout {
       load "././app/log.rb";
       Log.info("Generic (useful) information about system operation.");
     }
-    unsquelch_warnings
     output.must_include "Generic (useful) information about system operation."
+  end
+
+  it "should print tab logging" do
+    output = capture_stdout {
+      load "././app/log.rb";
+      Log.tab(Matrix.identity(2));
+    }
+    output.must_include "\n  10\n  01\n"
+  end
+
+  it "should print double_tab logging" do
+    output = capture_stdout {
+      load "././app/log.rb";
+      Log.double_tab(Matrix.identity(3), Matrix.identity(3).inverse);
+    }
+    output.must_include "\n  100  1/10/10/1\n  010  0/11/10/1\n  001  0/10/11/1\n"
   end
 
 end
