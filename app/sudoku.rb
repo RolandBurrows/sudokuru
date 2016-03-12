@@ -42,7 +42,7 @@ class Sudoku
   end
 
   def analyze_box_file_contents
-  	if @matrix_box_data
+    if @matrix_box_data
       boxysis = BoxHandler.new(@matrix_puzzle_data, @matrix_box_data)
       boxysis.dimensionality(@matrix_puzzle_data)
       boxysis.data_formatting
