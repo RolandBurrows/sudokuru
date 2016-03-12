@@ -1,10 +1,12 @@
 class Determine
+  attr_reader :victory
 
   def initialize(puzzle_matrix, box_map_matrix)
     @puzzle_matrix = puzzle_matrix
     @box_map_matrix = box_map_matrix
     @edge_length = puzzle_matrix.column_count
-    Log.success(puzzle_matrix) if (count_the_blanks(puzzle_matrix) == 0)
+    @victory = nil
+    (@victory = "yes") if (count_the_blanks(puzzle_matrix) == 0)
   end
 
   def find_starting_point

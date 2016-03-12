@@ -19,8 +19,6 @@ class Sudoku
     # Format puzzle
     transmute = Transmute.new(@matrix_puzzle_data)
     @puzzle_matrix = transmute.standardize_blanks
-
-    solve_it
   end
 
   def convert_files_to_matrices
@@ -29,7 +27,7 @@ class Sudoku
       @matrix_puzzle_data = converter.convert_file_data_to_matrix(@puzzle_data)
       @matrix_box_data = converter.convert_file_data_to_matrix(@box_map_data) if @box_map_data
     rescue
-      Log.error("Puzzle/BoxMap file rows and/or columns need to be of consistent length. Please fix and rerun.")
+      raise ("Puzzle/BoxMap file rows and/or columns need to be of consistent length. Please fix and rerun.")
     end
   end
 
@@ -54,12 +52,12 @@ class Sudoku
   def solve_it
   	looper = Loop.new(@puzzle_matrix, @matrix_box_data)
     begin
-      looper.fill_puzzle
+      return looper.fill_puzzle
     rescue
       if @box_map_data
-        Log.error("Puzzle + box map combination has no solution.")
+        raise ("Puzzle + box map combination has no solution.")
       else
-        Log.error("Puzzle has no solution.")
+        raise ("Puzzle has no solution.")
       end
     end
   end

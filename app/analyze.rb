@@ -13,7 +13,7 @@ class Analyze
     if @puzzle_matrix.square?
       Log.info("Puzzle is a square.")
     else
-      Log.error("Puzzle row length does not match column height. Please fix and rerun.")
+      raise ("Puzzle row length does not match column height. Please fix and rerun.")
     end
   end
 
@@ -21,11 +21,11 @@ class Analyze
     @puzzle_matrix.each { |char|
       # Only 1-9, " ", "-", "_" are allowed
       if !char.match("[1-9]| |-|_")
-        Log.error("Puzzle character (#{char}) is not allowed. Please fix and rerun.")
+        raise ("Puzzle character (#{char}) is not allowed. Please fix and rerun.")
       end
       # Ensure there is no digit larger than the puzzle size (a 6x6 grid cannot use digits 7-9)
       if char.to_i > @edge_length.to_i
-        Log.error("The puzzle is #{@edge_length}x#{@edge_length}, so the number (#{char}) is not allowed. Please fix and rerun.")
+        raise ("The puzzle is #{@edge_length}x#{@edge_length}, so the number (#{char}) is not allowed. Please fix and rerun.")
       end
     }
     Log.info("Puzzle data is properly formatted.")
@@ -47,7 +47,7 @@ class Analyze
       for i in 1..9
         if (slice.count(i.to_s) > 1)
           if ["Row","Column"].include? entity
-            Log.error("#{entity} #{index+1} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
+            raise ("#{entity} #{index+1} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
           elsif entity == "Box"
             value = (index+65).chr
             Log.info("Error details:")
@@ -55,9 +55,9 @@ class Analyze
             box_details = box_handler.replace_non_erroneous_box_values_with_blanks(@box_map_matrix, value)
             puzzle_details = replace_box_values_with_puzzle_values(box_details, value, slice)
             Log.double_tab(box_details, puzzle_details)
-            Log.error("#{entity} #{value} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
+            raise ("#{entity} #{value} (#{slice.to_a*""}) contains duplicate values. Please fix and rerun.")
           else
-            Log.error("Contact application creator, because they done goofed.")
+            raise ("Contact application creator, because they done goofed.")
           end
         end
       end

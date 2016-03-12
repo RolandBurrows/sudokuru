@@ -11,7 +11,6 @@ class Log
     def error(badness)
       puts "\n"
       puts "\033[31mERROR: \033[0m" + badness.to_s
-      exit(1)
     end
 
     def info(werds)
@@ -24,7 +23,6 @@ class Log
       puts "\n"
       puts "\033[32mSUCCESS!\033[0m Solution found in: #{$duration_end - $duration_start} seconds."
       Log.tab(goodness)
-      exit(0)
     end
 
     def tab(move_overs_matrix, debug_on=nil)
