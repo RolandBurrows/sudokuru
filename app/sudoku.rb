@@ -32,7 +32,7 @@ class Sudoku
   end
 
   def analyze_puzzle_file_contents
-  	analysis = Analyze.new(@matrix_puzzle_data, @matrix_box_data)
+    analysis = Analyze.new(@matrix_puzzle_data, @matrix_box_data)
     analysis.dimensionality
     analysis.data_formatting
     analysis.row_uniqueness("log it!")
@@ -50,12 +50,12 @@ class Sudoku
   end
 
   def solve_it
-  	looper = Loop.new(@puzzle_matrix, @matrix_box_data)
+    looper = Loop.new(@puzzle_matrix, @matrix_box_data)
     begin
       return looper.fill_puzzle
     rescue StandardError => e
-    	if e.message.include?("took longer")
-      	raise e
+      if e.message.include?("took longer")
+        raise e
       end
       if @box_map_data
         raise "Puzzle + box map combination has no solution."

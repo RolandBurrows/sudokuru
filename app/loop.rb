@@ -41,8 +41,8 @@ class Loop
         start_point = determinant.find_starting_point
         last_move = nil
       end
-      raise "Solving the puzzle took longer than (#{Config::RUNTIME}) seconds. Please reduce puzzle size or diagnose with (env DEBUG='yes')." if Time.now >= end_time
     end
+    raise "Solving the puzzle took longer than (#{Config::RUNTIME}) seconds. Please reduce puzzle size or diagnose with (env DEBUG='yes')."
   end
 
 
