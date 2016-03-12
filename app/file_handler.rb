@@ -14,10 +14,10 @@ class FileHandler
       Log.info("Using puzzle file: #{@puzzle_file}")
       puzzle_data = File.read(@puzzle_file)
     rescue
-      raise ("given puzzle file doesn't exist. Halting.")
+      raise "given puzzle file doesn't exist. Halting."
     end
     if puzzle_data == ""
-      raise ("puzzle file is empty.")
+      raise "puzzle file is empty."
     end
     return puzzle_data
   end
@@ -31,11 +31,11 @@ class FileHandler
         Log.info("Using provided box map file: #{@box_map_file}")
         box_map_data = File.read(@box_map_file)
         if box_map_data == ""
-          raise ("box map file is empty.")
+          raise "box map file is empty."
         end
       end
     rescue
-      raise ("given box map file doesn't exist. Halting.")
+      raise "given box map file doesn't exist. Halting."
     end
     return box_map_data
   end

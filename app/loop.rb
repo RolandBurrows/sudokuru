@@ -10,9 +10,8 @@ class Loop
     @state = State.new(@matrix_data)
     determinant = Determine.new(@state.board, @box_map_matrix)
     # Return immediately if puzzle is already complete
-    if determinant.victory != nil
-      return @state.board
-    end
+    return @state.board if determinant.victory != nil
+
     start_point = determinant.find_starting_point
     last_move = nil
     end_time = Time.now + Config::RUNTIME
@@ -37,16 +36,12 @@ class Loop
         @state[start_point[0], start_point[1]] = move
         # Use Determine initializer to break if success
         determinant = Determine.new(@state.board, @box_map_matrix)
-        if determinant.victory != nil
-          return @state.board
-        end
+        return @state.board if determinant.victory != nil
+
         start_point = determinant.find_starting_point
         last_move = nil
       end
-
-      if Time.now >= end_time
-        raise ("Solving the puzzle took longer than 60 seconds. Please reduce puzzle size or diagnose with 'env DEBUG='yes'.")
-      end
+      raise "Solving the puzzle took longer than (#{Config::RUNTIME}) seconds. Please reduce puzzle size or diagnose with (env DEBUG='yes')." if Time.now >= end_time
     end
   end
 

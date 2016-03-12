@@ -15,20 +15,20 @@ class BoxHandler
     if @box_map_matrix.square?
       Log.info("Box Map is square.")
     else
-      raise ("Box Map row length does not match column height. Please fix and rerun.")
+      raise "Box Map row length does not match column height. Please fix and rerun."
     end
     @puzzle_edge_len = puzzle_matrix.column_count
     if @puzzle_edge_len == @box_edge_length
       Log.info("Puzzle and Box Map are equally sized.")
     else
-      raise ("Puzzle is (#{@puzzle_edge_len}x#{@puzzle_edge_len}), but Box Map is (#{@box_edge_length}x#{@box_edge_length}). Please fix and rerun.")
+      raise "Puzzle is (#{@puzzle_edge_len}x#{@puzzle_edge_len}), but Box Map is (#{@box_edge_length}x#{@box_edge_length}). Please fix and rerun."
     end
   end
 
   def data_formatting
     @box_map_matrix.each { |char|
       if !@allowed_characters.include?(char)
-        raise ("The Box Map character (#{char}) is not allowed. Only #{allowed_characters[0]}-#{allowed_characters[-1]} are allowed. Please fix and rerun.")
+        raise "The Box Map character (#{char}) is not allowed. Only #{allowed_characters[0]}-#{allowed_characters[-1]} are allowed. Please fix and rerun."
       end
     }
     Log.info("Box Map data is properly formatted.")
@@ -50,7 +50,7 @@ class BoxHandler
         puts "Character: (#{@allowed_characters[i]}), count: (#{count})"
         i += 1
       }
-      raise ("The Box Map boxes are not of equal area.")
+      raise "The Box Map boxes are not of equal area."
     end
     Log.info("Box Map boxes are of equal area.")
   end

@@ -27,7 +27,7 @@ class Sudoku
       @matrix_puzzle_data = converter.convert_file_data_to_matrix(@puzzle_data)
       @matrix_box_data = converter.convert_file_data_to_matrix(@box_map_data) if @box_map_data
     rescue
-      raise ("Puzzle/BoxMap file rows and/or columns need to be of consistent length. Please fix and rerun.")
+      raise "Puzzle/BoxMap file rows and/or columns need to be of consistent length. Please fix and rerun."
     end
   end
 
@@ -53,11 +53,14 @@ class Sudoku
   	looper = Loop.new(@puzzle_matrix, @matrix_box_data)
     begin
       return looper.fill_puzzle
-    rescue
+    rescue StandardError => e
+    	if e.message.include?("took longer")
+      	raise e
+      end
       if @box_map_data
-        raise ("Puzzle + box map combination has no solution.")
+        raise "Puzzle + box map combination has no solution."
       else
-        raise ("Puzzle has no solution.")
+        raise "Puzzle has no solution."
       end
     end
   end
