@@ -19,11 +19,13 @@ describe "sudokuru_negatives" do
     ARGV[0] = nil
     ARGV[1] = nil
     squelch_warnings
+    ENV['RUNTIME'] = nil
   end
 
   def teardown
     # $time_e = Time.now
     # puts "#{@test_name} : #{$time_e - $time_s}"
+    ENV['RUNTIME'] = nil
     unsquelch_warnings
   end
 
@@ -98,6 +100,17 @@ describe "sudokuru_negatives" do
     output = capture_stdout { load "sudokuru.rb" }
     output.must_include "ERROR"
     output.must_include "Column 4 (4412) contains duplicate values"
+  end
+
+  it "should detect that the puzzle cant be solved in the time given" do
+    ARGV[0] = "./puzzles/9x9.txt"
+    ARGV[1] = "./puzzles/9x9boxa.txt"
+    output = capture_stdout {
+      ENV['RUNTIME'] = "1";
+      load "././app/config.rb";
+      load "sudokuru.rb";
+    }
+    output.must_include "Solving the puzzle took longer than (1) seconds."
   end
 
 end
