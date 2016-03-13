@@ -93,6 +93,17 @@ describe "sudokuru_unit_log" do
     output.must_include "Generic (useful) information about system operation."
   end
 
+  it "should print success logging" do
+    output = capture_stdout {
+      $duration_start = Time.now
+      load "././app/log.rb";
+      Log.success(Matrix.identity(2));
+    }
+    output.must_include "SUCCESS"
+    output.must_include "Solution found in:"
+    output.must_include "  10\n  01"
+  end
+
   it "should print tab logging" do
     output = capture_stdout {
       load "././app/log.rb";
