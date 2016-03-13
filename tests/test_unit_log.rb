@@ -76,6 +76,15 @@ describe "sudokuru_unit_log" do
     output.must_include "\n  100  1/10/10/1\n  010  0/11/10/1\n  001  0/10/11/1\n"
   end
 
+  it "should print error logging" do
+    output = capture_stdout {
+      load "././app/log.rb";
+      Log.error("A handleable error condition.");
+    }
+    output.must_include "ERROR"
+    output.must_include "A handleable error condition"
+  end
+
   it "should print info logging" do
     output = capture_stdout {
       load "././app/log.rb";
