@@ -8,6 +8,24 @@ class Log
       end
     end
 
+    def display_raw_data(input_data, entity)
+      # Entity == "Puzzle" or "Box Map" for logging
+      Log.info("#{entity} file contents:")
+      Log.tab(input_data)
+    end
+
+    def double_tab(to_move_boxmap, to_move_puzzle)
+      move_overs_box = to_move_boxmap.to_a
+      move_overs_puzz = to_move_puzzle.to_a
+
+      tabbed_box = move_overs_box.collect{|row| row.join("")}
+      tabbed_puzz = move_overs_puzz.collect{|row| row.join("")}
+      puts "\n"
+      tabbed_box.zip(tabbed_puzz).each do |box_line, puzzle_line|
+        puts "  #{box_line}  #{puzzle_line}"
+      end
+    end
+
     def error(badness)
       puts "\n"
       puts "\033[31mERROR: \033[0m" + badness.to_s
@@ -32,24 +50,6 @@ class Log
         puts "\n"
         tabbed_data.each { |row| puts "  #{row}" }
       end
-    end
-
-    def double_tab(to_move_boxmap, to_move_puzzle)
-      move_overs_box = to_move_boxmap.to_a
-      move_overs_puzz = to_move_puzzle.to_a
-
-      tabbed_box = move_overs_box.collect{|row| row.join("")}
-      tabbed_puzz = move_overs_puzz.collect{|row| row.join("")}
-      puts "\n"
-      tabbed_box.zip(tabbed_puzz).each do |box_line, puzzle_line|
-        puts "  #{box_line}  #{puzzle_line}"
-      end
-    end
-
-    def display_raw_data(input_data, entity)
-      # Entity == "Puzzle" or "Box Map" for logging
-      Log.info("#{entity} file contents:")
-      Log.tab(input_data)
     end
 
   end
