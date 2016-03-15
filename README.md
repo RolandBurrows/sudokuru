@@ -15,6 +15,10 @@ To see every single solving step:
 ```
 $ env DEBUG=yes ruby sudokuru.rb <path> <path>
 ```
+To change the allowed solving time (default is 60 seconds):
+```
+$ env RUNTIME=42 ruby sudokuru.rb <path> <path>
+```
 In the absence of a file path provided, sudokuru will default to:
 ```
 $ ruby sudokuru.rb ./puzzles/sample_input.txt
@@ -68,7 +72,7 @@ Error details:
 ERROR: Box A (-28-16-13) contains duplicate values. Please fix and rerun.
 ```
 #### Results
-If formatting is correct, puzzle will be processed until sucessful, or app will error if solution is not found within 60 seconds.
+If formatting is correct, puzzle will be processed until sucessful, or will error-out if solution is not found within RUNTIME value (default is 60 seconds).
 ```
 SUCCESS! Solution found in: 0.015643 seconds.
 
