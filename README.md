@@ -1,7 +1,7 @@
 ## sudokuru
 Ruby Sudoku puzzle solver at the speed of light.
 
-[![Build Status](https://semaphoreci.com/api/v1/projects/f143a17b-2c6c-45c1-8698-5e79c8e736b7/663467/shields_badge.svg)](https://semaphoreci.com/rolandburrows/sudokuru)  [![Code Climate](https://codeclimate.com/github/RolandBurrows/sudokuru/badges/gpa.svg)](https://codeclimate.com/github/RolandBurrows/sudokuru)   [![Issue Count](https://codeclimate.com/github/RolandBurrows/sudokuru/badges/issue_count.svg)](https://codeclimate.com/github/RolandBurrows/sudokuru)
+[![Build Status](https://semaphoreci.com/api/v1/projects/f143a17b-2c6c-45c1-8698-5e79c8e736b7/663467/shields_badge.svg)](https://semaphoreci.com/rolandburrows/sudokuru)  [![Code Climate](https://codeclimate.com/github/RolandBurrows/sudokuru/badges/gpa.svg)](https://codeclimate.com/github/RolandBurrows/sudokuru)   [![Issue Count](https://codeclimate.com/github/RolandBurrows/sudokuru/badges/issue_count.svg)](https://codeclimate.com/github/RolandBurrows/sudokuru)   [![Test Coverage](https://codeclimate.com/github/RolandBurrows/sudokuru/badges/coverage.svg)](https://codeclimate.com/github/RolandBurrows/sudokuru/coverage)
 
 #### The Goal
 * Solves a given [Sudoku](https://en.wikipedia.org/wiki/Sudoku) puzzle. A Box-map file is taken into account when solving, if provided.
