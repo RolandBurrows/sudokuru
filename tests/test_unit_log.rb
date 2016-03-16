@@ -39,16 +39,6 @@ describe "sudokuru_unit_log" do
 
   # LOGGING
 
-  it "should not print debug logging when the DEBUG env var is not activated" do
-    output = capture_stdout {
-      ENV['DEBUG'] = nil;
-      load "././app/config.rb";
-      load "././app/log.rb";
-      Log.debug("Doot Doot");
-    }
-    output.wont_include "Doot Doot"
-  end
-
   it "should print debug logging when the DEBUG env var is activated" do
     output = capture_stdout {
       ENV['DEBUG'] = "yes";
@@ -56,7 +46,17 @@ describe "sudokuru_unit_log" do
       load "././app/log.rb";
       Log.debug("Doot Doot");
     }
-    output.must_include "Doot Doot"
+    output.must_include "\nDoot Doot"
+  end
+
+  it "should not print debug logging when the DEBUG env var is not activated" do
+    output = capture_stdout {
+      ENV['DEBUG'] = nil;
+      load "././app/config.rb";
+      load "././app/log.rb";
+      Log.debug("Doot Doot");
+    }
+    output.must_equal ""
   end
 
   it "should print raw data logging" do
