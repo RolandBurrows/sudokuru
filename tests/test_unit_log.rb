@@ -100,7 +100,8 @@ describe "sudokuru_unit_log" do
     output = capture_stdout {
       $duration_start = Time.now
       load "././app/log.rb";
-      Log.success(Matrix.identity(2));
+      puzzle = Matrix.identity(2);
+      Log.success(puzzle);
     }
     output.must_include "SUCCESS"
     output.must_include "Solution found in:"
@@ -110,9 +111,10 @@ describe "sudokuru_unit_log" do
   it "should print tab logging" do
     output = capture_stdout {
       load "././app/log.rb";
-      Log.tab(Matrix.identity(2));
+      puzzle = Matrix.identity(2);
+      Log.tab(puzzle);
     }
-    output.must_include "\n  10\n  01\n"
+    output.must_equal "\n  10\n  01\n"
   end
 
 end
