@@ -72,9 +72,11 @@ describe "sudokuru_unit_log" do
   it "should print double_tab logging" do
     output = capture_stdout {
       load "././app/log.rb";
-      Log.double_tab(Matrix.identity(3), Matrix.identity(3).inverse);
+      boxmap = Matrix.identity(3);
+      puzzle = Matrix.zero(3);
+      Log.double_tab(boxmap, puzzle);
     }
-    output.must_include "\n  100  1/10/10/1\n  010  0/11/10/1\n  001  0/10/11/1\n"
+    output.must_equal "\n  100  000\n  010  000\n  001  000\n"
   end
 
   it "should print error logging" do
