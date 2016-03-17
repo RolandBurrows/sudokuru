@@ -2,6 +2,8 @@
 engines:
   brakeman:
     enabled: true
+    exclude_fingerprints:
+    - 6ad4464dbb2a999591c7be8346dc137c3372b280f4a8b0c024fef91dfebeeb83
   bundler-audit:
     enabled: true
   duplication:
