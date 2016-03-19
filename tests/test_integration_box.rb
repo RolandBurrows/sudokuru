@@ -100,4 +100,12 @@ describe "sudokuru_boxes" do
     output.must_include "combination has no solution"
   end
 
+  it "should detect that boxmap file is empty" do
+    ARGV[0] = "./puzzles/6x6.txt"
+    ARGV[1] = "./test_files/empty_boxmap.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "ERROR"
+    output.must_include "box map file is empty."
+  end
+
 end

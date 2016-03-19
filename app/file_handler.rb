@@ -26,16 +26,16 @@ class FileHandler
     if @box_map_file.nil?
       Log.info("No box map file specified for the given puzzle. Proceeding without.")
     end
-    begin
-      if @box_map_file
+    if @box_map_file
+      begin
         Log.info("Using provided box map file: #{@box_map_file}")
         box_map_data = File.read(@box_map_file)
-        if box_map_data == ""
-          raise "box map file is empty."
-        end
+      rescue
+        raise "given box map file doesn't exist. Halting."
       end
-    rescue
-      raise "given box map file doesn't exist. Halting."
+      if box_map_data == ""
+        raise "box map file is empty."
+      end
     end
     return box_map_data
   end
