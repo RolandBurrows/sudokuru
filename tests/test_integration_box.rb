@@ -124,4 +124,12 @@ describe "sudokuru_boxes" do
     output.must_include "Box Map row length does not match column height. Please fix and rerun."
   end
 
+  it "should detect that the boxmap contains an invalid character" do
+    ARGV[0] = "./puzzles/2x2.txt"
+    ARGV[1] = "./test_files/non_allowed_character_boxmap.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "ERROR"
+    output.must_include "The Box Map character (C) is not allowed. Only A-B are allowed. Please fix and rerun."
+  end
+
 end
