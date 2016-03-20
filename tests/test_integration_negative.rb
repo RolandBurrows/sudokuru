@@ -121,9 +121,9 @@ describe "sudokuru_negatives" do
     ARGV[0] = "./puzzles/9x9.txt"
     ARGV[1] = "./puzzles/9x9boxa.txt"
     output = capture_stdout {
-      ENV['RUNTIME'] = "1";
-      load "././app/config.rb";
-      load "sudokuru.rb";
+      ENV['RUNTIME'] = "1"
+      load "././app/config.rb"
+      load "sudokuru.rb"
     }
     output.must_include "Solving the puzzle took longer than (1) seconds."
   end

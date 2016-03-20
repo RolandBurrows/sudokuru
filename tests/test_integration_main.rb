@@ -117,9 +117,9 @@ describe "sudokuru_main" do
     ARGV[0] = "./test_files/starting_row.txt"
     activate_debug_logging
     output = capture_stdout {
-      ENV['DEBUG'] = "yes";
-      load "././app/config.rb";
-      load "sudokuru.rb";
+      ENV['DEBUG'] = "yes"
+      load "././app/config.rb"
+      load "sudokuru.rb"
     }
     deactivate_debug_logging
     output.must_include "Starting slice is row 3, with 2 of 4 elements filled."
@@ -129,9 +129,9 @@ describe "sudokuru_main" do
     ARGV[0] = "./test_files/starting_column.txt"
     activate_debug_logging
     output = capture_stdout {
-      ENV['DEBUG'] = "yes";
-      load "././app/config.rb";
-      load "sudokuru.rb";
+      ENV['DEBUG'] = "yes"
+      load "././app/config.rb"
+      load "sudokuru.rb"
     }
     deactivate_debug_logging
     output.must_include "Starting slice is column 4, with 2 of 4 elements filled."
@@ -141,9 +141,9 @@ describe "sudokuru_main" do
     ARGV[0] = "./test_files/starting_index.txt"
     activate_debug_logging
     output = capture_stdout {
-      ENV['DEBUG'] = "yes";
-      load "././app/config.rb";
-      load "sudokuru.rb";
+      ENV['DEBUG'] = "yes"
+      load "././app/config.rb"
+      load "sudokuru.rb"
     }
     deactivate_debug_logging
     output.must_include "Starting slice is row 6, with 4 of 6 elements filled."
