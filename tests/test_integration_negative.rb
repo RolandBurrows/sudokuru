@@ -103,6 +103,14 @@ describe "sudokuru_negatives" do
     output.must_include "Column 4 (4412) contains duplicate values"
   end
 
+  it "should detect that puzzle file has duplicate characters in a box" do
+    ARGV[0] = "./puzzles/9x9.txt"
+    ARGV[1] = "./puzzles/9x9boxb.txt"
+    output = capture_stdout { load "sudokuru.rb" }
+    output.must_include "ERROR"
+    output.must_include "Box A (-28-16-13) contains duplicate values. Please fix and rerun."
+  end
+
   it "should detect that the puzzle has no solution" do
     ARGV[0] = "./test_files/no_solution.txt"
     output = capture_stdout { load "sudokuru.rb" }
