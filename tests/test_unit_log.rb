@@ -1,6 +1,5 @@
 require 'test_helper'
 require 'minitest/autorun'
-require "matrix"
 
 describe "sudokuru_unit_log" do
 
