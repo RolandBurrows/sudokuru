@@ -17,7 +17,8 @@ describe "sudokuru_unit_analyze" do
 
   it "should detect duplicates in digit uniqueness check" do
     output = capture_stdout {
-      load "././sudokuru.rb"
+      load "././app/analyze.rb"
+      load "././app/transmute.rb"
       box_map = Matrix.identity(3)
       puzzle = Matrix.zero(3)
       analysis = Analyze.new(puzzle, box_map)
@@ -30,7 +31,8 @@ describe "sudokuru_unit_analyze" do
 
   it "should raise a deep analysis code error" do
     output = capture_stdout {
-      load "././sudokuru.rb"
+      load "././app/analyze.rb"
+      load "././app/transmute.rb"
       box_map = Matrix.identity(3)
       puzzle = Matrix.zero(3)
       analysis = Analyze.new(puzzle, box_map)
