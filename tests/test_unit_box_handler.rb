@@ -4,6 +4,7 @@ describe "sudokuru_unit_box_handler" do
 
   it "should replace non erroneous box values with blanks" do
     load "././app/box_handler.rb"
+    load "././app/transmute.rb"
     box_map = Matrix.identity(3)
     puzzle = Matrix.zero(3)
     box_handler = BoxHandler.new(puzzle, box_map)
